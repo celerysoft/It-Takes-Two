@@ -6,6 +6,18 @@ package com.celerysoft.ittakestwo.modules;
 public class PlayingCard extends Card {
 
     private String mSuit;
+    public String getSuit() {
+        return mSuit != null ? mSuit : "?";
+    }
+    public void setSuit(String suit) {
+        for (String validSuit : validSuits()) {
+            if (validSuit.equals(suit)) {
+                this.mSuit = suit;
+            }
+        }
+    }
+
+
 
     private int mRank;
     public void setRank(int rank) {
@@ -15,11 +27,11 @@ public class PlayingCard extends Card {
     }
 
     public PlayingCard() {
-
+        super();
     }
 
     public static String[] validSuits() {
-        return new String[]{"", "", "", ""};
+        return new String[]{"♥", "♦", "♠", "♣"};
     }
 
     private static String[] rankString() {
@@ -29,6 +41,5 @@ public class PlayingCard extends Card {
     public static int maxRank() {
         return rankString().length - 1;
     }
-
 
 }

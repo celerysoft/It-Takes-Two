@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">It Takes Two</string>
+    <string name="title_activity_playing_card">PlayingCardActivity</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
 </resources>

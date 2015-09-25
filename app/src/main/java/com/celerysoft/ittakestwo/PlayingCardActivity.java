@@ -1,14 +1,21 @@
 package com.celerysoft.ittakestwo;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.GridLayout;
-import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import com.celerysoft.ittakestwo.modules.Card;
+import com.celerysoft.ittakestwo.modules.CardMatchingGame;
+import com.celerysoft.ittakestwo.modules.PlayingCard;
+import com.celerysoft.ittakestwo.modules.PlayingDeck;
+
+import java.util.ArrayList;
 
 public class PlayingCardActivity extends Activity {
 
@@ -29,7 +36,13 @@ public class PlayingCardActivity extends Activity {
     private Button card13;
     private Button card14;
     private Button card15;
+    private ArrayList<Button> cardButtons = new ArrayList<>();
 
+    private Button btnRestartGame;
+    private Button btnShareScore;
+    private TextView tvScroe;
+
+    private CardMatchingGame game;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +52,7 @@ public class PlayingCardActivity extends Activity {
         onCreateView();
         onCreateListener();
         autoAdjustForScreen();
+        game = new CardMatchingGame(cardButtons.size(), new PlayingDeck());
     }
 
     /**
@@ -105,6 +119,26 @@ public class PlayingCardActivity extends Activity {
         card13 = (Button) findViewById(R.id.card13);
         card14 = (Button) findViewById(R.id.card14);
         card15 = (Button) findViewById(R.id.card15);
+        cardButtons.add(card00);
+        cardButtons.add(card01);
+        cardButtons.add(card02);
+        cardButtons.add(card03);
+        cardButtons.add(card04);
+        cardButtons.add(card05);
+        cardButtons.add(card06);
+        cardButtons.add(card07);
+        cardButtons.add(card08);
+        cardButtons.add(card09);
+        cardButtons.add(card10);
+        cardButtons.add(card11);
+        cardButtons.add(card12);
+        cardButtons.add(card13);
+        cardButtons.add(card14);
+        cardButtons.add(card15);
+
+        btnRestartGame = (Button) findViewById(R.id.playingcard_btn_restart);
+        btnShareScore = (Button) findViewById(R.id.playingcard_btn_share);
+        tvScroe = (TextView) findViewById(R.id.playingcard_tv_score);
     }
 
     private void onCreateListener() {
@@ -131,14 +165,41 @@ public class PlayingCardActivity extends Activity {
         public void onClick(View view) {
             if (view instanceof Button) {
                 Button card = (Button) view;
-                if (card.getText().length() > 0) {
-                    card.setBackgroundResource(R.drawable.cardback);
-                    card.setText("");
-                } else {
-                    card.setBackgroundColor(0xffffffff);
-                    card.setText("AA");
-                }
+                int chosenButtonIndex = cardButtons.indexOf(card);
+                game.chooseCardAtIndex(chosenButtonIndex);
+                updateUi();
             }
         }
     };
+
+    private void updateUi() {
+        for (Button cardButton : cardButtons) {
+            int cardButtonIndex = cardButtons.indexOf(cardButton);
+            Card card = game.cardAtIndex(cardButtonIndex);
+            setTextForCard(cardButton, card);
+            setBackGroundForCard(cardButton, card);
+        }
+    }
+
+    private void setTextForCard(Button cardButton, Card card) {
+        cardButton.setText(card.isChosen() ? card.getContents() : "");
+        if (card instanceof PlayingCard) {
+            String suit = ((PlayingCard) card).getSuit();
+            if (suit.equals("♥") || suit.equals("♦")) {
+                cardButton.setTextColor(Color.RED);
+            } else if (suit.equals("♠") || suit.equals("♣")) {
+                cardButton.setTextColor(Color.BLACK);
+            }
+        }
+
+    }
+
+    private void setBackGroundForCard(Button cardButton, Card card) {
+        if (card.isChosen()) {
+            cardButton.setBackgroundColor(0xFFFFFFFF);
+        } else {
+            cardButton.setBackgroundResource(R.drawable.cardback);
+        }
+        tvScroe.setText(getString(R.string.playingcard_score) + game.getScore());
+    }
 }

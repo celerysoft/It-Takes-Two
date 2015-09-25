@@ -17,13 +17,19 @@ public class PlayingCard extends Card {
         }
     }
 
-
-
     private int mRank;
     public void setRank(int rank) {
         if (rank <= this.maxRank()) {
             this.mRank = rank;
         }
+    }
+    public int getRank() {
+        return mRank;
+    }
+
+    @Override
+    public String getContents() {
+        return mSuit + rankString()[mRank];
     }
 
     public PlayingCard() {
@@ -40,6 +46,22 @@ public class PlayingCard extends Card {
 
     public static int maxRank() {
         return rankString().length - 1;
+    }
+
+    @Override
+    public int match(Card[] cards) {
+        int score = 0;
+        for (Card otherCard : cards) {
+            if(otherCard instanceof PlayingCard) {
+                if (this.mRank == ((PlayingCard) otherCard).getRank()) {
+                    score = 4;
+                } else if(this.mSuit == ((PlayingCard) otherCard).getSuit()) {
+                    score = 1;
+                }
+            }
+
+        }
+        return score;
     }
 
 }

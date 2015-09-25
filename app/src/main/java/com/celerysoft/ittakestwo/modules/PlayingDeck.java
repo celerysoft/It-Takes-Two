@@ -12,6 +12,7 @@ public class PlayingDeck extends Deck {
                 PlayingCard card = new PlayingCard();
                 card.setRank(rank);
                 card.setSuit(suit);
+                addCard(card);
             }
         }
     }

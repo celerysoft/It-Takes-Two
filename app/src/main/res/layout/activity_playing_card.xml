@@ -108,19 +108,20 @@
 
         <Button
             android:id="@+id/playingcard_btn_restart"
-            android:text="Restart"
+            android:text="@string/playingcard_btn_restart_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <Button
             android:id="@+id/playingcard_btn_share"
-            android:text="Share"
+            android:text="@string/playingcard_btn_share_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <TextView
             android:id="@+id/playingcard_tv_score"
-            android:text="score: 0"
+            android:text="@string/playingcard_tv_score_text"
+            android:textColor="#FF000000"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 

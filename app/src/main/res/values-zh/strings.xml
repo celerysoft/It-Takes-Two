@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>]
+<resources>
+    <!-- common -->
+    <string name="app_name">纸牌对对碰</string>
+
     <!-- PlayingCard Activity -->
     <string name="title_activity_playing_card">玩纸牌</string>
     <string name="playingcard_tv_score_text">得分：0</string>

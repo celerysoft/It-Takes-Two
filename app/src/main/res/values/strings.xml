@@ -1,8 +1,9 @@
 <resources>
+    <!-- common -->
     <string name="app_name">It Takes Two</string>
-
-
     <string name="hello_world">Hello world!</string>
+
+    <!-- action -->
     <string name="action_settings">Settings</string>
 
 

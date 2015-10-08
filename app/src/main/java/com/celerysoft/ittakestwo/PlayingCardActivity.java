@@ -3,11 +3,14 @@ package com.celerysoft.ittakestwo;
 import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridLayout;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.celerysoft.ittakestwo.modules.Card;
@@ -18,8 +21,11 @@ import com.celerysoft.ittakestwo.modules.PlayingDeck;
 import java.util.ArrayList;
 
 public class PlayingCardActivity extends Activity {
+    /** Log tag **/
+    private final String LOG_TAG = this.getClass().getSimpleName();
 
-    private GridLayout cardContainer;
+    private boolean isNeededAutoAdjustForScreen = true;
+
     private Button card00;
     private Button card01;
     private Button card02;
@@ -51,21 +57,23 @@ public class PlayingCardActivity extends Activity {
 
         onCreateView();
         onCreateListener();
-        autoAdjustForScreen();
         game = new CardMatchingGame(cardButtons.size(), new PlayingDeck());
+        isNeededAutoAdjustForScreen = true;
     }
 
     /**
      * adjust cards horizontal gap and vertical gap
      */
     private void autoAdjustForScreen() {
+        Log.d(LOG_TAG, "autoAdjustForScreen");
+
         //adjust horizontal gap
         int screenWidth = getResources().getDisplayMetrics().widthPixels;
-        float margin = getResources().getDimension(R.dimen.activity_horizontal_margin);
+        float horizontalMargin = getResources().getDimension(R.dimen.activity_horizontal_margin);
 
         GridLayout.LayoutParams cardlayoutParams = (GridLayout.LayoutParams) card01.getLayoutParams();
         int cardLayoutWidth = cardlayoutParams.width;
-        int cardLayoutMarginLeft = (int) ((screenWidth - 2 * margin - 4 * cardLayoutWidth) / 3);
+        int cardLayoutMarginLeft = (int) ((screenWidth - 2 * horizontalMargin - 4 * cardLayoutWidth) / 3);
         cardlayoutParams.setMargins(cardLayoutMarginLeft, 0, 0, 0);
         card01.setLayoutParams(cardlayoutParams);
         cardlayoutParams = (GridLayout.LayoutParams) card02.getLayoutParams();
@@ -75,24 +83,49 @@ public class PlayingCardActivity extends Activity {
         cardlayoutParams.setMargins(cardLayoutMarginLeft, 0, 0, 0);
         card03.setLayoutParams(cardlayoutParams);
 
-        //TODO adjust vertical gap
+
+        //adjust vertical gap
+        int screenHeight = getResources().getDisplayMetrics().heightPixels;
+        float verticalMargin = getResources().getDimension(R.dimen.activity_vertical_margin);
+
+        RelativeLayout.LayoutParams buttonlayoutParams = (RelativeLayout.LayoutParams) btnRestartGame.getLayoutParams();
+        // int buttonHeight = buttonlayoutParams.height;
+        int buttonHeight = btnRestartGame.getHeight();
+        cardlayoutParams = (GridLayout.LayoutParams) card04.getLayoutParams();
+        int cardLayoutHeight = cardlayoutParams.height;
+        int cardLayoutMarginTop = (int) ((screenHeight - 3 * verticalMargin - buttonHeight - 4 * cardLayoutHeight) / 3);
+        cardlayoutParams.setMargins(0, cardLayoutMarginTop, 0, 0);
+        card04.setLayoutParams(cardlayoutParams);
+        cardlayoutParams = (GridLayout.LayoutParams) card08.getLayoutParams();
+        cardlayoutParams.setMargins(0, cardLayoutMarginTop, 0, 0);
+        card08.setLayoutParams(cardlayoutParams);
+        cardlayoutParams = (GridLayout.LayoutParams) card12.getLayoutParams();
+        cardlayoutParams.setMargins(0, cardLayoutMarginTop, 0, 0);
+        card12.setLayoutParams(cardlayoutParams);
+
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        if (hasFocus) {
+            if (isNeededAutoAdjustForScreen) {
+                autoAdjustForScreen();
+                isNeededAutoAdjustForScreen = false;
+            }
+
+        }
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_playing_card, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
@@ -101,7 +134,6 @@ public class PlayingCardActivity extends Activity {
     }
 
     private void onCreateView() {
-        cardContainer = (GridLayout) findViewById(R.id.playingcard_gridlayout);
 
         card00 = (Button) findViewById(R.id.card00);
         card01 = (Button) findViewById(R.id.card01);

@@ -227,6 +227,10 @@ public class PlayingCardActivity extends Activity {
     }
 
     private void setBackGroundForCard(Button cardButton, Card card) {
+        if (card.isMatched()) {
+            cardButton.setBackgroundColor(0xAAFFFFFF);
+            return;
+        }
         if (card.isChosen()) {
             cardButton.setBackgroundColor(0xFFFFFFFF);
         } else {

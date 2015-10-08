@@ -10,7 +10,7 @@
     <!-- PlayingCard Activity -->
     <string name="title_activity_playing_card">Playing Card</string>
     <string name="playingcard_tv_score_text">Score: 0</string>
-    <string name="playingcard_score">Score</string>
+    <string name="playingcard_score">Score: </string>
     <string name="playingcard_btn_restart_text">Restart</string>
     <string name="playingcard_btn_share_text">Share Score</string>
 

@@ -105,6 +105,9 @@ public class PlayingCardActivity extends Activity {
 
     }
 
+    /**
+     * when all the widget create finished adjust gap of cards.
+     */
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         if (hasFocus) {
@@ -190,8 +193,38 @@ public class PlayingCardActivity extends Activity {
         card13.setOnClickListener(onCardClickListener);
         card14.setOnClickListener(onCardClickListener);
         card15.setOnClickListener(onCardClickListener);
+
+        btnRestartGame.setOnClickListener(onBtnClickListener);
+        btnShareScore.setOnClickListener(onBtnClickListener);
     }
 
+    private View.OnClickListener onBtnClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            int id = v.getId();
+            switch (id) {
+                case R.id.playingcard_btn_restart:
+                    onRestartBtnClick();
+                    break;
+                case R.id.playingcard_btn_share:
+                    onShareScoreBtnClick();
+                    break;
+                default:
+                    break;
+            }
+        }
+    };
+
+    private void onRestartBtnClick() {
+        game = new CardMatchingGame(cardButtons.size(), new PlayingDeck());
+        updateUi();
+    }
+
+    private void onShareScoreBtnClick() {
+        
+    }
+
+    /** card buttons onClickListener **/
     private View.OnClickListener onCardClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
@@ -204,6 +237,7 @@ public class PlayingCardActivity extends Activity {
         }
     };
 
+    /** update UI when touch the cards **/
     private void updateUi() {
         for (Button cardButton : cardButtons) {
             int cardButtonIndex = cardButtons.indexOf(cardButton);

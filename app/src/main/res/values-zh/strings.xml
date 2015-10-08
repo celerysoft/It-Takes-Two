@@ -6,7 +6,7 @@
     <!-- PlayingCard Activity -->
     <string name="title_activity_playing_card">玩纸牌</string>
     <string name="playingcard_tv_score_text">得分：0</string>
-    <string name="playingcard_score">得分</string>
+    <string name="playingcard_score">得分：</string>
     <string name="playingcard_btn_restart_text">重新开始</string>
     <string name="playingcard_btn_share_text">分享成绩</string>
 </resources>

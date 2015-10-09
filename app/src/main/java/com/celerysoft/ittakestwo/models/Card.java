@@ -1,4 +1,4 @@
-package com.celerysoft.ittakestwo.modules;
+package com.celerysoft.ittakestwo.models;
 
 /**
  * Common card module.

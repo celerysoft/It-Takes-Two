@@ -13,16 +13,23 @@ import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.TextView;
 
-import com.celerysoft.ittakestwo.modules.Card;
-import com.celerysoft.ittakestwo.modules.CardMatchingGame;
-import com.celerysoft.ittakestwo.modules.PlayingCard;
-import com.celerysoft.ittakestwo.modules.PlayingDeck;
+import com.celerysoft.ittakestwo.models.Card;
+import com.celerysoft.ittakestwo.models.CardMatchingGame;
+import com.celerysoft.ittakestwo.models.PlayingCard;
+import com.celerysoft.ittakestwo.models.PlayingDeck;
 
 import java.util.ArrayList;
 
 public class PlayingCardActivity extends Activity {
     /** Log tag **/
     private final String LOG_TAG = this.getClass().getSimpleName();
+
+    private final String GAME_STATE_CARDS = "gameStateCards";
+    private final String GAME_STATE_SCORE = "gameStateScore";
+    private final int SCORE_MISSING = 99999;
+    private final String CARDS_MISSING = "cardsMissing";
+
+    private final int CARD_COUNT = 16;
 
     private boolean isNeededAutoAdjustForScreen = true;
 
@@ -321,4 +328,72 @@ public class PlayingCardActivity extends Activity {
         }
         tvScroe.setText(getString(R.string.playingcard_score) + game.getScore());
     }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        int score = game.getScore();
+        outState.putInt(GAME_STATE_SCORE, score);
+
+        String saveGame = "";
+        ArrayList<Card> cards = game.getCards();
+        int cardCount = cards.size();
+        for (int i = 0; i < cardCount; ++i) {
+            Card card = cards.get(i);
+            if (card instanceof PlayingCard) {
+                saveGame += ((PlayingCard) card).getSuit() + "@" + ((PlayingCard) card).getRank() +  "@" + card.isMatched() +  "@" + card.isChosen() + "#";
+            } else {
+                Log.e(LOG_TAG, "Sava game error: card content is abnormal. WTF, how she do it?");
+            }
+
+        }
+        saveGame = saveGame.substring(0, saveGame.length() - 1);
+        outState.putString(GAME_STATE_CARDS, saveGame);
+
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        if (savedInstanceState != null) {
+            int score = savedInstanceState.getInt(GAME_STATE_SCORE, SCORE_MISSING);
+            if (score == SCORE_MISSING) {
+                Log.e(LOG_TAG, "Restore game error: game score is missing!!!");
+                return;
+            }
+
+            String saveGame = savedInstanceState.getString(GAME_STATE_CARDS, CARDS_MISSING);
+            if (saveGame.equals(CARDS_MISSING)) {
+                Log.e(LOG_TAG, "Restore game error: cards data is missing!!!");
+                return;
+            } else {
+                ArrayList<Card> restoreCards = new ArrayList<>();
+                String[] cardStrings = saveGame.split("#");
+                int cardCount = cardStrings.length;
+                if (cardCount != CARD_COUNT) {
+                    Log.e(LOG_TAG, "Restore game error: card count is abnormal!!!");
+                    return;
+                }
+                for (int i = 0; i < cardCount; ++i) {
+                    String cardContent = cardStrings[i];
+                    String[] cardContents = cardContent.split("@");
+                    if (cardContents.length != 4) {
+                        Log.e(LOG_TAG, "Restore game error: card content is lost!!!");
+                        return;
+                    }
+                    PlayingCard card = new PlayingCard();
+                    card.setSuit(cardContents[0]);
+                    card.setRank(Integer.parseInt(cardContents[1]));
+                    card.setMatched(Boolean.parseBoolean(cardContents[2]));
+                    card.setChosen(Boolean.parseBoolean(cardContents[3]));
+                    restoreCards.add(card);
+                }
+                this.game = new CardMatchingGame(restoreCards, score);
+                updateUi();
+            }
+
+            super.onRestoreInstanceState(savedInstanceState);
+        }
+    }
+
+
 }

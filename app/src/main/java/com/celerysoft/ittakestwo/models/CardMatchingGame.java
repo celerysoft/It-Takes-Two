@@ -1,4 +1,4 @@
-package com.celerysoft.ittakestwo.modules;
+package com.celerysoft.ittakestwo.models;
 
 import android.util.Log;
 
@@ -20,6 +20,9 @@ public class CardMatchingGame {
     }
 
     private ArrayList<Card> mCards = new ArrayList<>();
+    public ArrayList<Card> getCards() {
+        return mCards;
+    }
 
     public CardMatchingGame(int cardCount, Deck usingDeck) {
         for (int i = 0; i < cardCount; ++i) {
@@ -30,6 +33,11 @@ public class CardMatchingGame {
                 Log.w(LOG_TAG, "Card count of game more than card count of using deck.");
             }
         }
+    }
+
+    public CardMatchingGame(ArrayList<Card> usingCards, int score) {
+        mCards = usingCards;
+        mScore = score;
     }
 
     public void chooseCardAtIndex(int index) {
@@ -65,7 +73,7 @@ public class CardMatchingGame {
     }
 
     public void restart() {
-        // reset game status
+        // reset game state
         mScore = 0;
         for (Card card : mCards) {
             card.setMatched(false);

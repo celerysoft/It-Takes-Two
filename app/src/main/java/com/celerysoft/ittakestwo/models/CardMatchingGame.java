@@ -49,16 +49,21 @@ public class CardMatchingGame {
                 } else {
                     for (Card otherCard : mCards) {
                         if (otherCard.isChosen() && !otherCard.isMatched()) {
-                            int matchScore = card.match(new Card[]{otherCard});
-                            if (matchScore > 0) {
-                                mScore += matchScore * MATCH_BOUNS;
-                                otherCard.setMatched(true);
-                                card.setMatched(true);
+                            if (card instanceof PlayingCard) {
+                                int matchScore = ((PlayingCard) card).match(new Card[]{otherCard});
+                                if (matchScore > 0) {
+                                    mScore += matchScore * MATCH_BOUNS;
+                                    otherCard.setMatched(true);
+                                    card.setMatched(true);
+                                } else {
+                                    mScore -= MISMATCH_PENALTY;
+                                    otherCard.setChosen(false);
+                                }
+                                break;
                             } else {
-                                mScore -= MISMATCH_PENALTY;
-                                otherCard.setChosen(false);
+                                Log.e(LOG_TAG, "Card is not instance of PlayingCard, WTF?");
                             }
-                            break;
+
                         }
                     }
                     mScore -= COST_TO_CHOOSE;

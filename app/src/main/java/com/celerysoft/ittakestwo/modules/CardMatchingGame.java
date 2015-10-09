@@ -1,11 +1,14 @@
 package com.celerysoft.ittakestwo.modules;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 
 /**
  * Card matching game module.
  */
 public class CardMatchingGame {
+    private final String LOG_TAG = this.getClass().getSimpleName();
 
     private final int MATCH_BOUNS = 4;
     private final int MISMATCH_PENALTY = 2;
@@ -19,12 +22,12 @@ public class CardMatchingGame {
     private ArrayList<Card> mCards = new ArrayList<>();
 
     public CardMatchingGame(int cardCount, Deck usingDeck) {
-        for (int i = 0; i < cardCount; i++) {
+        for (int i = 0; i < cardCount; ++i) {
             Card card = usingDeck.drawRandomCard();
             if (card != null) {
                 mCards.add(card);
             } else {
-
+                Log.w(LOG_TAG, "Card count of game more than card count of using deck.");
             }
         }
     }
@@ -59,5 +62,27 @@ public class CardMatchingGame {
 
     public Card cardAtIndex(int index) {
         return index < mCards.size() ? mCards.get(index) : null;
+    }
+
+    public void restart() {
+        // reset game status
+        mScore = 0;
+        for (Card card : mCards) {
+            card.setMatched(false);
+            card.setChosen(false);
+        }
+
+        // shuffle cards
+        ArrayList<Card> cards = new ArrayList<>();
+        int cardCount = mCards.size();
+        for (int i = 0; i < cardCount; ++i) {
+            Card card = mCards.remove((int) (Math.random() * mCards.size()));
+            cards.add(card);
+        }
+        if (mCards.isEmpty()) {
+            mCards = cards;
+        } else {
+            Log.e(LOG_TAG, "shuffle cards error.");
+        }
     }
 }

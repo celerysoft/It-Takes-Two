@@ -1,12 +1,18 @@
-# It Takes Two
+# It Takes Two (For Android)
+
+[iOS](https://github.com/celerysoft/It-Takes-Two-iOS)
 
 ## What is it?
 
-It Takes Two is an Android game that pick the matched cards and get scroe, finally practice your memory.
+It Takes Two is a casual game that pick the matched cards and get scores, finally practice your memory.
 
 ## Features
 
 * 1 minite game
+
+* Multi-language: English and Chinese
+
+* Support Android and iOS
 
 ## Technical Information
 
@@ -20,7 +26,9 @@ To be added.
 
 ## Screenshots
 
-To be added.
+![01](https://raw.githubusercontent.com/celerysoft/README/master/ItTakesTwo/sc01.png)
+
+![02](https://raw.githubusercontent.com/celerysoft/README/master/ItTakesTwo/sc02.png)
 
 ## Acknowledgement
 

@@ -1,7 +1,9 @@
 package com.celerysoft.ittakestwo;
 
 import android.app.Activity;
+import android.content.res.Configuration;
 import android.graphics.Color;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -9,8 +11,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridLayout;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.celerysoft.ittakestwo.modules.Card;
@@ -53,7 +53,14 @@ public class PlayingCardActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_playing_card);
+
+        if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+            setContentView(R.layout.activity_playing_card);
+            Log.v(LOG_TAG, "Screen portrait.");
+        } else if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            setContentView(R.layout.activity_playing_card);
+            Log.v(LOG_TAG, "Screen landscape.");
+        }
 
         onCreateView();
         onCreateListener();
@@ -73,14 +80,14 @@ public class PlayingCardActivity extends Activity {
 
         GridLayout.LayoutParams cardlayoutParams = (GridLayout.LayoutParams) card01.getLayoutParams();
         int cardLayoutWidth = cardlayoutParams.width;
-        int cardLayoutMarginLeft = (int) ((screenWidth - 2 * horizontalMargin - 4 * cardLayoutWidth) / 3);
-        cardlayoutParams.setMargins(cardLayoutMarginLeft, 0, 0, 0);
+        int cardLayoutHorizontalMargin = (int) ((screenWidth - 2 * horizontalMargin - 4 * cardLayoutWidth) / 3);
+        cardlayoutParams.setMargins(cardLayoutHorizontalMargin, 0, 0, 0);
         card01.setLayoutParams(cardlayoutParams);
         cardlayoutParams = (GridLayout.LayoutParams) card02.getLayoutParams();
-        cardlayoutParams.setMargins(cardLayoutMarginLeft, 0, 0, 0);
+        cardlayoutParams.setMargins(cardLayoutHorizontalMargin, 0, 0, 0);
         card02.setLayoutParams(cardlayoutParams);
         cardlayoutParams = (GridLayout.LayoutParams) card03.getLayoutParams();
-        cardlayoutParams.setMargins(cardLayoutMarginLeft, 0, 0, 0);
+        cardlayoutParams.setMargins(cardLayoutHorizontalMargin, 0, 0, 0);
         card03.setLayoutParams(cardlayoutParams);
 
 
@@ -88,21 +95,25 @@ public class PlayingCardActivity extends Activity {
         int screenHeight = getResources().getDisplayMetrics().heightPixels;
         float verticalMargin = getResources().getDimension(R.dimen.activity_vertical_margin);
 
-        RelativeLayout.LayoutParams buttonlayoutParams = (RelativeLayout.LayoutParams) btnRestartGame.getLayoutParams();
-        // int buttonHeight = buttonlayoutParams.height;
+        Rect frame = new Rect();
+        getWindow().getDecorView().getWindowVisibleDisplayFrame(frame);
+        int statusBarHeight = frame.top;
+
         int buttonHeight = btnRestartGame.getHeight();
+
         cardlayoutParams = (GridLayout.LayoutParams) card04.getLayoutParams();
         int cardLayoutHeight = cardlayoutParams.height;
-        int cardLayoutMarginTop = (int) ((screenHeight - 3 * verticalMargin - buttonHeight - 4 * cardLayoutHeight) / 3);
-        cardlayoutParams.setMargins(0, cardLayoutMarginTop, 0, 0);
+
+        int cardLayoutVerticalMargin = (int) ((screenHeight - statusBarHeight - 3 * verticalMargin - buttonHeight - 4 * cardLayoutHeight) / 3);
+
+        cardlayoutParams.setMargins(0, cardLayoutVerticalMargin, 0, 0);
         card04.setLayoutParams(cardlayoutParams);
         cardlayoutParams = (GridLayout.LayoutParams) card08.getLayoutParams();
-        cardlayoutParams.setMargins(0, cardLayoutMarginTop, 0, 0);
+        cardlayoutParams.setMargins(0, cardLayoutVerticalMargin, 0, 0);
         card08.setLayoutParams(cardlayoutParams);
         cardlayoutParams = (GridLayout.LayoutParams) card12.getLayoutParams();
-        cardlayoutParams.setMargins(0, cardLayoutMarginTop, 0, 0);
+        cardlayoutParams.setMargins(0, cardLayoutVerticalMargin, 0, 0);
         card12.setLayoutParams(cardlayoutParams);
-
     }
 
     /**
@@ -221,7 +232,8 @@ public class PlayingCardActivity extends Activity {
     }
 
     private void onShareScoreBtnClick() {
-        
+        game.restart();
+        updateUi();
     }
 
     /** card buttons onClickListener **/

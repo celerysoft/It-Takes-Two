@@ -1,0 +1,135 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.celerysoft.ittakestwo.PlayingCardActivity"
+    android:background="#FF50C05B"
+    android:orientation="vertical">
+
+    <GridLayout
+        android:id="@+id/playingcard_gridlayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="8"
+        android:alignmentMode="alignBounds">
+
+        <Button
+            android:id="@+id/card00"
+            android:background="@drawable/cardback"
+            android:layout_width="@dimen/card_width"
+            android:layout_height="@dimen/card_height" />
+        <Button
+            android:id="@+id/card01"
+            android:background="@drawable/cardback"
+            android:layout_width="@dimen/card_width"
+            android:layout_height="@dimen/card_height"/>
+        <Button
+            android:id="@+id/card02"
+            android:background="@drawable/cardback"
+            android:layout_width="@dimen/card_width"
+            android:layout_height="@dimen/card_height"/>
+        <Button
+            android:id="@+id/card03"
+            android:background="@drawable/cardback"
+            android:layout_width="@dimen/card_width"
+            android:layout_height="@dimen/card_height"/>
+        <Button
+            android:id="@+id/card04"
+            android:background="@drawable/cardback"
+            android:layout_width="@dimen/card_width"
+            android:layout_height="@dimen/card_height"/>
+        <Button
+            android:id="@+id/card05"
+            android:background="@drawable/cardback"
+            android:layout_width="@dimen/card_width"
+            android:layout_height="@dimen/card_height"/>
+        <Button
+            android:id="@+id/card06"
+            android:background="@drawable/cardback"
+            android:layout_width="@dimen/card_width"
+            android:layout_height="@dimen/card_height"/>
+        <Button
+            android:id="@+id/card07"
+            android:background="@drawable/cardback"
+            android:layout_width="@dimen/card_width"
+            android:layout_height="@dimen/card_height"/>
+        <Button
+            android:id="@+id/card08"
+            android:background="@drawable/cardback"
+            android:layout_width="@dimen/card_width"
+            android:layout_height="@dimen/card_height"/>
+        <Button
+            android:id="@+id/card09"
+            android:background="@drawable/cardback"
+            android:layout_width="@dimen/card_width"
+            android:layout_height="@dimen/card_height"/>
+        <Button
+            android:id="@+id/card10"
+            android:background="@drawable/cardback"
+            android:layout_width="@dimen/card_width"
+            android:layout_height="@dimen/card_height"/>
+        <Button
+            android:id="@+id/card11"
+            android:background="@drawable/cardback"
+            android:layout_width="@dimen/card_width"
+            android:layout_height="@dimen/card_height"/>
+        <Button
+            android:id="@+id/card12"
+            android:background="@drawable/cardback"
+            android:layout_width="@dimen/card_width"
+            android:layout_height="@dimen/card_height"/>
+        <Button
+            android:id="@+id/card13"
+            android:background="@drawable/cardback"
+            android:layout_width="@dimen/card_width"
+            android:layout_height="@dimen/card_height"/>
+        <Button
+            android:id="@+id/card14"
+            android:background="@drawable/cardback"
+            android:layout_width="@dimen/card_width"
+            android:layout_height="@dimen/card_height"/>
+        <Button
+            android:id="@+id/card15"
+            android:background="@drawable/cardback"
+            android:layout_width="@dimen/card_width"
+            android:layout_height="@dimen/card_height"/>
+
+    </GridLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/playingcard_btn_restart"
+            android:text="@string/playingcard_btn_restart_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:layout_toRightOf="@id/playingcard_btn_restart"
+            android:id="@+id/playingcard_btn_share"
+            android:text="@string/playingcard_btn_share_text"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:layout_toRightOf="@id/playingcard_btn_share"
+            android:id="@+id/playingcard_tv_score"
+            android:text="@string/playingcard_tv_score_text"
+            android:textColor="#FF000000"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+
+    </RelativeLayout>
+
+
+
+</LinearLayout>

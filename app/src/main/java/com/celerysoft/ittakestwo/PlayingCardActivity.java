@@ -54,13 +54,7 @@ public class PlayingCardActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-            setContentView(R.layout.activity_playing_card);
-            Log.v(LOG_TAG, "Screen portrait.");
-        } else if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            setContentView(R.layout.activity_playing_card);
-            Log.v(LOG_TAG, "Screen landscape.");
-        }
+        setContentView(R.layout.activity_playing_card);
 
         onCreateView();
         onCreateListener();
@@ -69,10 +63,9 @@ public class PlayingCardActivity extends Activity {
     }
 
     /**
-     * adjust cards horizontal gap and vertical gap
+     * adjust cards horizontal gap and vertical gap for portrait screen
      */
-    private void autoAdjustForScreen() {
-        Log.d(LOG_TAG, "autoAdjustForScreen");
+    private void autoAdjustForPortraitScreen() {
 
         //adjust horizontal gap
         int screenWidth = getResources().getDisplayMetrics().widthPixels;
@@ -81,15 +74,12 @@ public class PlayingCardActivity extends Activity {
         GridLayout.LayoutParams cardlayoutParams = (GridLayout.LayoutParams) card01.getLayoutParams();
         int cardLayoutWidth = cardlayoutParams.width;
         int cardLayoutHorizontalMargin = (int) ((screenWidth - 2 * horizontalMargin - 4 * cardLayoutWidth) / 3);
+
         cardlayoutParams.setMargins(cardLayoutHorizontalMargin, 0, 0, 0);
-        card01.setLayoutParams(cardlayoutParams);
         cardlayoutParams = (GridLayout.LayoutParams) card02.getLayoutParams();
         cardlayoutParams.setMargins(cardLayoutHorizontalMargin, 0, 0, 0);
-        card02.setLayoutParams(cardlayoutParams);
         cardlayoutParams = (GridLayout.LayoutParams) card03.getLayoutParams();
         cardlayoutParams.setMargins(cardLayoutHorizontalMargin, 0, 0, 0);
-        card03.setLayoutParams(cardlayoutParams);
-
 
         //adjust vertical gap
         int screenHeight = getResources().getDisplayMetrics().heightPixels;
@@ -107,13 +97,55 @@ public class PlayingCardActivity extends Activity {
         int cardLayoutVerticalMargin = (int) ((screenHeight - statusBarHeight - 3 * verticalMargin - buttonHeight - 4 * cardLayoutHeight) / 3);
 
         cardlayoutParams.setMargins(0, cardLayoutVerticalMargin, 0, 0);
-        card04.setLayoutParams(cardlayoutParams);
         cardlayoutParams = (GridLayout.LayoutParams) card08.getLayoutParams();
         cardlayoutParams.setMargins(0, cardLayoutVerticalMargin, 0, 0);
-        card08.setLayoutParams(cardlayoutParams);
         cardlayoutParams = (GridLayout.LayoutParams) card12.getLayoutParams();
         cardlayoutParams.setMargins(0, cardLayoutVerticalMargin, 0, 0);
-        card12.setLayoutParams(cardlayoutParams);
+    }
+
+    /**
+     * adjust cards horizontal gap and vertical gap for landscape screen
+     */
+    private void autoAdjustForLandscapeScreen() {
+
+        //adjust horizontal gap
+        int screenWidth = getResources().getDisplayMetrics().widthPixels;
+        float horizontalMargin = getResources().getDimension(R.dimen.activity_horizontal_margin);
+
+        GridLayout.LayoutParams cardlayoutParams = (GridLayout.LayoutParams) card01.getLayoutParams();
+        int cardLayoutWidth = cardlayoutParams.width;
+        int cardLayoutHorizontalMargin = (int) ((screenWidth - 2 * horizontalMargin - 8 * cardLayoutWidth) / 7);
+        cardlayoutParams.setMargins(cardLayoutHorizontalMargin, 0, 0, 0);
+        cardlayoutParams = (GridLayout.LayoutParams) card02.getLayoutParams();
+        cardlayoutParams.setMargins(cardLayoutHorizontalMargin, 0, 0, 0);
+        cardlayoutParams = (GridLayout.LayoutParams) card03.getLayoutParams();
+        cardlayoutParams.setMargins(cardLayoutHorizontalMargin, 0, 0, 0);
+        cardlayoutParams = (GridLayout.LayoutParams) card04.getLayoutParams();
+        cardlayoutParams.setMargins(cardLayoutHorizontalMargin, 0, 0, 0);
+        cardlayoutParams = (GridLayout.LayoutParams) card05.getLayoutParams();
+        cardlayoutParams.setMargins(cardLayoutHorizontalMargin, 0, 0, 0);
+        cardlayoutParams = (GridLayout.LayoutParams) card06.getLayoutParams();
+        cardlayoutParams.setMargins(cardLayoutHorizontalMargin, 0, 0, 0);
+        cardlayoutParams = (GridLayout.LayoutParams) card07.getLayoutParams();
+        cardlayoutParams.setMargins(cardLayoutHorizontalMargin, 0, 0, 0);
+
+        //adjust vertical gap
+        int screenHeight = getResources().getDisplayMetrics().heightPixels;
+        float verticalMargin = getResources().getDimension(R.dimen.activity_vertical_margin);
+
+        Rect frame = new Rect();
+        getWindow().getDecorView().getWindowVisibleDisplayFrame(frame);
+        int statusBarHeight = frame.top;
+
+        int buttonHeight = btnRestartGame.getHeight();
+
+        cardlayoutParams = (GridLayout.LayoutParams) card09.getLayoutParams();
+        int cardLayoutHeight = cardlayoutParams.height;
+
+        int cardLayoutVerticalMargin = (int) ((screenHeight - statusBarHeight - 3 * verticalMargin - buttonHeight - 2 * cardLayoutHeight) / 1);
+
+        cardlayoutParams.setMargins(0, cardLayoutVerticalMargin, 0, 0);
+        card09.setLayoutParams(cardlayoutParams);
     }
 
     /**
@@ -123,7 +155,12 @@ public class PlayingCardActivity extends Activity {
     public void onWindowFocusChanged(boolean hasFocus) {
         if (hasFocus) {
             if (isNeededAutoAdjustForScreen) {
-                autoAdjustForScreen();
+                if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                    autoAdjustForPortraitScreen();
+                } else if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                    autoAdjustForLandscapeScreen();
+                }
+
                 isNeededAutoAdjustForScreen = false;
             }
 

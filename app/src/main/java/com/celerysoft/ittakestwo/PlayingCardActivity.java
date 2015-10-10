@@ -26,6 +26,7 @@ public class PlayingCardActivity extends Activity {
 
     private final String GAME_STATE_CARDS = "gameStateCards";
     private final String GAME_STATE_SCORE = "gameStateScore";
+
     private final int SCORE_MISSING = 99999;
     private final String CARDS_MISSING = "cardsMissing";
 
@@ -335,16 +336,11 @@ public class PlayingCardActivity extends Activity {
         outState.putInt(GAME_STATE_SCORE, score);
 
         String saveGame = "";
-        ArrayList<Card> cards = game.getCards();
+        ArrayList<PlayingCard> cards = game.getCards();
         int cardCount = cards.size();
         for (int i = 0; i < cardCount; ++i) {
-            Card card = cards.get(i);
-            if (card instanceof PlayingCard) {
-                saveGame += ((PlayingCard) card).getSuit() + "@" + ((PlayingCard) card).getRank() +  "@" + card.isMatched() +  "@" + card.isChosen() + "#";
-            } else {
-                Log.e(LOG_TAG, "Sava game error: card content is abnormal. WTF, how she do it?");
-            }
-
+            PlayingCard card = cards.get(i);
+            saveGame += card.getSuit() + "@" + card.getRank() +  "@" + card.isMatched() +  "@" + card.isChosen() + "#";
         }
         saveGame = saveGame.substring(0, saveGame.length() - 1);
         outState.putString(GAME_STATE_CARDS, saveGame);
@@ -366,7 +362,7 @@ public class PlayingCardActivity extends Activity {
                 Log.e(LOG_TAG, "Restore game error: cards data is missing!!!");
                 return;
             } else {
-                ArrayList<Card> restoreCards = new ArrayList<>();
+                ArrayList<PlayingCard> restoreCards = new ArrayList<>();
                 String[] cardStrings = saveGame.split("#");
                 int cardCount = cardStrings.length;
                 if (cardCount != CARD_COUNT) {

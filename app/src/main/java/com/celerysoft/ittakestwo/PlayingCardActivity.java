@@ -302,6 +302,7 @@ public class PlayingCardActivity extends Activity {
             setTextForCard(cardButton, card);
             setBackGroundForCard(cardButton, card);
         }
+        tvScroe.setText(getString(R.string.playingcard_score) + game.getScore());
     }
 
     private void setTextForCard(Button cardButton, Card card) {
@@ -327,7 +328,6 @@ public class PlayingCardActivity extends Activity {
         } else {
             cardButton.setBackgroundResource(R.drawable.cardback);
         }
-        tvScroe.setText(getString(R.string.playingcard_score) + game.getScore());
     }
 
     @Override

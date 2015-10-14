@@ -1,4 +1,4 @@
-package com.celerysoft.ittakestwo;
+package com.celerysoft.ittakestwo.activities;
 
 import android.app.Activity;
 import android.content.res.Configuration;
@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.TextView;
 
+import com.celerysoft.ittakestwo.R;
 import com.celerysoft.ittakestwo.models.Card;
 import com.celerysoft.ittakestwo.models.CardMatchingGame;
 import com.celerysoft.ittakestwo.models.PlayingCard;
@@ -20,6 +21,9 @@ import com.celerysoft.ittakestwo.models.PlayingDeck;
 
 import java.util.ArrayList;
 
+/**
+ *
+ */
 public class PlayingCardActivity extends Activity {
     /** Log tag **/
     private final String LOG_TAG = this.getClass().getSimpleName();

@@ -19,6 +19,9 @@ public class CardMatchingGame {
         return mScore;
     }
 
+    private Player mCurrentPlayer;
+    private ArrayList<Player> mPlayers = new ArrayList<>();
+
     private ArrayList<PlayingCard> mCards = new ArrayList<>();
     public ArrayList<PlayingCard> getCards() {
         return mCards;

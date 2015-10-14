@@ -6,6 +6,9 @@
     <!-- action -->
     <string name="action_settings">设置</string>
 
+    <!-- Launching Activity -->
+    <string name="title_activity_launching">纸牌对对碰</string>
+
     <!-- PlayingCard Activity -->
     <string name="title_activity_playing_card">纸牌对对碰</string>
     <string name="playingcard_tv_score_text">得分：0</string>

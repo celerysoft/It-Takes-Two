@@ -6,6 +6,9 @@
     <!-- action -->
     <string name="action_settings">Settings</string>
 
+    <!-- Launching Activity -->
+    <string name="title_activity_launching">It takes Two</string>
+
 
     <!-- PlayingCard Activity -->
     <string name="title_activity_playing_card">Playing Card</string>

@@ -9,7 +9,8 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name=".activities.LaunchingActivity"
-            android:label="@string/title_activity_playing_card">
+            android:label="@string/title_activity_playing_card"
+            android:theme="@style/LaunchingActivityTheme">
 
         </activity>
         <activity

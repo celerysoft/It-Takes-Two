@@ -1,5 +1,9 @@
 <resources>
     <!-- common -->
+    <string name="app_version_info">Ver 1.0</string>
+    <string name="app_copyright">Copyright © 2015 Celery Soft. All rights reserved.</string>
+
+    <!-- common multi language -->
     <string name="app_name">It Takes Two</string>
     <string name="hello_world">Hello world!</string>
 
@@ -8,6 +12,9 @@
 
     <!-- Launching Activity -->
     <string name="title_activity_launching">It takes Two</string>
+    <string name="lauching_btn_single_player_text">Single Player</string>
+    <string name="lauching_btn_multi_player_text">Multi Player</string>
+    <string name="lauching_btn_how_to_play_text">How To Play</string>
 
 
     <!-- PlayingCard Activity -->

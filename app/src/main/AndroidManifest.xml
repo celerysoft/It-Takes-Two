@@ -11,17 +11,15 @@
             android:name=".activities.LaunchingActivity"
             android:label="@string/title_activity_playing_card"
             android:theme="@style/LaunchingActivityTheme">
-
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".activities.PlayingCardActivity"
             android:label="@string/title_activity_playing_card"
             android:theme="@style/PlayingCardActivityTheme" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 

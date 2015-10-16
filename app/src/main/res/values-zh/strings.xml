@@ -8,6 +8,9 @@
 
     <!-- Launching Activity -->
     <string name="title_activity_launching">纸牌对对碰</string>
+    <string name="lauching_btn_single_player_text">单人游戏</string>
+    <string name="lauching_btn_multi_player_text">多人游戏</string>
+    <string name="lauching_btn_how_to_play_text">游戏教程</string>
 
     <!-- PlayingCard Activity -->
     <string name="title_activity_playing_card">纸牌对对碰</string>

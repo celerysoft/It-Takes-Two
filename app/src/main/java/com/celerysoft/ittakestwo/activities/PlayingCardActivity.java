@@ -6,8 +6,6 @@ import android.graphics.Color;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridLayout;
@@ -68,8 +66,8 @@ public class PlayingCardActivity extends Activity {
 
         setContentView(R.layout.activity_playing_card);
 
-        onCreateView();
-        onCreateListener();
+        setupView();
+        setupListener();
         game = new CardMatchingGame(cardButtons.size(), new PlayingDeck());
         isNeededAutoAdjustForScreen = true;
     }
@@ -179,7 +177,7 @@ public class PlayingCardActivity extends Activity {
         }
     }
 
-    private void onCreateView() {
+    private void setupView() {
 
         card00 = (Button) findViewById(R.id.card00);
         card01 = (Button) findViewById(R.id.card01);
@@ -219,7 +217,7 @@ public class PlayingCardActivity extends Activity {
         tvScroe = (TextView) findViewById(R.id.playingcard_tv_score);
     }
 
-    private void onCreateListener() {
+    private void setupListener() {
         card00.setOnClickListener(onCardClickListener);
         card01.setOnClickListener(onCardClickListener);
         card02.setOnClickListener(onCardClickListener);

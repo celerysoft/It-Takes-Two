@@ -109,6 +109,7 @@
         <Button
             android:id="@+id/playingcard_btn_restart"
             android:text="@string/playingcard_btn_restart_text"
+            android:textSize="@dimen/text_size_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
@@ -116,6 +117,7 @@
             android:layout_toRightOf="@id/playingcard_btn_restart"
             android:id="@+id/playingcard_btn_share"
             android:text="@string/playingcard_btn_share_text"
+            android:textSize="@dimen/text_size_button"
             android:layout_width="wrap_content"
             android:layout_height="match_parent" />
 
@@ -123,7 +125,8 @@
             android:layout_toRightOf="@id/playingcard_btn_share"
             android:id="@+id/playingcard_tv_score"
             android:text="@string/playingcard_tv_score_text"
-            android:textColor="#FF000000"
+            android:textSize="@dimen/text_size_headline"
+            android:textColor="@color/black"
             android:gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="match_parent" />

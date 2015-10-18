@@ -9,4 +9,14 @@
 
     <style name="PlayingCardActivityTheme" parent="Theme.AppCompat.Light.NoActionBar" />
 
+    <style name="LauchingActivityButton">
+        <item name="android:background">@drawable/btn_launching_activity</item>
+        <item name="android:textSize">@dimen/text_size_button</item>
+    </style>
+
+    <style name="LauchingActivityButton1">
+        <item name="android:background">@android:drawable/btn_default</item>
+        <item name="android:textSize">@dimen/text_size_button</item>
+    </style>
+
 </resources>

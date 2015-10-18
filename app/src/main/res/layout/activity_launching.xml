@@ -24,8 +24,7 @@
         android:layout_below="@id/launching_tv_app_name"
         android:id="@+id/launching_btn_single_player"
         android:text="@string/lauching_btn_single_player_text"
-        android:background="@drawable/button"
-        android:textSize="@dimen/text_size_button"/>
+        style="@style/LauchingActivityButton"/>
 
     <Button
         android:layout_width="match_parent"
@@ -34,8 +33,7 @@
         android:layout_below="@id/launching_btn_single_player"
         android:id="@+id/launching_btn_multi_player"
         android:text="@string/lauching_btn_multi_player_text"
-        android:background="@drawable/button"
-        android:textSize="@dimen/text_size_button"/>
+        style="@style/LauchingActivityButton"/>
 
     <Button
         android:layout_width="match_parent"
@@ -44,8 +42,7 @@
         android:layout_below="@id/launching_btn_multi_player"
         android:id="@+id/launching_btn_how_to_play"
         android:text="@string/lauching_btn_how_to_play_text"
-        android:background="@drawable/button"
-        android:textSize="@dimen/text_size_button"/>
+        style="@style/LauchingActivityButton"/>
 
     <TextView
         android:layout_width="match_parent"

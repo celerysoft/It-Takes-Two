@@ -17,32 +17,51 @@
         android:textSize="@dimen/text_size_display1"
         android:gravity="center"/>
 
-    <Button
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingBottom="@dimen/activity_vertical_margin"
         android:layout_below="@id/launching_tv_app_name"
-        android:id="@+id/launching_btn_single_player"
-        android:text="@string/lauching_btn_single_player_text"
-        style="@style/LauchingActivityButton"/>
+        android:layout_above="@+id/launching_tv_version">
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:layout_below="@id/launching_btn_single_player"
-        android:id="@+id/launching_btn_multi_player"
-        android:text="@string/lauching_btn_multi_player_text"
-        style="@style/LauchingActivityButton"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:layout_below="@id/launching_btn_multi_player"
-        android:id="@+id/launching_btn_how_to_play"
-        android:text="@string/lauching_btn_how_to_play_text"
-        style="@style/LauchingActivityButton"/>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/launching_tv_app_name"
+                android:id="@+id/launching_btn_single_player"
+                android:text="@string/lauching_btn_single_player_text"
+                style="@style/LauchingActivityButton"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_below="@id/launching_btn_single_player"
+                android:id="@+id/launching_btn_multi_player"
+                android:text="@string/lauching_btn_multi_player_text"
+                style="@style/LauchingActivityButton"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_below="@id/launching_btn_multi_player"
+                android:id="@+id/launching_btn_how_to_play"
+                android:text="@string/lauching_btn_how_to_play_text"
+                style="@style/LauchingActivityButton"/>
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
 
     <TextView
         android:layout_width="match_parent"

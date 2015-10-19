@@ -42,7 +42,8 @@ public class CardMatchingGame {
     }
 
     public CardMatchingGame(int cardCount, PlayingDeck usingDeck) {
-        mGameState = GAME_STATE_UNSTART;
+        reset();
+
         for (int i = 0; i < cardCount; ++i) {
             Card card = usingDeck.drawRandomCard();
             if (card != null) {
@@ -61,6 +62,7 @@ public class CardMatchingGame {
         mCards = usingCards;
         mScore = score;
     }
+
 
     public void chooseCardAtIndex(int index) {
         if (mGameState == GAME_STATE_UNSTART) {
@@ -105,12 +107,7 @@ public class CardMatchingGame {
      */
     public void restart() {
         // reset game state
-        mGameState = GAME_STATE_UNSTART;
-        mScore = 0;
-        for (PlayingCard card : mCards) {
-            card.setMatched(false);
-            card.setChosen(false);
-        }
+        reset();
 
         // shuffle cards
         ArrayList<PlayingCard> cards = new ArrayList<>();
@@ -127,9 +124,24 @@ public class CardMatchingGame {
     }
 
     /**
+     * reset the game state.
+     */
+    private void reset() {
+        mGameState = GAME_STATE_UNSTART;
+        mScore = 0;
+        mTimer.reset();
+        if (mCards != null) {
+            for (PlayingCard card : mCards) {
+                card.setMatched(false);
+                card.setChosen(false);
+            }
+        }
+    }
+
+    /**
      * start the game.
      */
-    public void start() {
+    private void start() {
         mGameState = GAME_STATE_START;
         mTimer.start();
     }

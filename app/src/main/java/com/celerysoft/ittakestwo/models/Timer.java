@@ -29,7 +29,10 @@ public class Timer {
         mDuration = 0;
     }
 
-    private void resetTimer() {
+    /**
+     * reset timer
+     */
+    public void reset() {
         mTimerState = TIMER_STATE_UNSTART;
         mDuration = 0;
     }
@@ -71,7 +74,7 @@ public class Timer {
      * Restart timer
      */
     public void restart() {
-        resetTimer();
+        reset();
         start();
     }
 

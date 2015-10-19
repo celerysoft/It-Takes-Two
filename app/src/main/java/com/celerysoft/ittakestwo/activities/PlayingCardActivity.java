@@ -310,6 +310,7 @@ public class PlayingCardActivity extends Activity {
             setBackGroundForCard(cardButton, card);
         }
         mTvScroe.setText(getString(R.string.playingcard_score) + mGame.getScore());
+        mTvDuration.setText(mGame.getTimer().getDurationInTimeFormat());
     }
 
     private void setTextForCard(Button cardButton, Card card) {

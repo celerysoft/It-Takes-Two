@@ -5,18 +5,21 @@ package com.celerysoft.ittakestwo.models;
  */
 public class Timer {
     private int mTimerState;
-    private int TIMER_STATE_UNSTART = -1;
-    private int TIMER_STATE_PROGRESS = 0;
-    private int TIMER_STATE_PAUSE = 1;
-    private int TIMER_STATE_STOP = 2;
+    public static final int TIMER_STATE_UNSTART = -1;
+    public static final int TIMER_STATE_PROGRESS = 0;
+    public static final int TIMER_STATE_PAUSE = 1;
+    public static final int TIMER_STATE_STOP = 2;
 
     private long mStartTime;
     private long mPauseTime;
     private long mStopTime;
     private long mDuration;
+    private void setDuration(long duration) {
+        mDuration = duration;
+    }
 
     private float mDurationInSecond;
-    public float getmDurationInSecond () {
+    public float getDurationInSecond () {
         mDurationInSecond = mDuration / 1000;
         return mDurationInSecond;
     }
@@ -72,6 +75,18 @@ public class Timer {
         start();
     }
 
+    private long calculateCurrentDuration() {
+        long currentDuration;
+
+        if (mTimerState == TIMER_STATE_PROGRESS) {
+            currentDuration = mDuration + System.currentTimeMillis() - mStartTime;
+        } else {
+            currentDuration = mDuration;
+        }
+
+        return currentDuration;
+    }
+
     /**
      * parse duration(in millis) to normal time format(minite : second.millis like 13 : 25.334)
      * @param duration duration in millis
@@ -86,11 +101,15 @@ public class Timer {
 
         long second = (duration - minute * 60000) / 1000;
         String strSecond = Long.toString(second);
-        strSecond = strMinute.length() == 1 ? "0" + strSecond : strSecond;
+        strSecond = strSecond.length() == 1 ? "0" + strSecond : strSecond;
 
         long millis = duration - minute * 60000 - second * 1000;
         String strMillis = Long.toString(millis);
-
+        if (strMillis.length() == 1) {
+            strMillis = "00" + strMillis;
+        } else if (strMillis.length() == 2) {
+            strMillis = "0" + strMillis;
+        }
 
         timeFormat = strMinute + " : " + strSecond + "." + strMillis;
 
@@ -98,6 +117,6 @@ public class Timer {
     }
 
     public String getDurationInTimeFormat() {
-        return durationToTimeFormat(mDuration);
+        return durationToTimeFormat(calculateCurrentDuration());
     }
 }

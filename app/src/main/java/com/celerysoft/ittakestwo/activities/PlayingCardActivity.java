@@ -5,6 +5,8 @@ import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.Rect;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -16,6 +18,7 @@ import com.celerysoft.ittakestwo.models.Card;
 import com.celerysoft.ittakestwo.models.CardMatchingGame;
 import com.celerysoft.ittakestwo.models.PlayingCard;
 import com.celerysoft.ittakestwo.models.PlayingDeck;
+import com.celerysoft.ittakestwo.models.Timer;
 
 import java.util.ArrayList;
 
@@ -28,14 +31,16 @@ public class PlayingCardActivity extends Activity {
 
     private final String GAME_STATE_CARDS = "gameStateCards";
     private final String GAME_STATE_SCORE = "gameStateScore";
+    private final String GAME_STATE_DURATION = "gameStateDuration";
 
     private final int SCORE_MISSING = 99999;
     private final String CARDS_MISSING = "cardsMissing";
 
     private final int CARD_COUNT = 16;
 
-    private boolean isNeededAutoAdjustForScreen = true;
+    private boolean mIsNeededAutoAdjustForScreen = true;
 
+    // cards
     private Button card00;
     private Button card01;
     private Button card02;
@@ -54,11 +59,14 @@ public class PlayingCardActivity extends Activity {
     private Button card15;
     private ArrayList<Button> cardButtons = new ArrayList<>();
 
-    private Button btnRestartGame;
-    private Button btnShareScore;
-    private TextView tvScroe;
+    //declare widgets
+    private Button mBtnCommit;
+    private Button mBtnRestartGame;
+    private Button mBtnShareScore;
+    private TextView mTvScroe;
+    private TextView mTvDuration;
 
-    private CardMatchingGame game;
+    private CardMatchingGame mGame;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,8 +76,8 @@ public class PlayingCardActivity extends Activity {
 
         setupView();
         setupListener();
-        game = new CardMatchingGame(cardButtons.size(), new PlayingDeck());
-        isNeededAutoAdjustForScreen = true;
+        mGame = new CardMatchingGame(cardButtons.size(), new PlayingDeck());
+        mIsNeededAutoAdjustForScreen = true;
     }
 
     /**
@@ -99,7 +107,7 @@ public class PlayingCardActivity extends Activity {
         getWindow().getDecorView().getWindowVisibleDisplayFrame(frame);
         int statusBarHeight = frame.top;
 
-        int buttonHeight = btnRestartGame.getHeight();
+        int buttonHeight = mBtnRestartGame.getHeight();
 
         cardlayoutParams = (GridLayout.LayoutParams) card04.getLayoutParams();
         int cardLayoutHeight = cardlayoutParams.height;
@@ -147,7 +155,7 @@ public class PlayingCardActivity extends Activity {
         getWindow().getDecorView().getWindowVisibleDisplayFrame(frame);
         int statusBarHeight = frame.top;
 
-        int buttonHeight = btnRestartGame.getHeight();
+        int buttonHeight = mBtnRestartGame.getHeight();
 
         cardlayoutParams = (GridLayout.LayoutParams) card09.getLayoutParams();
         int cardLayoutHeight = cardlayoutParams.height;
@@ -164,14 +172,14 @@ public class PlayingCardActivity extends Activity {
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         if (hasFocus) {
-            if (isNeededAutoAdjustForScreen) {
+            if (mIsNeededAutoAdjustForScreen) {
                 if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
                     autoAdjustForPortraitScreen();
                 } else if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
                     autoAdjustForLandscapeScreen();
                 }
 
-                isNeededAutoAdjustForScreen = false;
+                mIsNeededAutoAdjustForScreen = false;
             }
 
         }
@@ -212,34 +220,38 @@ public class PlayingCardActivity extends Activity {
         cardButtons.add(card14);
         cardButtons.add(card15);
 
-        btnRestartGame = (Button) findViewById(R.id.playingcard_btn_restart);
-        btnShareScore = (Button) findViewById(R.id.playingcard_btn_share);
-        tvScroe = (TextView) findViewById(R.id.playingcard_tv_score);
+        mBtnCommit = (Button) findViewById(R.id.playingcard_btn_commit);
+        mBtnRestartGame = (Button) findViewById(R.id.playingcard_btn_restart);
+        mBtnShareScore = (Button) findViewById(R.id.playingcard_btn_share);
+        mTvScroe = (TextView) findViewById(R.id.playingcard_tv_score);
+        mTvDuration = (TextView) findViewById(R.id.playingcard_tv_duration);
     }
 
     private void setupListener() {
-        card00.setOnClickListener(onCardClickListener);
-        card01.setOnClickListener(onCardClickListener);
-        card02.setOnClickListener(onCardClickListener);
-        card03.setOnClickListener(onCardClickListener);
-        card04.setOnClickListener(onCardClickListener);
-        card05.setOnClickListener(onCardClickListener);
-        card06.setOnClickListener(onCardClickListener);
-        card07.setOnClickListener(onCardClickListener);
-        card08.setOnClickListener(onCardClickListener);
-        card09.setOnClickListener(onCardClickListener);
-        card10.setOnClickListener(onCardClickListener);
-        card11.setOnClickListener(onCardClickListener);
-        card12.setOnClickListener(onCardClickListener);
-        card13.setOnClickListener(onCardClickListener);
-        card14.setOnClickListener(onCardClickListener);
-        card15.setOnClickListener(onCardClickListener);
+        card00.setOnClickListener(mOnCardClickListener);
+        card01.setOnClickListener(mOnCardClickListener);
+        card02.setOnClickListener(mOnCardClickListener);
+        card03.setOnClickListener(mOnCardClickListener);
+        card04.setOnClickListener(mOnCardClickListener);
+        card05.setOnClickListener(mOnCardClickListener);
+        card06.setOnClickListener(mOnCardClickListener);
+        card07.setOnClickListener(mOnCardClickListener);
+        card08.setOnClickListener(mOnCardClickListener);
+        card09.setOnClickListener(mOnCardClickListener);
+        card10.setOnClickListener(mOnCardClickListener);
+        card11.setOnClickListener(mOnCardClickListener);
+        card12.setOnClickListener(mOnCardClickListener);
+        card13.setOnClickListener(mOnCardClickListener);
+        card14.setOnClickListener(mOnCardClickListener);
+        card15.setOnClickListener(mOnCardClickListener);
 
-        btnRestartGame.setOnClickListener(onBtnClickListener);
-        btnShareScore.setOnClickListener(onBtnClickListener);
+        mBtnCommit.setOnClickListener(mOnBtnClickListener);
+        mBtnRestartGame.setOnClickListener(mOnBtnClickListener);
+        mBtnShareScore.setOnClickListener(mOnBtnClickListener);
+
     }
 
-    private View.OnClickListener onBtnClickListener = new View.OnClickListener() {
+    private View.OnClickListener mOnBtnClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             int id = v.getId();
@@ -250,6 +262,9 @@ public class PlayingCardActivity extends Activity {
                 case R.id.playingcard_btn_share:
                     onShareScoreBtnClick();
                     break;
+                case R.id.playingcard_btn_commit:
+                    onCommitBtnClick();
+                    break;
                 default:
                     break;
             }
@@ -257,23 +272,30 @@ public class PlayingCardActivity extends Activity {
     };
 
     private void onRestartBtnClick() {
-        game = new CardMatchingGame(cardButtons.size(), new PlayingDeck());
+        mGame = new CardMatchingGame(cardButtons.size(), new PlayingDeck());
         updateUi();
     }
 
     private void onShareScoreBtnClick() {
-        game.restart();
+        mGame.restart();
         updateUi();
     }
 
+    private void onCommitBtnClick() {
+        mGame.finish();
+    }
+
     /** card buttons onClickListener **/
-    private View.OnClickListener onCardClickListener = new View.OnClickListener() {
+    private View.OnClickListener mOnCardClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
             if (view instanceof Button) {
+                if (mGame.getGmaeState() == CardMatchingGame.GAME_STATE_UNSTART) {
+                    startMeasuringTimeThread(mTimerHandler);
+                }
                 Button card = (Button) view;
                 int chosenButtonIndex = cardButtons.indexOf(card);
-                game.chooseCardAtIndex(chosenButtonIndex);
+                mGame.chooseCardAtIndex(chosenButtonIndex);
                 updateUi();
             }
         }
@@ -283,11 +305,11 @@ public class PlayingCardActivity extends Activity {
     private void updateUi() {
         for (Button cardButton : cardButtons) {
             int cardButtonIndex = cardButtons.indexOf(cardButton);
-            Card card = game.cardAtIndex(cardButtonIndex);
+            Card card = mGame.cardAtIndex(cardButtonIndex);
             setTextForCard(cardButton, card);
             setBackGroundForCard(cardButton, card);
         }
-        tvScroe.setText(getString(R.string.playingcard_score) + game.getScore());
+        mTvScroe.setText(getString(R.string.playingcard_score) + mGame.getScore());
     }
 
     private void setTextForCard(Button cardButton, Card card) {
@@ -317,11 +339,11 @@ public class PlayingCardActivity extends Activity {
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        int score = game.getScore();
+        int score = mGame.getScore();
         outState.putInt(GAME_STATE_SCORE, score);
 
         String saveGame = "";
-        ArrayList<PlayingCard> cards = game.getCards();
+        ArrayList<PlayingCard> cards = mGame.getCards();
         int cardCount = cards.size();
         for (int i = 0; i < cardCount; ++i) {
             PlayingCard card = cards.get(i);
@@ -368,13 +390,61 @@ public class PlayingCardActivity extends Activity {
                     card.setChosen(Boolean.parseBoolean(cardContents[3]));
                     restoreCards.add(card);
                 }
-                this.game = new CardMatchingGame(restoreCards, score);
+                this.mGame = new CardMatchingGame(restoreCards, score);
                 updateUi();
             }
 
             super.onRestoreInstanceState(savedInstanceState);
         }
     }
+
+    private void startMeasuringTimeThread(final Handler handler) {
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                handler.sendEmptyMessage(Timer.TIMER_STATE_UNSTART);
+                while (true)
+                {
+                    try {
+                        Thread.sleep(50);
+                    } catch (InterruptedException e) {
+                        Log.e(LOG_TAG, "startMeasuringTimeThread sleep exception:" + e.getMessage());
+                    }
+                    handler.sendEmptyMessage(Timer.TIMER_STATE_PROGRESS);
+                    if (mGame.getGmaeState() == CardMatchingGame.GAME_STATE_FINISH)
+                    {
+                        break;
+                    }
+                }
+                handler.sendEmptyMessage(Timer.TIMER_STATE_STOP);
+            }
+        });
+        thread.start();
+    }
+
+    private Handler mTimerHandler  = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            mTvDuration.setText(mGame.getTimer().getDurationInTimeFormat());
+            switch (msg.what) {
+                case Timer.TIMER_STATE_UNSTART:
+                    Log.d(LOG_TAG, "handle TIMER_STATE_UNSTART message");
+                    break;
+                case Timer.TIMER_STATE_PROGRESS:
+                    // do nothing
+                    break;
+                case Timer.TIMER_STATE_PAUSE:
+                    Log.d(LOG_TAG, "handle TIMER_STATE_PAUSE message");
+                    break;
+                case Timer.TIMER_STATE_STOP:
+                    Log.d(LOG_TAG, "handle TIMER_STATE_STOP message");
+                    break;
+                default:
+                    // do nothing.
+                    break;
+            }
+        }
+    };
 
 
 }

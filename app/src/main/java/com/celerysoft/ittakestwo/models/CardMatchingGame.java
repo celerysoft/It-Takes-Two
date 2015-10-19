@@ -10,6 +10,15 @@ import java.util.ArrayList;
 public class CardMatchingGame {
     private final String LOG_TAG = this.getClass().getSimpleName();
 
+    private int mGameState;
+    public int getGmaeState() {
+        return mGameState;
+    }
+    public static final int GAME_STATE_UNSTART = -1;
+    public static final int GAME_STATE_START = 0;
+    public static final int GAME_STATE_PAUSE = 1;
+    public static final int GAME_STATE_FINISH = 2;
+
     private final int MATCH_BOUNS = 4;
     private final int MISMATCH_PENALTY = 2;
     private final int COST_TO_CHOOSE = 1;
@@ -22,12 +31,18 @@ public class CardMatchingGame {
     private Player mCurrentPlayer;
     private ArrayList<Player> mPlayers = new ArrayList<>();
 
+    private Timer mTimer = new Timer();
+    public Timer getTimer() {
+        return mTimer;
+    }
+
     private ArrayList<PlayingCard> mCards = new ArrayList<>();
     public ArrayList<PlayingCard> getCards() {
         return mCards;
     }
 
     public CardMatchingGame(int cardCount, PlayingDeck usingDeck) {
+        mGameState = GAME_STATE_UNSTART;
         for (int i = 0; i < cardCount; ++i) {
             Card card = usingDeck.drawRandomCard();
             if (card != null) {
@@ -48,6 +63,12 @@ public class CardMatchingGame {
     }
 
     public void chooseCardAtIndex(int index) {
+        if (mGameState == GAME_STATE_UNSTART) {
+            start();
+        } else if (mGameState == GAME_STATE_PAUSE || mGameState == GAME_STATE_FINISH) {
+            return;
+        }
+
         PlayingCard card = this.cardAtIndex(index);
         if (card != null) {
             if (!card.isMatched()) {
@@ -79,8 +100,12 @@ public class CardMatchingGame {
         return index < mCards.size() ? mCards.get(index) : null;
     }
 
+    /**
+     * restart the game with the same cards.
+     */
     public void restart() {
         // reset game state
+        mGameState = GAME_STATE_UNSTART;
         mScore = 0;
         for (PlayingCard card : mCards) {
             card.setMatched(false);
@@ -99,5 +124,29 @@ public class CardMatchingGame {
         } else {
             Log.e(LOG_TAG, "shuffle cards error.");
         }
+    }
+
+    /**
+     * start the game.
+     */
+    public void start() {
+        mGameState = GAME_STATE_START;
+        mTimer.start();
+    }
+
+    /**
+     * pause the game.
+     */
+    public void pause() {
+        mGameState = GAME_STATE_PAUSE;
+        mTimer.pause();
+    }
+
+    /**
+     * finish the game.
+     */
+    public void finish() {
+        mGameState = GAME_STATE_FINISH;
+        mTimer.stop();
     }
 }

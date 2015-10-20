@@ -9,6 +9,8 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.TextView;
@@ -29,6 +31,7 @@ public class PlayingCardActivity extends Activity {
     /** Log tag **/
     private final String LOG_TAG = this.getClass().getSimpleName();
 
+    // const
     private final String GAME_STATE_CARDS = "gameStateCards";
     private final String GAME_STATE_SCORE = "gameStateScore";
     private final String GAME_STATE_DURATION = "gameStateDuration";
@@ -38,6 +41,7 @@ public class PlayingCardActivity extends Activity {
 
     private final int CARD_COUNT = 16;
 
+    // fields
     private boolean mIsNeededAutoAdjustForScreen = true;
 
     // cards
@@ -225,6 +229,8 @@ public class PlayingCardActivity extends Activity {
         mBtnShareScore = (Button) findViewById(R.id.playingcard_btn_share);
         mTvScroe = (TextView) findViewById(R.id.playingcard_tv_score);
         mTvDuration = (TextView) findViewById(R.id.playingcard_tv_duration);
+
+        setBtnCommitUnclickable();
     }
 
     private void setupListener() {
@@ -283,6 +289,50 @@ public class PlayingCardActivity extends Activity {
 
     private void onCommitBtnClick() {
         mGame.finish();
+
+        setBtnCommitUnclickable();
+
+        setBtnsVisible();
+    }
+
+    private void setBtnCommitClickable() {
+        mBtnCommit.setClickable(true);
+        mBtnCommit.setAlpha(1.0f);
+    }
+
+    private void setBtnCommitUnclickable() {
+        mBtnCommit.setClickable(false);
+        mBtnCommit.setAlpha(0.6f);
+    }
+
+    /**
+     * hide "Restart" and "Share" button, when in the game progress, u dont want the
+     * player slip up to tap this buttons to break off the game.
+     */
+    private void setBtnsInvisible() {
+        Animation animation = AnimationUtils.loadAnimation(this, R.anim.btn_fade_out);
+        mBtnRestartGame.startAnimation(animation);
+        mBtnShareScore.startAnimation(animation);
+    }
+
+    /**
+     * show "Restart" and "Share" button
+     */
+    private void setBtnsVisible() {
+        Animation animation = AnimationUtils.loadAnimation(this, R.anim.btn_fade_in);
+        mBtnRestartGame.startAnimation(animation);
+        mBtnShareScore.startAnimation(animation);
+    }
+
+    /**
+     * on the point of game starting
+     */
+    private void onGameStart() {
+        startMeasuringTimeThread(mTimerHandler);
+
+        setBtnCommitClickable();
+
+        setBtnsInvisible();
     }
 
     /** card buttons onClickListener **/
@@ -290,8 +340,9 @@ public class PlayingCardActivity extends Activity {
         @Override
         public void onClick(View view) {
             if (view instanceof Button) {
+                // game is going to start, start time thread and hide buttons.
                 if (mGame.getGmaeState() == CardMatchingGame.GAME_STATE_UNSTART) {
-                    startMeasuringTimeThread(mTimerHandler);
+                    onGameStart();
                 }
                 Button card = (Button) view;
                 int chosenButtonIndex = cardButtons.indexOf(card);
@@ -399,6 +450,10 @@ public class PlayingCardActivity extends Activity {
         }
     }
 
+    /**
+     * start the thread about display of the timer
+     * @param handler Handler to update UI thread
+     */
     private void startMeasuringTimeThread(final Handler handler) {
         Thread thread = new Thread(new Runnable() {
             @Override
@@ -406,12 +461,20 @@ public class PlayingCardActivity extends Activity {
                 handler.sendEmptyMessage(Timer.TIMER_STATE_UNSTART);
                 while (true)
                 {
+
                     try {
                         Thread.sleep(50);
                     } catch (InterruptedException e) {
                         Log.e(LOG_TAG, "startMeasuringTimeThread sleep exception:" + e.getMessage());
                     }
+
+                    if (mGame.getGmaeState() == CardMatchingGame.GAME_STATE_PAUSE) {
+                        handler.sendEmptyMessage(Timer.TIMER_STATE_PAUSE);
+                        continue;
+                    }
+
                     handler.sendEmptyMessage(Timer.TIMER_STATE_PROGRESS);
+
                     if (mGame.getGmaeState() == CardMatchingGame.GAME_STATE_FINISH)
                     {
                         break;
@@ -423,6 +486,9 @@ public class PlayingCardActivity extends Activity {
         thread.start();
     }
 
+    /**
+     * Timer Handler, to handle the message about the timer
+     */
     private Handler mTimerHandler  = new Handler() {
         @Override
         public void handleMessage(Message msg) {

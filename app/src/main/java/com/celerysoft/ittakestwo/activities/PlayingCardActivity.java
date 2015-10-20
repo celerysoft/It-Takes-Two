@@ -312,7 +312,9 @@ public class PlayingCardActivity extends Activity {
     private void setBtnsInvisible() {
         Animation animation = AnimationUtils.loadAnimation(this, R.anim.btn_fade_out);
         mBtnRestartGame.startAnimation(animation);
+        mBtnRestartGame.setClickable(false);
         mBtnShareScore.startAnimation(animation);
+        mBtnShareScore.setClickable(false);
     }
 
     /**
@@ -321,7 +323,9 @@ public class PlayingCardActivity extends Activity {
     private void setBtnsVisible() {
         Animation animation = AnimationUtils.loadAnimation(this, R.anim.btn_fade_in);
         mBtnRestartGame.startAnimation(animation);
+        mBtnRestartGame.setClickable(true);
         mBtnShareScore.startAnimation(animation);
+        mBtnShareScore.setClickable(true);
     }
 
     /**

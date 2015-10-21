@@ -1,40 +1,92 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:materialdesign="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-
-    android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="com.celerysoft.ittakestwo.activities.PlayingCardActivity"
     android:background="@color/card_table_background"
     android:orientation="vertical">
 
     <RelativeLayout
+        android:id="@+id/playingcard_rl_topbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="88dp">
 
-        <TextView
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="60dp"
+            android:background="#804000">
+
+            <TextView
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/playingcard_tv_score"
+                android:text="@string/playingcard_tv_score_text"
+                android:textSize="@dimen/text_size_title"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="8dp"
+                android:layout_marginEnd="8dp"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/playingcard_tv_duration"
+                android:text="@string/playingcard_tv_duration_text"
+                android:textSize="@dimen/text_size_title"
+                android:textColor="@color/white" />
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="60dp"
+            android:background="#88CECECE" />
+
+        <com.gc.materialdesign.views.ButtonFloat
+            android:id="@+id/playingcard_btn_restart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_marginLeft="@dimen/activity_vertical_margin"
+            android:layout_marginStart="@dimen/activity_vertical_margin"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:gravity="center"
+            android:background="#1E88E5"
+            materialdesign:animate="false"
+            materialdesign:iconDrawable="@drawable/ic_refresh_white_48dp" />
+
+        <com.gc.materialdesign.views.ButtonFloat
+            android:id="@+id/playingcard_btn_commit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/playingcard_tv_score"
-            android:text="@string/playingcard_tv_score_text"
-            android:textSize="@dimen/text_size_title"
-            android:textColor="@color/black" />
+            android:layout_marginTop="32dp"
+            android:layout_centerHorizontal="true"
+            android:background="#1E88E5"
+            materialdesign:animate="false"
+            materialdesign:iconDrawable="@drawable/ic_check_white_48dp" />
 
-        <TextView
+        <com.gc.materialdesign.views.ButtonFloat
+            android:id="@+id/playingcard_btn_share"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_marginRight="@dimen/activity_vertical_margin"
+            android:layout_marginEnd="@dimen/activity_vertical_margin"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/playingcard_tv_duration"
-            android:text="@string/playingcard_tv_duration_text"
-            android:textSize="@dimen/text_size_title"
-            android:textColor="@color/black" />
+            android:background="#1E88E5"
+            materialdesign:animate="false"
+            materialdesign:iconDrawable="@drawable/ic_share_white_48dp" />
 
     </RelativeLayout>
 
@@ -42,6 +94,9 @@
         android:id="@+id/playingcard_gridlayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_marginLeft="@dimen/activity_vertical_margin"
+        android:layout_marginStart="@dimen/activity_vertical_margin"
         android:columnCount="4"
         android:alignmentMode="alignBounds">
 
@@ -128,40 +183,17 @@
 
     </GridLayout>
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
         android:layout_marginTop="@dimen/activity_vertical_margin"
         android:orientation="horizontal">
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:id="@+id/playingcard_btn_commit"
-            android:text="@string/playingcard_btn_commit_text"
-            android:textSize="@dimen/text_size_button"/>
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/playingcard_btn_commit"
-            android:layout_toEndOf="@id/playingcard_btn_commit"
-            android:id="@+id/playingcard_btn_restart"
-            android:text="@string/playingcard_btn_restart_text"
-            android:textSize="@dimen/text_size_button"/>
 
-        <Button
-            android:layout_toRightOf="@id/playingcard_btn_restart"
-            android:layout_toEndOf="@id/playingcard_btn_restart"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/playingcard_btn_share"
-            android:text="@string/playingcard_btn_share_text"
-            android:textSize="@dimen/text_size_button"/>
-
-    </RelativeLayout>
+    </LinearLayout>
 
 
 

@@ -21,7 +21,7 @@
     <!-- PlayingCard Activity -->
     <string name="title_activity_playing_card">Playing Card</string>
     <string name="playingcard_tv_score_text">Score: 0</string>
-    <string name="playingcard_tv_duration_text">00 : 00.000</string>
+    <string name="playingcard_tv_duration_text">Tap a card</string>
     <string name="playingcard_score">Score: </string>
     <string name="playingcard_btn_commit_text">Commit</string>
     <string name="playingcard_btn_restart_text">Restart</string>

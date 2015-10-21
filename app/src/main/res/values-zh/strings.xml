@@ -17,7 +17,7 @@
     <!-- PlayingCard Activity -->
     <string name="title_activity_playing_card">纸牌对对碰</string>
     <string name="playingcard_tv_score_text">得分：0</string>
-    <string name="playingcard_tv_duration_text">00 : 00.000</string>
+    <string name="playingcard_tv_duration_text">请点击扑克牌</string>
     <string name="playingcard_score">得分：</string>
     <string name="playingcard_btn_commit_text">提交分数</string>
     <string name="playingcard_btn_restart_text">重新开始</string>

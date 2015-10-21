@@ -1,6 +1,7 @@
 package com.celerysoft.ittakestwo.activities;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.Rect;
@@ -13,6 +14,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.GridLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.celerysoft.ittakestwo.R;
@@ -21,6 +23,7 @@ import com.celerysoft.ittakestwo.models.CardMatchingGame;
 import com.celerysoft.ittakestwo.models.PlayingCard;
 import com.celerysoft.ittakestwo.models.PlayingDeck;
 import com.celerysoft.ittakestwo.models.Timer;
+import com.gc.materialdesign.views.ButtonFloat;
 
 import java.util.ArrayList;
 
@@ -42,6 +45,7 @@ public class PlayingCardActivity extends Activity {
     private final int CARD_COUNT = 16;
 
     // fields
+    private Context mContext;
     private boolean mIsNeededAutoAdjustForScreen = true;
 
     // cards
@@ -64,9 +68,10 @@ public class PlayingCardActivity extends Activity {
     private ArrayList<Button> cardButtons = new ArrayList<>();
 
     //declare widgets
-    private Button mBtnCommit;
-    private Button mBtnRestartGame;
-    private Button mBtnShareScore;
+    private RelativeLayout mTopbar;
+    private ButtonFloat mBtnCommit;
+    private ButtonFloat mBtnRestartGame;
+    private ButtonFloat mBtnShareScore;
     private TextView mTvScroe;
     private TextView mTvDuration;
 
@@ -80,8 +85,29 @@ public class PlayingCardActivity extends Activity {
 
         setupView();
         setupListener();
+
+        mContext = this;
         mGame = new CardMatchingGame(cardButtons.size(), new PlayingDeck());
         mIsNeededAutoAdjustForScreen = true;
+    }
+
+    /**
+     * when all the widget create finished adjust gap of cards.
+     */
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        if (hasFocus) {
+            if (mIsNeededAutoAdjustForScreen) {
+                if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                    autoAdjustForPortraitScreen();
+                } else if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                    autoAdjustForLandscapeScreen();
+                }
+
+                mIsNeededAutoAdjustForScreen = false;
+            }
+
+        }
     }
 
     /**
@@ -111,12 +137,12 @@ public class PlayingCardActivity extends Activity {
         getWindow().getDecorView().getWindowVisibleDisplayFrame(frame);
         int statusBarHeight = frame.top;
 
-        int buttonHeight = mBtnRestartGame.getHeight();
+        int topbarHeight = mTopbar.getHeight();
 
         cardlayoutParams = (GridLayout.LayoutParams) card04.getLayoutParams();
         int cardLayoutHeight = cardlayoutParams.height;
 
-        int cardLayoutVerticalMargin = (int) ((screenHeight - statusBarHeight - 3 * verticalMargin - buttonHeight - 4 * cardLayoutHeight) / 3);
+        int cardLayoutVerticalMargin = (int) ((screenHeight - statusBarHeight - 2 * verticalMargin - topbarHeight - 4 * cardLayoutHeight) / 3);
 
         cardlayoutParams.setMargins(0, cardLayoutVerticalMargin, 0, 0);
         cardlayoutParams = (GridLayout.LayoutParams) card08.getLayoutParams();
@@ -159,7 +185,7 @@ public class PlayingCardActivity extends Activity {
         getWindow().getDecorView().getWindowVisibleDisplayFrame(frame);
         int statusBarHeight = frame.top;
 
-        int buttonHeight = mBtnRestartGame.getHeight();
+        int buttonHeight = mBtnCommit.getHeight();
 
         cardlayoutParams = (GridLayout.LayoutParams) card09.getLayoutParams();
         int cardLayoutHeight = cardlayoutParams.height;
@@ -168,25 +194,6 @@ public class PlayingCardActivity extends Activity {
 
         cardlayoutParams.setMargins(0, cardLayoutVerticalMargin, 0, 0);
         card09.setLayoutParams(cardlayoutParams);
-    }
-
-    /**
-     * when all the widget create finished adjust gap of cards.
-     */
-    @Override
-    public void onWindowFocusChanged(boolean hasFocus) {
-        if (hasFocus) {
-            if (mIsNeededAutoAdjustForScreen) {
-                if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                    autoAdjustForPortraitScreen();
-                } else if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-                    autoAdjustForLandscapeScreen();
-                }
-
-                mIsNeededAutoAdjustForScreen = false;
-            }
-
-        }
     }
 
     private void setupView() {
@@ -224,9 +231,10 @@ public class PlayingCardActivity extends Activity {
         cardButtons.add(card14);
         cardButtons.add(card15);
 
-        mBtnCommit = (Button) findViewById(R.id.playingcard_btn_commit);
-        mBtnRestartGame = (Button) findViewById(R.id.playingcard_btn_restart);
-        mBtnShareScore = (Button) findViewById(R.id.playingcard_btn_share);
+        mTopbar = (RelativeLayout) findViewById(R.id.playingcard_rl_topbar);
+        mBtnCommit = (ButtonFloat) findViewById(R.id.playingcard_btn_commit);
+        mBtnRestartGame = (ButtonFloat) findViewById(R.id.playingcard_btn_restart);
+        mBtnShareScore = (ButtonFloat) findViewById(R.id.playingcard_btn_share);
         mTvScroe = (TextView) findViewById(R.id.playingcard_tv_score);
         mTvDuration = (TextView) findViewById(R.id.playingcard_tv_duration);
 
@@ -260,6 +268,10 @@ public class PlayingCardActivity extends Activity {
     private View.OnClickListener mOnBtnClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+            if(!v.isClickable()) {
+                return;
+            }
+
             int id = v.getId();
             switch (id) {
                 case R.id.playingcard_btn_restart:
@@ -292,7 +304,7 @@ public class PlayingCardActivity extends Activity {
 
         setBtnCommitUnclickable();
 
-        setBtnsVisible();
+        setBtnsclickable();
     }
 
     private void setBtnCommitClickable() {
@@ -309,7 +321,7 @@ public class PlayingCardActivity extends Activity {
      * hide "Restart" and "Share" button, when in the game progress, u dont want the
      * player slip up to tap this buttons to break off the game.
      */
-    private void setBtnsInvisible() {
+    private void setBtnsUnclickable() {
         Animation animation = AnimationUtils.loadAnimation(this, R.anim.btn_fade_out);
         mBtnRestartGame.startAnimation(animation);
         mBtnRestartGame.setClickable(false);
@@ -320,7 +332,7 @@ public class PlayingCardActivity extends Activity {
     /**
      * show "Restart" and "Share" button
      */
-    private void setBtnsVisible() {
+    private void setBtnsclickable() {
         Animation animation = AnimationUtils.loadAnimation(this, R.anim.btn_fade_in);
         mBtnRestartGame.startAnimation(animation);
         mBtnRestartGame.setClickable(true);
@@ -336,7 +348,7 @@ public class PlayingCardActivity extends Activity {
 
         setBtnCommitClickable();
 
-        setBtnsInvisible();
+        setBtnsUnclickable();
     }
 
     /** card buttons onClickListener **/
@@ -364,8 +376,12 @@ public class PlayingCardActivity extends Activity {
             setTextForCard(cardButton, card);
             setBackGroundForCard(cardButton, card);
         }
+
         mTvScroe.setText(getString(R.string.playingcard_score) + mGame.getScore());
-        mTvDuration.setText(mGame.getTimer().getDurationInTimeFormat());
+
+        String durationString = mGame.getTimer().getDurationInTimeFormat();
+        durationString = durationString.equals("00 : 00.000") ? mContext.getString(R.string.playingcard_tv_duration_text) : durationString;
+        mTvDuration.setText(durationString);
     }
 
     private void setTextForCard(Button cardButton, Card card) {

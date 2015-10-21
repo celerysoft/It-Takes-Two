@@ -12,6 +12,8 @@ It Takes Two is a casual game that pick the matched cards and get scores, finall
 
 * Multi-language: English and Chinese
 
+* Material Design
+
 * Support Android and iOS
 
 ## Technical Information

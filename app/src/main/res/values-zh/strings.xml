@@ -11,6 +11,8 @@
     <string name="lauching_btn_single_player_text">单人游戏</string>
     <string name="lauching_btn_multi_player_text">多人游戏</string>
     <string name="lauching_btn_how_to_play_text">游戏教程</string>
+    <string name="laucning_tv_tip">推荐使用竖屏以获得最佳的用户体验</string>
+
 
     <!-- PlayingCard Activity -->
     <string name="title_activity_playing_card">纸牌对对碰</string>

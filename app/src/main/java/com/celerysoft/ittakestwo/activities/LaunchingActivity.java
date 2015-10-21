@@ -4,10 +4,9 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 
 import com.celerysoft.ittakestwo.R;
-import com.celerysoft.ittakestwo.models.CardMatchingGame;
+import com.gc.materialdesign.views.ButtonRectangle;
 
 /**
  * Launching activity
@@ -15,12 +14,12 @@ import com.celerysoft.ittakestwo.models.CardMatchingGame;
 public class LaunchingActivity extends Activity {
 
     // Widget declare
-    Button mBtnSinglePlayerGmae;
-    Button mBtnMultiPlayerGame;
-    Button mBtnHowToPlay;
+    ButtonRectangle mBtnSinglePlayerGmae;
+    ButtonRectangle mBtnMultiPlayerGame;
+    ButtonRectangle mBtnHowToPlay;
 
     // Private Field
-
+    private boolean mIsNeedAdjustment = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,9 +32,9 @@ public class LaunchingActivity extends Activity {
     }
 
     private void setupView() {
-        mBtnSinglePlayerGmae = (Button) findViewById(R.id.launching_btn_single_player);
-        mBtnMultiPlayerGame = (Button) findViewById(R.id.launching_btn_multi_player);
-        mBtnHowToPlay = (Button) findViewById(R.id.launching_btn_how_to_play);
+        mBtnSinglePlayerGmae = (ButtonRectangle) findViewById(R.id.launching_btn_single_player);
+        mBtnMultiPlayerGame = (ButtonRectangle) findViewById(R.id.launching_btn_multi_player);
+        mBtnHowToPlay = (ButtonRectangle) findViewById(R.id.launching_btn_how_to_play);
     }
 
     private void setupListener() {

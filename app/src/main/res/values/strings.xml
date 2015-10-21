@@ -15,6 +15,7 @@
     <string name="lauching_btn_single_player_text">Single Player</string>
     <string name="lauching_btn_multi_player_text">Multi Player</string>
     <string name="lauching_btn_how_to_play_text">How To Play</string>
+    <string name="laucning_tv_tip">We recommend that switch your phone to portrait mode to get the best possible experience using</string>
 
 
     <!-- PlayingCard Activity -->

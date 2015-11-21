@@ -27,17 +27,17 @@ public class LaunchingActivity extends Activity {
 
         setContentView(R.layout.activity_launching);
 
-        setupView();
-        setupListener();
+        defineView();
+        defineListener();
     }
 
-    private void setupView() {
+    private void defineView() {
         mBtnSinglePlayerGmae = (ButtonRectangle) findViewById(R.id.launching_btn_single_player);
         mBtnMultiPlayerGame = (ButtonRectangle) findViewById(R.id.launching_btn_multi_player);
         mBtnHowToPlay = (ButtonRectangle) findViewById(R.id.launching_btn_how_to_play);
     }
 
-    private void setupListener() {
+    private void defineListener() {
         mBtnSinglePlayerGmae.setOnClickListener(mOnClickListener);
         mBtnMultiPlayerGame.setOnClickListener(mOnClickListener);
         mBtnHowToPlay.setOnClickListener(mOnClickListener);

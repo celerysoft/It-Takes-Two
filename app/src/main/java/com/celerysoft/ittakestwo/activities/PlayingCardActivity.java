@@ -23,6 +23,7 @@ import com.celerysoft.ittakestwo.models.CardMatchingGame;
 import com.celerysoft.ittakestwo.models.PlayingCard;
 import com.celerysoft.ittakestwo.models.PlayingDeck;
 import com.celerysoft.ittakestwo.models.Timer;
+import com.celerysoft.ittakestwo.valueobjects.GameState;
 import com.gc.materialdesign.views.ButtonFloat;
 
 import java.util.ArrayList;
@@ -35,9 +36,7 @@ public class PlayingCardActivity extends Activity {
     private final String LOG_TAG = this.getClass().getSimpleName();
 
     // const
-    private final String GAME_STATE_CARDS = "gameStateCards";
-    private final String GAME_STATE_SCORE = "gameStateScore";
-    private final String GAME_STATE_DURATION = "gameStateDuration";
+    private final String GAME_STATE = "gameState";
 
     private final int SCORE_MISSING = 99999;
     private final String CARDS_MISSING = "cardsMissing";
@@ -83,8 +82,8 @@ public class PlayingCardActivity extends Activity {
 
         setContentView(R.layout.activity_playing_card);
 
-        setupView();
-        setupListener();
+        defineView();
+        defineListener();
 
         mContext = this;
         mGame = new CardMatchingGame(cardButtons.size(), new PlayingDeck());
@@ -196,7 +195,7 @@ public class PlayingCardActivity extends Activity {
         card09.setLayoutParams(cardlayoutParams);
     }
 
-    private void setupView() {
+    private void defineView() {
 
         card00 = (Button) findViewById(R.id.card00);
         card01 = (Button) findViewById(R.id.card01);
@@ -241,7 +240,7 @@ public class PlayingCardActivity extends Activity {
         setBtnCommitUnclickable();
     }
 
-    private void setupListener() {
+    private void defineListener() {
         card00.setOnClickListener(mOnCardClickListener);
         card01.setOnClickListener(mOnCardClickListener);
         card02.setOnClickListener(mOnCardClickListener);
@@ -357,7 +356,7 @@ public class PlayingCardActivity extends Activity {
         public void onClick(View view) {
             if (view instanceof Button) {
                 // game is going to start, start time thread and hide buttons.
-                if (mGame.getGmaeState() == CardMatchingGame.GAME_STATE_UNSTART) {
+                if (mGame.getGmaeState() == CardMatchingGame.State.GAME_STATE_UNSTART) {
                     onGameStart();
                 }
                 Button card = (Button) view;
@@ -411,18 +410,8 @@ public class PlayingCardActivity extends Activity {
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        int score = mGame.getScore();
-        outState.putInt(GAME_STATE_SCORE, score);
-
-        String saveGame = "";
-        ArrayList<PlayingCard> cards = mGame.getCards();
-        int cardCount = cards.size();
-        for (int i = 0; i < cardCount; ++i) {
-            PlayingCard card = cards.get(i);
-            saveGame += card.getSuit() + "@" + card.getRank() +  "@" + card.isMatched() +  "@" + card.isChosen() + "#";
-        }
-        saveGame = saveGame.substring(0, saveGame.length() - 1);
-        outState.putString(GAME_STATE_CARDS, saveGame);
+        GameState gameState = new GameState(mGame.getCards(), mGame.getScore(), mGame.getTimer());
+        outState.putSerializable(GAME_STATE, gameState);
 
         super.onSaveInstanceState(outState);
     }
@@ -430,44 +419,17 @@ public class PlayingCardActivity extends Activity {
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         if (savedInstanceState != null) {
-            int score = savedInstanceState.getInt(GAME_STATE_SCORE, SCORE_MISSING);
-            if (score == SCORE_MISSING) {
-                Log.e(LOG_TAG, "Restore game error: game score is missing!!!");
-                return;
-            }
-
-            String saveGame = savedInstanceState.getString(GAME_STATE_CARDS, CARDS_MISSING);
-            if (saveGame.equals(CARDS_MISSING)) {
-                Log.e(LOG_TAG, "Restore game error: cards data is missing!!!");
-                return;
-            } else {
-                ArrayList<PlayingCard> restoreCards = new ArrayList<>();
-                String[] cardStrings = saveGame.split("#");
-                int cardCount = cardStrings.length;
-                if (cardCount != CARD_COUNT) {
-                    Log.e(LOG_TAG, "Restore game error: card count is abnormal!!!");
-                    return;
-                }
-                for (int i = 0; i < cardCount; ++i) {
-                    String cardContent = cardStrings[i];
-                    String[] cardContents = cardContent.split("@");
-                    if (cardContents.length != 4) {
-                        Log.e(LOG_TAG, "Restore game error: card content is lost!!!");
-                        return;
-                    }
-                    PlayingCard card = new PlayingCard();
-                    card.setSuit(cardContents[0]);
-                    card.setRank(Integer.parseInt(cardContents[1]));
-                    card.setMatched(Boolean.parseBoolean(cardContents[2]));
-                    card.setChosen(Boolean.parseBoolean(cardContents[3]));
-                    restoreCards.add(card);
-                }
-                this.mGame = new CardMatchingGame(restoreCards, score);
+            GameState gameState = (GameState) savedInstanceState.getSerializable(GAME_STATE);
+            if (gameState != null) {
+                mGame = new CardMatchingGame(gameState.getCards(), gameState.getScore(), gameState.getTimer());
+                onGameStart();
                 updateUi();
+            } else {
+                Log.w(LOG_TAG, "Game state lost");
             }
-
             super.onRestoreInstanceState(savedInstanceState);
         }
+
     }
 
     /**
@@ -488,14 +450,14 @@ public class PlayingCardActivity extends Activity {
                         Log.e(LOG_TAG, "startMeasuringTimeThread sleep exception:" + e.getMessage());
                     }
 
-                    if (mGame.getGmaeState() == CardMatchingGame.GAME_STATE_PAUSE) {
+                    if (mGame.getGmaeState() == CardMatchingGame.State.GAME_STATE_PAUSE) {
                         handler.sendEmptyMessage(Timer.TIMER_STATE_PAUSE);
                         continue;
                     }
 
                     handler.sendEmptyMessage(Timer.TIMER_STATE_PROGRESS);
 
-                    if (mGame.getGmaeState() == CardMatchingGame.GAME_STATE_FINISH)
+                    if (mGame.getGmaeState() == CardMatchingGame.State.GAME_STATE_FINISH)
                     {
                         break;
                     }

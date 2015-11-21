@@ -10,7 +10,7 @@
         <activity
             android:name=".activities.LaunchingActivity"
             android:label="@string/title_activity_playing_card"
-            android:theme="@style/LaunchingActivityTheme">
+            android:theme="@style/DefaultActivityTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -19,8 +19,11 @@
         <activity
             android:name=".activities.PlayingCardActivity"
             android:label="@string/title_activity_playing_card"
-            android:theme="@style/PlayingCardActivityTheme" >
+            android:theme="@style/DefaultActivityTheme" >
         </activity>
+
+        <activity android:name=".activities.MultiPlayerChoosePlayerCountActivity"
+            android:theme="@style/DefaultActivityTheme"/>
     </application>
 
 </manifest>

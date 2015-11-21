@@ -10,14 +10,16 @@ import java.util.ArrayList;
 public class CardMatchingGame {
     private final String LOG_TAG = this.getClass().getSimpleName();
 
-    private int mGameState;
-    public int getGmaeState() {
+    private State mGameState;
+    public State getGmaeState() {
         return mGameState;
     }
-    public static final int GAME_STATE_UNSTART = -1;
-    public static final int GAME_STATE_START = 0;
-    public static final int GAME_STATE_PAUSE = 1;
-    public static final int GAME_STATE_FINISH = 2;
+    public enum State {
+        GAME_STATE_UNSTART,
+        GAME_STATE_START,
+        GAME_STATE_PAUSE,
+        GAME_STATE_FINISH
+    }
 
     private final int MATCH_BOUNS = 4;
     private final int MISMATCH_PENALTY = 2;
@@ -58,16 +60,18 @@ public class CardMatchingGame {
         }
     }
 
-    public CardMatchingGame(ArrayList<PlayingCard> usingCards, int score) {
+    public CardMatchingGame(ArrayList<PlayingCard> usingCards, int score, Timer timer) {
         mCards = usingCards;
         mScore = score;
+        mTimer = timer;
+        mGameState = State.GAME_STATE_START;
     }
 
 
     public void chooseCardAtIndex(int index) {
-        if (mGameState == GAME_STATE_UNSTART) {
+        if (mGameState == State.GAME_STATE_UNSTART) {
             start();
-        } else if (mGameState == GAME_STATE_PAUSE || mGameState == GAME_STATE_FINISH) {
+        } else if (mGameState == State.GAME_STATE_PAUSE || mGameState == State.GAME_STATE_FINISH) {
             return;
         }
 
@@ -127,7 +131,7 @@ public class CardMatchingGame {
      * reset the game state.
      */
     private void reset() {
-        mGameState = GAME_STATE_UNSTART;
+        mGameState = State.GAME_STATE_UNSTART;
         mScore = 0;
         mTimer.reset();
         if (mCards != null) {
@@ -142,7 +146,7 @@ public class CardMatchingGame {
      * start the game.
      */
     private void start() {
-        mGameState = GAME_STATE_START;
+        mGameState = State.GAME_STATE_START;
         mTimer.start();
     }
 
@@ -150,7 +154,7 @@ public class CardMatchingGame {
      * pause the game.
      */
     public void pause() {
-        mGameState = GAME_STATE_PAUSE;
+        mGameState = State.GAME_STATE_PAUSE;
         mTimer.pause();
     }
 
@@ -158,7 +162,7 @@ public class CardMatchingGame {
      * finish the game.
      */
     public void finish() {
-        mGameState = GAME_STATE_FINISH;
+        mGameState = State.GAME_STATE_FINISH;
         mTimer.stop();
     }
 }

@@ -402,7 +402,8 @@ public class PlayingCardActivity extends Activity {
             return;
         }
         if (card.isChosen()) {
-            cardButton.setBackgroundColor(0xFFFFFFFF);
+            //cardButton.setBackgroundColor(0xFFFFFFFF);
+            cardButton.setBackgroundResource(R.drawable.cardfront);
         } else {
             cardButton.setBackgroundResource(R.drawable.cardback);
         }

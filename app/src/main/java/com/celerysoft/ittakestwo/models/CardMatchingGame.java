@@ -2,12 +2,15 @@ package com.celerysoft.ittakestwo.models;
 
 import android.util.Log;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Card matching game module.
  */
-public class CardMatchingGame {
+public class CardMatchingGame implements Serializable {
+    private static final long serialVersionUID = -1234567890666666L;
+
     private final String LOG_TAG = this.getClass().getSimpleName();
 
     private State mGameState;

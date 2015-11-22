@@ -23,7 +23,6 @@ import com.celerysoft.ittakestwo.models.CardMatchingGame;
 import com.celerysoft.ittakestwo.models.PlayingCard;
 import com.celerysoft.ittakestwo.models.PlayingDeck;
 import com.celerysoft.ittakestwo.models.Timer;
-import com.celerysoft.ittakestwo.valueobjects.GameState;
 import com.gc.materialdesign.views.ButtonFloat;
 
 import java.util.ArrayList;
@@ -36,7 +35,7 @@ public class PlayingCardActivity extends Activity {
     private final String LOG_TAG = this.getClass().getSimpleName();
 
     // const
-    private final String GAME_STATE = "gameState";
+    private final String SAVE_GAME = "saveGame";
 
     private final int SCORE_MISSING = 99999;
     private final String CARDS_MISSING = "cardsMissing";
@@ -186,13 +185,13 @@ public class PlayingCardActivity extends Activity {
 
         int buttonHeight = mBtnCommit.getHeight();
 
-        cardlayoutParams = (GridLayout.LayoutParams) card09.getLayoutParams();
+        cardlayoutParams = (GridLayout.LayoutParams) card08.getLayoutParams();
         int cardLayoutHeight = cardlayoutParams.height;
 
         int cardLayoutVerticalMargin = (int) ((screenHeight - statusBarHeight - 3 * verticalMargin - buttonHeight - 2 * cardLayoutHeight) / 1);
 
         cardlayoutParams.setMargins(0, cardLayoutVerticalMargin, 0, 0);
-        card09.setLayoutParams(cardlayoutParams);
+        card08.setLayoutParams(cardlayoutParams);
     }
 
     private void defineView() {
@@ -398,11 +397,11 @@ public class PlayingCardActivity extends Activity {
 
     private void setBackGroundForCard(Button cardButton, Card card) {
         if (card.isMatched()) {
-            cardButton.setBackgroundColor(0xAAFFFFFF);
+            cardButton.setBackgroundResource(R.drawable.cardfront);
+            cardButton.setAlpha(0.75f);
             return;
         }
         if (card.isChosen()) {
-            //cardButton.setBackgroundColor(0xFFFFFFFF);
             cardButton.setBackgroundResource(R.drawable.cardfront);
         } else {
             cardButton.setBackgroundResource(R.drawable.cardback);
@@ -411,8 +410,7 @@ public class PlayingCardActivity extends Activity {
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        GameState gameState = new GameState(mGame.getCards(), mGame.getScore(), mGame.getTimer());
-        outState.putSerializable(GAME_STATE, gameState);
+        outState.putSerializable(SAVE_GAME, mGame);
 
         super.onSaveInstanceState(outState);
     }
@@ -420,9 +418,8 @@ public class PlayingCardActivity extends Activity {
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         if (savedInstanceState != null) {
-            GameState gameState = (GameState) savedInstanceState.getSerializable(GAME_STATE);
-            if (gameState != null) {
-                mGame = new CardMatchingGame(gameState.getCards(), gameState.getScore(), gameState.getTimer());
+            mGame = (CardMatchingGame) savedInstanceState.getSerializable(SAVE_GAME);
+            if (mGame != null) {
                 onGameStart();
                 updateUi();
             } else {

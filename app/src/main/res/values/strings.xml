@@ -1,7 +1,7 @@
 <resources>
     <!-- common -->
     <string name="app_version_info">Ver 1.0</string>
-    <string name="app_copyright">Copyright © 2015 Celery Soft. All rights reserved.</string>
+    <string name="app_copyright">Copyright © 2015 – 2016 Celery Soft. All rights reserved.</string>
 
     <!-- common multi language -->
     <string name="app_name">It Takes Two</string>
@@ -26,5 +26,10 @@
     <string name="playingcard_btn_commit_text">Commit</string>
     <string name="playingcard_btn_restart_text">Restart</string>
     <string name="playingcard_btn_share_text">Share Score</string>
+
+    <!-- MultiPlayerChoosePlayerCount Activity -->
+    <string name="choose_player_count_tv_title">Choose player count</string>
+    <string name="choose_player_count_tv_desc">No more than 4 players, leave other guys watching :D</string>
+    <string name="choose_player_count_btn_confirm">Start Gmae</string>
 
 </resources>

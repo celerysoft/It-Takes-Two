@@ -19,7 +19,6 @@ public class LaunchingActivity extends Activity {
     ButtonRectangle mBtnHowToPlay;
 
     // Private Field
-    private boolean mIsNeedAdjustment = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,14 +49,24 @@ public class LaunchingActivity extends Activity {
             switch (id) {
                 case R.id.launching_btn_single_player:
                     startSinglePlayerGame();
+                    break;
+                case R.id.launching_btn_multi_player:
+                    startMultiPlayerGame();
+                    break;
                 default:
                     // do nothing
+                    break;
             }
         }
     };
 
     private void startSinglePlayerGame() {
         Intent intent = new Intent(this, PlayingCardActivity.class);
+        startActivity(intent);
+    }
+
+    private void startMultiPlayerGame() {
+        Intent intent = new Intent(this, MultiPlayerChoosePlayerCountActivity.class);
         startActivity(intent);
     }
 }

@@ -22,4 +22,10 @@
     <string name="playingcard_btn_commit_text">提交分数</string>
     <string name="playingcard_btn_restart_text">重新开始</string>
     <string name="playingcard_btn_share_text">分享成绩</string>
+
+    <!-- MultiPlayerChoosePlayerCount Activity -->
+    <string name="choose_player_count_tv_title">选择玩家数量</string>
+    <string name="choose_player_count_tv_desc">最多4人，其他人乖乖看着吧</string>
+    <string name="choose_player_count_btn_confirm">开始游戏</string>
+
 </resources>

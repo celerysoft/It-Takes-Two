@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/card_table_background"
@@ -37,7 +36,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/launching_btn_single_player"
                 android:text="@string/lauching_btn_single_player_text"
-                android:background="#1E88E5" />
+                android:background="@color/colorPrimary" />
 
             <com.gc.materialdesign.views.ButtonRectangle
                 android:layout_width="match_parent"
@@ -45,7 +44,7 @@
                 android:layout_marginTop="@dimen/activity_vertical_margin"
                 android:id="@+id/launching_btn_multi_player"
                 android:text="@string/lauching_btn_multi_player_text"
-                android:background="#1E88E5" />
+                android:background="@color/colorPrimary" />
 
             <com.gc.materialdesign.views.ButtonRectangle
                 android:layout_width="match_parent"
@@ -53,7 +52,7 @@
                 android:layout_marginTop="@dimen/activity_vertical_margin"
                 android:id="@+id/launching_btn_how_to_play"
                 android:text="@string/lauching_btn_how_to_play_text"
-                android:background="#1E88E5" />
+                android:background="@color/colorPrimary" />
 
         </LinearLayout>
 

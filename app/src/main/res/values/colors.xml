@@ -6,4 +6,8 @@
     <color name="gray">#FFAAAAAA</color>
     <color name="dark_gray">#FF666666</color>
     <color name="card_table_background">#FF50C05B</color>
+
+    <color name="colorPrimary">#1E88E5</color>
+    <color name="colorPrimaryDark">#3F51B5</color>
+    <color name="colorAccent">#FF4081</color>
 </resources>

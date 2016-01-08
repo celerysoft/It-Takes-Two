@@ -3,6 +3,9 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
+    <dimen name="playing_card_grid_horizontal_margin">16dp</dimen>
+    <dimen name="playing_card_grid_vertical_margin">16dp</dimen>
+
     <dimen name="card_width">64sp</dimen>
     <dimen name="card_height">96sp</dimen>
 

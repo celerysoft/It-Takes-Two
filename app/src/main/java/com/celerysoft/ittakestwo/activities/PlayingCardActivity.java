@@ -1,5 +1,6 @@
 package com.celerysoft.ittakestwo.activities;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Configuration;
@@ -28,7 +29,7 @@ import com.gc.materialdesign.views.ButtonFloat;
 import java.util.ArrayList;
 
 /**
- *
+ * Playing Card Activity
  */
 public class PlayingCardActivity extends Activity {
     /** Log tag **/
@@ -37,9 +38,7 @@ public class PlayingCardActivity extends Activity {
     // const
     private final String SAVE_GAME = "saveGame";
 
-    private final int SCORE_MISSING = 99999;
-    private final String CARDS_MISSING = "cardsMissing";
-
+    @SuppressWarnings("unused")
     private final int CARD_COUNT = 16;
 
     // fields
@@ -108,28 +107,26 @@ public class PlayingCardActivity extends Activity {
         }
     }
 
+
+
+
     /**
-     * adjust cards horizontal gap and vertical gap for portrait screen
+     * adjust width and height of cards for portrait screen
      */
     private void autoAdjustForPortraitScreen() {
 
-        //adjust horizontal gap
+        // calculate card width
         int screenWidth = getResources().getDisplayMetrics().widthPixels;
-        float horizontalMargin = getResources().getDimension(R.dimen.activity_horizontal_margin);
+        float horizontalMargin = getResources().getDimension(R.dimen.playing_card_grid_horizontal_margin);
 
-        GridLayout.LayoutParams cardlayoutParams = (GridLayout.LayoutParams) card01.getLayoutParams();
-        int cardLayoutWidth = cardlayoutParams.width;
-        int cardLayoutHorizontalMargin = (int) ((screenWidth - 2 * horizontalMargin - 4 * cardLayoutWidth) / 3);
+        int cardLayoutWidth = (int) ((screenWidth - 5 * horizontalMargin) / 4);
+        cardLayoutWidth = (int) (screenWidth * 0.8 / 4);
+        int cardLayoutHorizontalMargin = (int) horizontalMargin;
+        cardLayoutHorizontalMargin = (int) ((screenWidth * 0.2 - 2 * horizontalMargin) / 3);
 
-        cardlayoutParams.setMargins(cardLayoutHorizontalMargin, 0, 0, 0);
-        cardlayoutParams = (GridLayout.LayoutParams) card02.getLayoutParams();
-        cardlayoutParams.setMargins(cardLayoutHorizontalMargin, 0, 0, 0);
-        cardlayoutParams = (GridLayout.LayoutParams) card03.getLayoutParams();
-        cardlayoutParams.setMargins(cardLayoutHorizontalMargin, 0, 0, 0);
-
-        //adjust vertical gap
+        // calculate card height
         int screenHeight = getResources().getDisplayMetrics().heightPixels;
-        float verticalMargin = getResources().getDimension(R.dimen.activity_vertical_margin);
+        float verticalMargin = getResources().getDimension(R.dimen.playing_card_grid_vertical_margin);
 
         Rect frame = new Rect();
         getWindow().getDecorView().getWindowVisibleDisplayFrame(frame);
@@ -137,16 +134,83 @@ public class PlayingCardActivity extends Activity {
 
         int topbarHeight = mTopbar.getHeight();
 
+        int contentScreenHeight = screenHeight - statusBarHeight - topbarHeight;
+
+        int cardLayoutHeight = (int) ((contentScreenHeight - 5 * verticalMargin) / 4);
+        cardLayoutHeight = (int) (contentScreenHeight * 0.8 / 4);
+        int cardLayoutVerticalMargin = (int) verticalMargin;
+        cardLayoutVerticalMargin = (int) ((contentScreenHeight * 0.2 - 2 * verticalMargin) / 3);
+
+        // adjust width and height of cards
+        GridLayout.LayoutParams cardlayoutParams = (GridLayout.LayoutParams) card00.getLayoutParams();
+        cardlayoutParams.width = cardLayoutWidth;
+        cardlayoutParams.height = cardLayoutHeight;
+
+        cardlayoutParams = (GridLayout.LayoutParams) card01.getLayoutParams();
+        cardlayoutParams.width = cardLayoutWidth;
+        cardlayoutParams.height = cardLayoutHeight;
+        cardlayoutParams.setMargins(cardLayoutHorizontalMargin, 0, 0, 0);
+
+        cardlayoutParams = (GridLayout.LayoutParams) card02.getLayoutParams();
+        cardlayoutParams.width = cardLayoutWidth;
+        cardlayoutParams.height = cardLayoutHeight;
+        cardlayoutParams.setMargins(cardLayoutHorizontalMargin, 0, 0, 0);
+
+        cardlayoutParams = (GridLayout.LayoutParams) card03.getLayoutParams();
+        cardlayoutParams.width = cardLayoutWidth;
+        cardlayoutParams.height = cardLayoutHeight;
+        cardlayoutParams.setMargins(cardLayoutHorizontalMargin, 0, 0, 0);
+
         cardlayoutParams = (GridLayout.LayoutParams) card04.getLayoutParams();
-        int cardLayoutHeight = cardlayoutParams.height;
-
-        int cardLayoutVerticalMargin = (int) ((screenHeight - statusBarHeight - 2 * verticalMargin - topbarHeight - 4 * cardLayoutHeight) / 3);
-
+        cardlayoutParams.width = cardLayoutWidth;
+        cardlayoutParams.height = cardLayoutHeight;
         cardlayoutParams.setMargins(0, cardLayoutVerticalMargin, 0, 0);
+
+        cardlayoutParams = (GridLayout.LayoutParams) card05.getLayoutParams();
+        cardlayoutParams.width = cardLayoutWidth;
+        cardlayoutParams.height = cardLayoutHeight;
+
+        cardlayoutParams = (GridLayout.LayoutParams) card06.getLayoutParams();
+        cardlayoutParams.width = cardLayoutWidth;
+        cardlayoutParams.height = cardLayoutHeight;
+
+        cardlayoutParams = (GridLayout.LayoutParams) card07.getLayoutParams();
+        cardlayoutParams.width = cardLayoutWidth;
+        cardlayoutParams.height = cardLayoutHeight;
+
         cardlayoutParams = (GridLayout.LayoutParams) card08.getLayoutParams();
+        cardlayoutParams.width = cardLayoutWidth;
+        cardlayoutParams.height = cardLayoutHeight;
         cardlayoutParams.setMargins(0, cardLayoutVerticalMargin, 0, 0);
+
+        cardlayoutParams = (GridLayout.LayoutParams) card09.getLayoutParams();
+        cardlayoutParams.width = cardLayoutWidth;
+        cardlayoutParams.height = cardLayoutHeight;
+
+        cardlayoutParams = (GridLayout.LayoutParams) card10.getLayoutParams();
+        cardlayoutParams.width = cardLayoutWidth;
+        cardlayoutParams.height = cardLayoutHeight;
+
+        cardlayoutParams = (GridLayout.LayoutParams) card11.getLayoutParams();
+        cardlayoutParams.width = cardLayoutWidth;
+        cardlayoutParams.height = cardLayoutHeight;
+
         cardlayoutParams = (GridLayout.LayoutParams) card12.getLayoutParams();
+        cardlayoutParams.width = cardLayoutWidth;
+        cardlayoutParams.height = cardLayoutHeight;
         cardlayoutParams.setMargins(0, cardLayoutVerticalMargin, 0, 0);
+
+        cardlayoutParams = (GridLayout.LayoutParams) card13.getLayoutParams();
+        cardlayoutParams.width = cardLayoutWidth;
+        cardlayoutParams.height = cardLayoutHeight;
+
+        cardlayoutParams = (GridLayout.LayoutParams) card14.getLayoutParams();
+        cardlayoutParams.width = cardLayoutWidth;
+        cardlayoutParams.height = cardLayoutHeight;
+
+        cardlayoutParams = (GridLayout.LayoutParams) card15.getLayoutParams();
+        cardlayoutParams.width = cardLayoutWidth;
+        cardlayoutParams.height = cardLayoutHeight;
     }
 
     /**
@@ -154,44 +218,105 @@ public class PlayingCardActivity extends Activity {
      */
     private void autoAdjustForLandscapeScreen() {
 
-        //adjust horizontal gap
+        // calculate card width
         int screenWidth = getResources().getDisplayMetrics().widthPixels;
-        float horizontalMargin = getResources().getDimension(R.dimen.activity_horizontal_margin);
+        float horizontalMargin = getResources().getDimension(R.dimen.playing_card_grid_horizontal_margin);
 
-        GridLayout.LayoutParams cardlayoutParams = (GridLayout.LayoutParams) card01.getLayoutParams();
-        int cardLayoutWidth = cardlayoutParams.width;
-        int cardLayoutHorizontalMargin = (int) ((screenWidth - 2 * horizontalMargin - 8 * cardLayoutWidth) / 7);
-        cardlayoutParams.setMargins(cardLayoutHorizontalMargin, 0, 0, 0);
-        cardlayoutParams = (GridLayout.LayoutParams) card02.getLayoutParams();
-        cardlayoutParams.setMargins(cardLayoutHorizontalMargin, 0, 0, 0);
-        cardlayoutParams = (GridLayout.LayoutParams) card03.getLayoutParams();
-        cardlayoutParams.setMargins(cardLayoutHorizontalMargin, 0, 0, 0);
-        cardlayoutParams = (GridLayout.LayoutParams) card04.getLayoutParams();
-        cardlayoutParams.setMargins(cardLayoutHorizontalMargin, 0, 0, 0);
-        cardlayoutParams = (GridLayout.LayoutParams) card05.getLayoutParams();
-        cardlayoutParams.setMargins(cardLayoutHorizontalMargin, 0, 0, 0);
-        cardlayoutParams = (GridLayout.LayoutParams) card06.getLayoutParams();
-        cardlayoutParams.setMargins(cardLayoutHorizontalMargin, 0, 0, 0);
-        cardlayoutParams = (GridLayout.LayoutParams) card07.getLayoutParams();
-        cardlayoutParams.setMargins(cardLayoutHorizontalMargin, 0, 0, 0);
+        int cardLayoutWidth = (int) ((screenWidth - 9 * horizontalMargin) / 8);
+        cardLayoutWidth = (int) (screenWidth * 0.9 / 8);
+        int cardLayoutHorizontalMargin = (int) horizontalMargin;
+        cardLayoutHorizontalMargin = (int) ((screenWidth * 0.1 - 2 * horizontalMargin) / 7);
 
-        //adjust vertical gap
+        // calculate card height
         int screenHeight = getResources().getDisplayMetrics().heightPixels;
-        float verticalMargin = getResources().getDimension(R.dimen.activity_vertical_margin);
+        float verticalMargin = getResources().getDimension(R.dimen.playing_card_grid_vertical_margin);
 
         Rect frame = new Rect();
         getWindow().getDecorView().getWindowVisibleDisplayFrame(frame);
         int statusBarHeight = frame.top;
 
-        int buttonHeight = mBtnCommit.getHeight();
+        int topbarHeight = mTopbar.getHeight();
+
+        int contentScreenHeight = screenHeight - statusBarHeight - topbarHeight;
+
+        int cardLayoutHeight = (int) ((contentScreenHeight - 3 * verticalMargin) / 2);
+        cardLayoutHeight = (int) (contentScreenHeight * 0.75 / 2);
+        int cardLayoutVerticalMargin = (int) verticalMargin;
+        cardLayoutVerticalMargin = (int) ((contentScreenHeight * 0.25 - 2 * verticalMargin) / 1);
+
+        // adjust width and height of cards
+        GridLayout.LayoutParams cardlayoutParams = (GridLayout.LayoutParams) card00.getLayoutParams();
+        cardlayoutParams.width = cardLayoutWidth;
+        cardlayoutParams.height = cardLayoutHeight;
+        cardlayoutParams.setMargins(0, 0, 0, 0);
+
+        cardlayoutParams = (GridLayout.LayoutParams) card01.getLayoutParams();
+        cardlayoutParams.width = cardLayoutWidth;
+        cardlayoutParams.height = cardLayoutHeight;
+        cardlayoutParams.setMargins(cardLayoutHorizontalMargin, 0, 0, 0);
+
+        cardlayoutParams = (GridLayout.LayoutParams) card02.getLayoutParams();
+        cardlayoutParams.width = cardLayoutWidth;
+        cardlayoutParams.height = cardLayoutHeight;
+        cardlayoutParams.setMargins(cardLayoutHorizontalMargin, 0, 0, 0);
+
+        cardlayoutParams = (GridLayout.LayoutParams) card03.getLayoutParams();
+        cardlayoutParams.width = cardLayoutWidth;
+        cardlayoutParams.height = cardLayoutHeight;
+        cardlayoutParams.setMargins(cardLayoutHorizontalMargin, 0, 0, 0);
+
+        cardlayoutParams = (GridLayout.LayoutParams) card04.getLayoutParams();
+        cardlayoutParams.width = cardLayoutWidth;
+        cardlayoutParams.height = cardLayoutHeight;
+        cardlayoutParams.setMargins(cardLayoutHorizontalMargin, 0, 0, 0);
+
+        cardlayoutParams = (GridLayout.LayoutParams) card05.getLayoutParams();
+        cardlayoutParams.width = cardLayoutWidth;
+        cardlayoutParams.height = cardLayoutHeight;
+        cardlayoutParams.setMargins(cardLayoutHorizontalMargin, 0, 0, 0);
+
+        cardlayoutParams = (GridLayout.LayoutParams) card06.getLayoutParams();
+        cardlayoutParams.width = cardLayoutWidth;
+        cardlayoutParams.height = cardLayoutHeight;
+        cardlayoutParams.setMargins(cardLayoutHorizontalMargin, 0, 0, 0);
+
+        cardlayoutParams = (GridLayout.LayoutParams) card07.getLayoutParams();
+        cardlayoutParams.width = cardLayoutWidth;
+        cardlayoutParams.height = cardLayoutHeight;
+        cardlayoutParams.setMargins(cardLayoutHorizontalMargin, 0, 0, 0);
 
         cardlayoutParams = (GridLayout.LayoutParams) card08.getLayoutParams();
-        int cardLayoutHeight = cardlayoutParams.height;
-
-        int cardLayoutVerticalMargin = (int) ((screenHeight - statusBarHeight - 3 * verticalMargin - buttonHeight - 2 * cardLayoutHeight) / 1);
-
+        cardlayoutParams.width = cardLayoutWidth;
+        cardlayoutParams.height = cardLayoutHeight;
         cardlayoutParams.setMargins(0, cardLayoutVerticalMargin, 0, 0);
-        card08.setLayoutParams(cardlayoutParams);
+
+        cardlayoutParams = (GridLayout.LayoutParams) card09.getLayoutParams();
+        cardlayoutParams.width = cardLayoutWidth;
+        cardlayoutParams.height = cardLayoutHeight;
+
+        cardlayoutParams = (GridLayout.LayoutParams) card10.getLayoutParams();
+        cardlayoutParams.width = cardLayoutWidth;
+        cardlayoutParams.height = cardLayoutHeight;
+
+        cardlayoutParams = (GridLayout.LayoutParams) card11.getLayoutParams();
+        cardlayoutParams.width = cardLayoutWidth;
+        cardlayoutParams.height = cardLayoutHeight;
+
+        cardlayoutParams = (GridLayout.LayoutParams) card12.getLayoutParams();
+        cardlayoutParams.width = cardLayoutWidth;
+        cardlayoutParams.height = cardLayoutHeight;
+
+        cardlayoutParams = (GridLayout.LayoutParams) card13.getLayoutParams();
+        cardlayoutParams.width = cardLayoutWidth;
+        cardlayoutParams.height = cardLayoutHeight;
+
+        cardlayoutParams = (GridLayout.LayoutParams) card14.getLayoutParams();
+        cardlayoutParams.width = cardLayoutWidth;
+        cardlayoutParams.height = cardLayoutHeight;
+
+        cardlayoutParams = (GridLayout.LayoutParams) card15.getLayoutParams();
+        cardlayoutParams.width = cardLayoutWidth;
+        cardlayoutParams.height = cardLayoutHeight;
     }
 
     private void defineView() {
@@ -316,7 +441,7 @@ public class PlayingCardActivity extends Activity {
     }
 
     /**
-     * hide "Restart" and "Share" button, when in the game progress, u dont want the
+     * hide "Restart" and "Share" button, when in the game progress, u don't want the
      * player slip up to tap this buttons to break off the game.
      */
     private void setBtnsUnclickable() {
@@ -375,7 +500,8 @@ public class PlayingCardActivity extends Activity {
             setBackGroundForCard(cardButton, card);
         }
 
-        mTvScroe.setText(getString(R.string.playingcard_score) + mGame.getScore());
+        String scoreText = getString(R.string.playingcard_score) + mGame.getScore();
+        mTvScroe.setText(scoreText);
 
         String durationString = mGame.getTimer().getDurationInTimeFormat();
         durationString = durationString.equals("00 : 00.000") ? mContext.getString(R.string.playingcard_tv_duration_text) : durationString;
@@ -469,6 +595,7 @@ public class PlayingCardActivity extends Activity {
     /**
      * Timer Handler, to handle the message about the timer
      */
+    @SuppressLint("HandlerLeak")
     private Handler mTimerHandler  = new Handler() {
         @Override
         public void handleMessage(Message msg) {

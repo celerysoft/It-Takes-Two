@@ -84,7 +84,7 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
             e.printStackTrace();
         }
 
-        Field[] fields = Build.class.getDeclaredFields();// 反射机制
+        Field[] fields = Build.class.getDeclaredFields();
         for (Field field : fields) {
             try {
                 field.setAccessible(true);

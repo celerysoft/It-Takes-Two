@@ -94,9 +94,9 @@
         android:id="@+id/playingcard_gridlayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:layout_marginLeft="@dimen/activity_vertical_margin"
-        android:layout_marginStart="@dimen/activity_vertical_margin"
+        android:layout_marginTop="@dimen/playing_card_grid_vertical_margin"
+        android:layout_marginLeft="@dimen/playing_card_grid_horizontal_margin"
+        android:layout_marginStart="@dimen/playing_card_grid_horizontal_margin"
         android:columnCount="4"
         android:alignmentMode="alignBounds">
 

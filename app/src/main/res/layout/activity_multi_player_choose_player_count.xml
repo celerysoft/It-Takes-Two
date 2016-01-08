@@ -28,8 +28,8 @@
         android:layout_height="match_parent"
         app:cardBackgroundColor="@color/colorPrimary"
         app:cardCornerRadius="4dp"
-        app:cardElevation="5dp"
-        app:cardMaxElevation="10dp"
+        app:cardElevation="4dp"
+        app:cardMaxElevation="8dp"
         app:cardPreventCornerOverlap="true"
         app:cardUseCompatPadding="true">
 

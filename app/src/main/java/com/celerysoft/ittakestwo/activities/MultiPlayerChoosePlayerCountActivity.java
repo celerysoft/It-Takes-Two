@@ -81,6 +81,8 @@ public class MultiPlayerChoosePlayerCountActivity extends Activity {
         if (mPlayerCount > MIN_PLAYER_COUNT) {
             mPlayerCount--;
             updatePlayerCount();
+            String a = null;
+            a.length();
         }
     }
 

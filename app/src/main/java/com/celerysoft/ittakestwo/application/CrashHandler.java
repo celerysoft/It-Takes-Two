@@ -63,6 +63,8 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
         if (ex == null)
             return false;
 
+        //TODO 当SD卡没有挂载时
+
         collectDeviceInfo(mContext);
 
         saveCrashInfo2File(ex);

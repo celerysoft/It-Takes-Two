@@ -8,20 +8,20 @@
 
     <!-- Launching Activity -->
     <string name="title_activity_launching">纸牌对对碰</string>
-    <string name="lauching_btn_single_player_text">单人游戏</string>
-    <string name="lauching_btn_multi_player_text">多人游戏</string>
-    <string name="lauching_btn_how_to_play_text">游戏教程</string>
-    <string name="laucning_tv_tip">推荐使用竖屏以获得最佳的用户体验</string>
+    <string name="launching_btn_single_player_text">单人游戏</string>
+    <string name="launching_btn_multi_player_text">多人游戏</string>
+    <string name="launching_btn_how_to_play_text">游戏教程</string>
+    <string name="launching_tv_tip">推荐使用竖屏以获得最佳的用户体验</string>
 
 
     <!-- PlayingCard Activity -->
     <string name="title_activity_playing_card">纸牌对对碰</string>
-    <string name="playingcard_tv_score_text">得分：0</string>
-    <string name="playingcard_tv_duration_text">请点击扑克牌</string>
-    <string name="playingcard_score">得分：</string>
-    <string name="playingcard_btn_commit_text">提交分数</string>
-    <string name="playingcard_btn_restart_text">重新开始</string>
-    <string name="playingcard_btn_share_text">分享成绩</string>
+    <string name="playing_card_tv_score_text">得分：0</string>
+    <string name="playing_card_tv_duration_text">请点击扑克牌</string>
+    <string name="playing_card_score">得分：</string>
+    <string name="playing_card_restart_game_dialog_title">请选择洗牌方式</string>
+    <string name="playing_card_restart_game_dialog_item_use_old_deck">使用和上局游戏相同的牌堆洗牌后开始游戏</string>
+    <string name="playing_card_restart_game_dialog_item_create_new_deck">使用全新的牌堆来开始游戏</string>
 
     <!-- MultiPlayerChoosePlayerCount Activity -->
     <string name="choose_player_count_tv_title">选择玩家数量</string>

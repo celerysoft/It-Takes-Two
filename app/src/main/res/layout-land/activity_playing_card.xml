@@ -25,7 +25,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:id="@+id/playingcard_tv_score"
-                android:text="@string/playingcard_tv_score_text"
+                android:text="@string/playing_card_tv_score_text"
                 android:textSize="@dimen/text_size_title"
                 android:textColor="@color/white" />
 
@@ -35,7 +35,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:id="@+id/playingcard_tv_duration"
-                android:text="@string/playingcard_tv_duration_text"
+                android:text="@string/playing_card_tv_duration_text"
                 android:textSize="@dimen/text_size_title"
                 android:textColor="@color/white" />
 

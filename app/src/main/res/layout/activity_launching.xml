@@ -35,7 +35,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/launching_btn_single_player"
-                android:text="@string/lauching_btn_single_player_text"
+                android:text="@string/launching_btn_single_player_text"
                 android:background="@color/colorPrimary" />
 
             <com.gc.materialdesign.views.ButtonRectangle
@@ -43,7 +43,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/activity_vertical_margin"
                 android:id="@+id/launching_btn_multi_player"
-                android:text="@string/lauching_btn_multi_player_text"
+                android:text="@string/launching_btn_multi_player_text"
                 android:background="@color/colorPrimary" />
 
             <com.gc.materialdesign.views.ButtonRectangle
@@ -51,7 +51,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/activity_vertical_margin"
                 android:id="@+id/launching_btn_how_to_play"
-                android:text="@string/lauching_btn_how_to_play_text"
+                android:text="@string/launching_btn_how_to_play_text"
                 android:background="@color/colorPrimary" />
 
         </LinearLayout>
@@ -66,7 +66,7 @@
         android:layout_above="@+id/launching_tv_version"
         android:layout_marginBottom="@dimen/activity_vertical_margin"
         android:gravity="center"
-        android:text="@string/laucning_tv_tip"
+        android:text="@string/launching_tv_tip"
         android:textSize="@dimen/text_size_body"/>
 
     <TextView

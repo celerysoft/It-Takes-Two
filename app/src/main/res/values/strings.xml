@@ -12,20 +12,20 @@
 
     <!-- Launching Activity -->
     <string name="title_activity_launching">It takes Two</string>
-    <string name="lauching_btn_single_player_text">Single Player</string>
-    <string name="lauching_btn_multi_player_text">Multi Player</string>
-    <string name="lauching_btn_how_to_play_text">How To Play</string>
-    <string name="laucning_tv_tip">We recommend that switch your phone to portrait mode to get the best possible experience using</string>
+    <string name="launching_btn_single_player_text">Single Player</string>
+    <string name="launching_btn_multi_player_text">Multi Player</string>
+    <string name="launching_btn_how_to_play_text">How To Play</string>
+    <string name="launching_tv_tip">We recommend that switch your phone to portrait mode to get the best possible experience using</string>
 
 
     <!-- PlayingCard Activity -->
     <string name="title_activity_playing_card">Playing Card</string>
-    <string name="playingcard_tv_score_text">Score: 0</string>
-    <string name="playingcard_tv_duration_text">Tap a card</string>
-    <string name="playingcard_score">Score: </string>
-    <string name="playingcard_btn_commit_text">Commit</string>
-    <string name="playingcard_btn_restart_text">Restart</string>
-    <string name="playingcard_btn_share_text">Share Score</string>
+    <string name="playing_card_tv_score_text">Score: 0</string>
+    <string name="playing_card_tv_duration_text">Tap a card</string>
+    <string name="playing_card_score">Score: </string>
+    <string name="playing_card_restart_game_dialog_title">How to restart game?</string>
+    <string name="playing_card_restart_game_dialog_item_use_old_deck">Use same deck as last game</string>
+    <string name="playing_card_restart_game_dialog_item_create_new_deck">Use new deck different from last game</string>
 
     <!-- MultiPlayerChoosePlayerCount Activity -->
     <string name="choose_player_count_tv_title">Choose player count</string>

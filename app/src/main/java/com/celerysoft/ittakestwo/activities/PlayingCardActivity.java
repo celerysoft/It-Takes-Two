@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.RelativeLayout;
@@ -24,6 +25,7 @@ import com.celerysoft.ittakestwo.models.CardMatchingGame;
 import com.celerysoft.ittakestwo.models.PlayingCard;
 import com.celerysoft.ittakestwo.models.PlayingDeck;
 import com.celerysoft.ittakestwo.models.Timer;
+import com.celerysoft.materialdesigndialog.MaterialDesignDialog;
 import com.gc.materialdesign.views.ButtonFloat;
 
 import java.util.ArrayList;
@@ -45,6 +47,8 @@ public class PlayingCardActivity extends Activity {
     private Context mContext;
     private boolean mIsNeededAutoAdjustForScreen = true;
     private CardMatchingGame mGame;
+
+    private MaterialDesignDialog mRestartGameDialog;
 
     // cards
     private Button card00;
@@ -436,13 +440,41 @@ public class PlayingCardActivity extends Activity {
     };
 
     private void onRestartBtnClick() {
-        mGame = new CardMatchingGame(mCardButtons.size(), new PlayingDeck());
-        updateUi();
+        if (mRestartGameDialog == null) {
+            createRestartGameDialog();
+        }
+        mRestartGameDialog.show();
+    }
+
+    private void createRestartGameDialog() {
+        String title = this.getString(R.string.playing_card_restart_game_dialog_title);
+        String[] items = new String[2];
+        items[0] = this.getString(R.string.playing_card_restart_game_dialog_item_use_old_deck);
+        items[1] = this.getString(R.string.playing_card_restart_game_dialog_item_create_new_deck);
+
+        mRestartGameDialog = new MaterialDesignDialog(this)
+                .setTitle(title)
+                .setItems(items, new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        switch (position) {
+                            case 0:
+                                mGame = new CardMatchingGame(mCardButtons.size(), new PlayingDeck());
+                                updateUi();
+                                break;
+                            case 1:
+                                mGame.restart();
+                                updateUi();
+                                break;
+                        }
+                        mRestartGameDialog.dismiss();
+                    }
+                })
+                .setCanceledOnTouchOutside(true);
     }
 
     private void onShareScoreBtnClick() {
-        mGame.restart();
-        updateUi();
+
     }
 
     private void onCommitBtnClick() {
@@ -561,11 +593,11 @@ public class PlayingCardActivity extends Activity {
             setBackGroundForCard(cardButton, card);
         }
 
-        String scoreText = getString(R.string.playingcard_score) + mGame.getScore();
+        String scoreText = getString(R.string.playing_card_score) + mGame.getScore();
         mTvScore.setText(scoreText);
 
         String durationString = mGame.getTimer().getDurationInTimeFormat();
-        durationString = durationString.equals("00 : 00.000") ? mContext.getString(R.string.playingcard_tv_duration_text) : durationString;
+        durationString = durationString.equals("00 : 00.000") ? mContext.getString(R.string.playing_card_tv_duration_text) : durationString;
         mTvDuration.setText(durationString);
     }
 
@@ -592,6 +624,7 @@ public class PlayingCardActivity extends Activity {
             cardButton.setBackgroundResource(R.drawable.cardfront);
         } else {
             cardButton.setBackgroundResource(R.drawable.cardback);
+            cardButton.setAlpha(1.00f);
         }
     }
 

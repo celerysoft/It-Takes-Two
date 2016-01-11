@@ -4,7 +4,7 @@
     <declare-styleable name="CustomAttributes">
 
         <!-- Color of ripple animation -->
-        <attr name="rippleCoulor" format="color|reference" />
+        <attr name="rippleColour" format="color|reference" />
         <!-- Speed of ripple animation -->
         <attr name="rippleSpeed" format="float" />
         <!-- indicate if the slider must show number indicator -->
@@ -24,7 +24,7 @@
         <attr name="thumbSize" format="dimension" />
         <!-- in float button indicate icon resource -->
         <attr name="iconDrawable" format="integer" />
-        <!-- in button whitch contains drawable indicate icon resource -->
+        <!-- in button witch contains drawable indicate icon resource -->
         <attr name="iconSize" format="dimension" />
         <!-- in float button indicate if must start with animation -->
         <attr name="animate" format="boolean" />

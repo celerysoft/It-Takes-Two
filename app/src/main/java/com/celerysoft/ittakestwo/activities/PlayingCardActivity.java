@@ -290,10 +290,16 @@ public class PlayingCardActivity extends Activity {
         // pre calculate card width
         int screenWidth = getResources().getDisplayMetrics().widthPixels;
 
-        int cardLayoutWidth = (int) (screenWidth * 0.8 / cardPerRow);
+        float horizontalMargin = getResources().getDimension(R.dimen.playing_card_grid_horizontal_margin);
+
+        int contentWidth = screenWidth - (int) (2 * horizontalMargin);
+
+        int cardLayoutWidth = (int) (contentWidth * 0.9 / cardPerRow);
 
         // pre calculate card height
         int screenHeight = getResources().getDisplayMetrics().heightPixels;
+
+        float verticalMargin = getResources().getDimension(R.dimen.playing_card_grid_vertical_margin);
 
         Rect frame = new Rect();
         getWindow().getDecorView().getWindowVisibleDisplayFrame(frame);
@@ -301,9 +307,9 @@ public class PlayingCardActivity extends Activity {
 
         int topBarHeight = mTopBar.getHeight();
 
-        int contentScreenHeight = screenHeight - statusBarHeight - topBarHeight;
+        int contentHeight = screenHeight - statusBarHeight - topBarHeight - (int) (2 * verticalMargin);
 
-        int cardLayoutHeight = (int) (contentScreenHeight * 0.8 / cardPerColumn);
+        int cardLayoutHeight = (int) (contentHeight * 0.9 / cardPerColumn);
 
         // calculate the size of card
         Card card = adjustCardSizeToMaintainAspectRatio(cardLayoutWidth, cardLayoutHeight);
@@ -311,20 +317,20 @@ public class PlayingCardActivity extends Activity {
         mCardHeight = cardLayoutHeight = card.getHeight();
 
         // calculate the margin of card layout
-        float horizontalMargin = getResources().getDimension(R.dimen.playing_card_grid_horizontal_margin);
-        float verticalMargin = getResources().getDimension(R.dimen.playing_card_grid_vertical_margin);
-
-        mCardLayoutHorizontalMargin = (int) (screenWidth - 2 * horizontalMargin - cardPerRow * cardLayoutWidth) / (cardPerRow - 1);
-        mCardLayoutVerticalMargin = (int) (contentScreenHeight - 2 * verticalMargin - cardPerColumn * cardLayoutHeight) / (cardPerColumn - 1);
+        mCardLayoutHorizontalMargin = (contentWidth - cardPerRow * cardLayoutWidth) / (cardPerRow - 1);
+        mCardLayoutVerticalMargin = (contentHeight - cardPerColumn * cardLayoutHeight) / (cardPerColumn - 1);
     }
 
     private Card adjustCardSizeToMaintainAspectRatio(int width, int height) {
+        /** width / height = 2 / 3 **/
+        final float CARD_ASPECT_RATIO = 2f / 3f;
+
         Card card = new Card();
 
         float originWidth = (float) width;
         float originHeight = (float) height;
 
-        if ((originWidth / originHeight) > (2f/3f)) {
+        if ((originWidth / originHeight) > CARD_ASPECT_RATIO) {
             width = height * 2 / 3;
         } else {
             height =  width * 3 / 2;
@@ -378,7 +384,7 @@ public class PlayingCardActivity extends Activity {
         mTvScore = (TextView) findViewById(R.id.playingcard_tv_score);
         mTvDuration = (TextView) findViewById(R.id.playingcard_tv_duration);
 
-        setBtnCommitUnclickable();
+        hideBtnCommit();
     }
 
     private void defineListener() {
@@ -408,9 +414,9 @@ public class PlayingCardActivity extends Activity {
     private View.OnClickListener mOnBtnClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            if(!v.isClickable()) {
-                return;
-            }
+//            if(!v.isClickable()) {
+//                return;
+//            }
 
             int id = v.getId();
             switch (id) {
@@ -442,42 +448,80 @@ public class PlayingCardActivity extends Activity {
     private void onCommitBtnClick() {
         mGame.finish();
 
-        setBtnCommitUnclickable();
+        hideBtnCommit();
 
-        setBtnsClickable();
+        showButtons();
     }
 
-    private void setBtnCommitClickable() {
-        mBtnCommit.setClickable(true);
-        mBtnCommit.setAlpha(1.0f);
+    private void showBtnCommit() {
+        Animation animation = AnimationUtils.loadAnimation(this, R.anim.btn_fade_in);
+        mBtnCommit.setAnimation(animation);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mBtnCommit.clearAnimation();
+
+                mBtnCommit.setVisibility(View.VISIBLE);
+            }
+        }, animation.getDuration());
+        animation.start();
     }
 
-    private void setBtnCommitUnclickable() {
-        mBtnCommit.setClickable(false);
-        mBtnCommit.setAlpha(0.6f);
+    private void hideBtnCommit() {
+        Log.d(TAG, "hideBtnCommit");
+        Animation animation = AnimationUtils.loadAnimation(this, R.anim.btn_fade_out);
+        mBtnCommit.clearAnimation();
+        mBtnCommit.setAnimation(animation);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mBtnCommit.clearAnimation();
+
+                mBtnCommit.setVisibility(View.GONE);
+            }
+        }, animation.getDuration());
+        animation.start();
     }
 
     /**
      * hide "Restart" and "Share" button, when in the game progress, u don't want the
      * player slip up to tap this buttons to break off the game.
      */
-    private void setBtnsUnclickable() {
+    private void hideButtons() {
         Animation animation = AnimationUtils.loadAnimation(this, R.anim.btn_fade_out);
-        mBtnRestartGame.startAnimation(animation);
-        mBtnRestartGame.setClickable(false);
-        mBtnShareScore.startAnimation(animation);
-        mBtnShareScore.setClickable(false);
+        mBtnRestartGame.setAnimation(animation);
+        mBtnShareScore.setAnimation(animation);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mBtnRestartGame.clearAnimation();
+                mBtnShareScore.clearAnimation();
+
+                mBtnRestartGame.setVisibility(View.GONE);
+                mBtnShareScore.setVisibility(View.GONE);
+            }
+        }, animation.getDuration());
+        animation.start();
     }
 
     /**
      * show "Restart" and "Share" button
      */
-    private void setBtnsClickable() {
+    private void showButtons() {
         Animation animation = AnimationUtils.loadAnimation(this, R.anim.btn_fade_in);
-        mBtnRestartGame.startAnimation(animation);
-        mBtnRestartGame.setClickable(true);
-        mBtnShareScore.startAnimation(animation);
-        mBtnShareScore.setClickable(true);
+        mBtnRestartGame.setAnimation(animation);
+        mBtnShareScore.setAnimation(animation);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mBtnRestartGame.clearAnimation();
+                mBtnShareScore.clearAnimation();
+
+                mBtnRestartGame.setVisibility(View.VISIBLE);
+                mBtnShareScore.setVisibility(View.VISIBLE);
+            }
+        }, animation.getDuration());
+        animation.start();
     }
 
     /**
@@ -486,9 +530,9 @@ public class PlayingCardActivity extends Activity {
     private void onGameStart() {
         startMeasuringTimeThread(mTimerHandler);
 
-        setBtnCommitClickable();
+        showBtnCommit();
 
-        setBtnsUnclickable();
+        hideButtons();
     }
 
     /** card buttons onClickListener **/
@@ -598,8 +642,7 @@ public class PlayingCardActivity extends Activity {
 
                     handler.sendEmptyMessage(Timer.TIMER_STATE_PROGRESS);
 
-                    if (mGame.getGmaeState() == CardMatchingGame.State.GAME_STATE_FINISH)
-                    {
+                    if (mGame.getGmaeState() == CardMatchingGame.State.GAME_STATE_FINISH) {
                         break;
                     }
                 }

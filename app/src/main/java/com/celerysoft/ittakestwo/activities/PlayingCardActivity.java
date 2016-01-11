@@ -324,7 +324,7 @@ public class PlayingCardActivity extends Activity {
         float originWidth = (float) width;
         float originHeight = (float) height;
 
-        if (originWidth / originHeight > 2/3) {
+        if ((originWidth / originHeight) > (2f/3f)) {
             width = height * 2 / 3;
         } else {
             height =  width * 3 / 2;

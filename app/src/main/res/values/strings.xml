@@ -32,4 +32,11 @@
     <string name="choose_player_count_tv_desc">No more than 4 players, leave other guys watching :D</string>
     <string name="choose_player_count_btn_confirm">Start Game</string>
 
+    <!-- Social Sharing -->
+    <string name="social_sharing_dialog_title">Share to</string>
+    <string name="social_sharing_send_to_wechat_friend">Wechat friend</string>
+    <string name="social_sharing_send_to_wechat_timeline">Wechat timeline</string>
+    <string name="social_sharing_send_to_qq_friend">QQ friend</string>
+    <string name="social_sharing_send_to_qzone">Qzone</string>
+
 </resources>

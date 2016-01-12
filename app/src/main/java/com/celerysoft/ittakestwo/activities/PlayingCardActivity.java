@@ -25,6 +25,7 @@ import com.celerysoft.ittakestwo.models.CardMatchingGame;
 import com.celerysoft.ittakestwo.models.PlayingCard;
 import com.celerysoft.ittakestwo.models.PlayingDeck;
 import com.celerysoft.ittakestwo.models.Timer;
+import com.celerysoft.ittakestwo.utils.SocialSharingUtil;
 import com.celerysoft.materialdesigndialog.MaterialDesignDialog;
 import com.gc.materialdesign.views.ButtonFloat;
 
@@ -49,6 +50,7 @@ public class PlayingCardActivity extends Activity {
     private CardMatchingGame mGame;
 
     private MaterialDesignDialog mRestartGameDialog;
+    private MaterialDesignDialog mSocialSharingDialog;
 
     // cards
     private Button card00;
@@ -474,7 +476,10 @@ public class PlayingCardActivity extends Activity {
     }
 
     private void onShareScoreBtnClick() {
-
+        if (mSocialSharingDialog == null) {
+            mSocialSharingDialog = SocialSharingUtil.createSocialSharingDialog(this);
+        }
+        mSocialSharingDialog.show();
     }
 
     private void onCommitBtnClick() {

@@ -28,4 +28,11 @@
     <string name="choose_player_count_tv_desc">最多4人，其他人乖乖看着吧</string>
     <string name="choose_player_count_btn_confirm">开始游戏</string>
 
+    <!-- Social Sharing -->
+    <string name="social_sharing_dialog_title">分享到</string>
+    <string name="social_sharing_send_to_wechat_friend">微信好友</string>
+    <string name="social_sharing_send_to_wechat_timeline">微信朋友圈</string>
+    <string name="social_sharing_send_to_qq_friend">QQ好友</string>
+    <string name="social_sharing_send_to_qzone">QQ空间</string>
+
 </resources>

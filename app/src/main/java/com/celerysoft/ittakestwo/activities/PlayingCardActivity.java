@@ -668,8 +668,10 @@ public class PlayingCardActivity extends Activity {
         if (savedInstanceState != null) {
             mGame = (CardMatchingGame) savedInstanceState.getSerializable(SAVE_GAME);
             if (mGame != null) {
-                onGameStart();
-                updateUi();
+                if (mGame.getGmaeState() == CardMatchingGame.State.GAME_STATE_START) {
+                    onGameStart();
+                    updateUi();
+                }
             } else {
                 Log.w(TAG, "Game state lost");
             }

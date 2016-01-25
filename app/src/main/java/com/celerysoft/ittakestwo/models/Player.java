@@ -79,6 +79,8 @@ public class Player {
             Player player = new Player(name);
             players[i] = player;
         }
+
+        return players;
     }
 
 }

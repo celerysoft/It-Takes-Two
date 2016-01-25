@@ -39,4 +39,10 @@
     <string name="social_sharing_send_to_qq_friend">QQ friend</string>
     <string name="social_sharing_send_to_qzone">Qzone</string>
 
+    <!-- Player -->
+    <string name="player_default_name_01">Charlie</string>
+    <string name="player_default_name_02">Tom</string>
+    <string name="player_default_name_03">Dick</string>
+    <string name="player_default_name_04">Harry</string>
+
 </resources>

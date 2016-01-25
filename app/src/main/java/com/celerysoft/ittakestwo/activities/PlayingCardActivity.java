@@ -2,7 +2,7 @@ package com.celerysoft.ittakestwo.activities;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.Context;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.Rect;
@@ -22,6 +22,7 @@ import android.widget.TextView;
 import com.celerysoft.ittakestwo.R;
 import com.celerysoft.ittakestwo.models.Card;
 import com.celerysoft.ittakestwo.models.CardMatchingGame;
+import com.celerysoft.ittakestwo.models.Player;
 import com.celerysoft.ittakestwo.models.PlayingCard;
 import com.celerysoft.ittakestwo.models.PlayingDeck;
 import com.celerysoft.ittakestwo.models.Timer;
@@ -40,17 +41,20 @@ public class PlayingCardActivity extends Activity {
 
     // const
     private final String SAVE_GAME = "saveGame";
+    public final String KEY_PLAYER_COUNT = "KEY_PLAYER_COUNT";
 
     @SuppressWarnings("unused")
     private final int CARD_COUNT = 16;
 
     // fields
-    private Context mContext;
     private boolean mIsNeededAutoAdjustForScreen = true;
     private CardMatchingGame mGame;
 
     private MaterialDesignDialog mRestartGameDialog;
     private MaterialDesignDialog mSocialSharingDialog;
+
+    private int mPlayerCount = 1;
+    private Player mPlayers[];
 
     // cards
     private Button card00;
@@ -93,9 +97,28 @@ public class PlayingCardActivity extends Activity {
         defineView();
         defineListener();
 
-        mContext = this;
+        mPlayerCount = getPlayerCount();
+        if (mPlayerCount > 1) {
+            createPlayers();
+        }
+
         mGame = new CardMatchingGame(mCardButtons.size(), new PlayingDeck());
         mIsNeededAutoAdjustForScreen = true;
+    }
+
+    private int getPlayerCount() {
+        int playerCount = 1;
+
+        if (getIntent() != null) {
+            Intent intent = getIntent();
+            intent.getIntExtra(KEY_PLAYER_COUNT, 1);
+        }
+
+        return playerCount;
+    }
+
+    private void createPlayers() {
+        mPlayers = Player.createPlayers(this, mPlayerCount);
     }
 
     /**
@@ -602,7 +625,7 @@ public class PlayingCardActivity extends Activity {
         mTvScore.setText(scoreText);
 
         String durationString = mGame.getTimer().getDurationInTimeFormat();
-        durationString = durationString.equals("00 : 00.000") ? mContext.getString(R.string.playing_card_tv_duration_text) : durationString;
+        durationString = durationString.equals("00 : 00.000") ? this.getString(R.string.playing_card_tv_duration_text) : durationString;
         mTvDuration.setText(durationString);
     }
 

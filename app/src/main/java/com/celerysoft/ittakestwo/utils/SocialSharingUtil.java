@@ -33,6 +33,9 @@ public class SocialSharingUtil {
                     case SocialSharingListViewAdapter.QQ:
                         shareToQqFriend();
                         break;
+                    case SocialSharingListViewAdapter.QZONE:
+                        shareToQzone();
+                        break;
                 }
                 dialog.dismiss();
             }
@@ -54,6 +57,10 @@ public class SocialSharingUtil {
     }
 
     private static void shareToQqFriend() {
+
+    }
+
+    private static void shareToQzone() {
 
     }
 }

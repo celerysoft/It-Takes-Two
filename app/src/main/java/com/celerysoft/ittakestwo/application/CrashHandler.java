@@ -63,7 +63,9 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
         if (ex == null)
             return false;
 
-        //TODO 当SD卡没有挂载时
+        if(!isExternalStorageWritable()) {
+            return false;
+        }
 
         collectDeviceInfo(mContext);
 
@@ -139,5 +141,13 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
             }
         }
         return null;
+    }
+
+    private boolean isExternalStorageWritable() {
+        String state = Environment.getExternalStorageState();
+        if (Environment.MEDIA_MOUNTED.equals(state)) {
+            return true;
+        }
+        return false;
     }
 }

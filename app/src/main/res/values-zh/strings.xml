@@ -35,4 +35,11 @@
     <string name="social_sharing_send_to_qq_friend">QQ好友</string>
     <string name="social_sharing_send_to_qzone">QQ空间</string>
 
+
+    <!-- Player -->
+    <string name="player_default_name_01">张三</string>
+    <string name="player_default_name_02">李四</string>
+    <string name="player_default_name_03">王五</string>
+    <string name="player_default_name_04">赵六</string>
+
 </resources>

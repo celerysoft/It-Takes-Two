@@ -1,6 +1,7 @@
 package com.celerysoft.ittakestwo.activities;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -14,8 +15,8 @@ import com.gc.materialdesign.views.ButtonIcon;
  */
 public class MultiPlayerChoosePlayerCountActivity extends Activity {
     // Const
-    private final int MIN_PLAYER_COUNT = 2;
-    private final int MAX_PLAYER_COUNT = 4;
+    private static final int MIN_PLAYER_COUNT = 2;
+    private static final int MAX_PLAYER_COUNT = 4;
 
     // Declare view
     private TextView mTvPlayerCount;
@@ -59,7 +60,7 @@ public class MultiPlayerChoosePlayerCountActivity extends Activity {
         @Override
         public void onClick(View v) {
             if (v.equals(mBtnConfirm)) {
-
+                startGame();
             } else if (v.equals(mBtnIncreasePlayerCount)) {
                 increasePlayerCount();
             } else if (v.equals(mBtnDecreasePlayerCount)) {
@@ -86,5 +87,14 @@ public class MultiPlayerChoosePlayerCountActivity extends Activity {
 
     private void updatePlayerCount() {
         mTvPlayerCount.setText(mPlayerCount.toString());
+    }
+
+    private void startGame() {
+        int playerCount = mPlayerCount;
+
+        Intent intent = new Intent(this, PlayingCardActivity.class);
+        intent.putExtra(PlayingCardActivity.KEY_PLAYER_COUNT, playerCount);
+        startActivity(intent);
+        this.finish();
     }
 }

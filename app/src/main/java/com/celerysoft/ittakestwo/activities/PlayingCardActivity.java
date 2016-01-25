@@ -31,6 +31,8 @@ import com.celerysoft.materialdesigndialog.MaterialDesignDialog;
 import com.gc.materialdesign.views.ButtonFloat;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
 
 /**
  * Playing Card Activity
@@ -40,8 +42,11 @@ public class PlayingCardActivity extends Activity {
     private final String TAG = this.getClass().getSimpleName();
 
     // const
-    private final String SAVE_GAME = "saveGame";
-    public final String KEY_PLAYER_COUNT = "KEY_PLAYER_COUNT";
+    private static final String SAVE_GAME = "saveGame";
+    private static final String SAVE_PLAYERS = "savePlayers";
+    private static final String SAVE_PLAYER_INDEX = "savePlayerIndex";
+
+    public static final String KEY_PLAYER_COUNT = "KEY_PLAYER_COUNT";
 
     @SuppressWarnings("unused")
     private final int CARD_COUNT = 16;
@@ -54,7 +59,8 @@ public class PlayingCardActivity extends Activity {
     private MaterialDesignDialog mSocialSharingDialog;
 
     private int mPlayerCount = 1;
-    private Player mPlayers[];
+    private int mCurrentPlayerIndex = 0;
+    private Player[] mPlayers;
 
     // cards
     private Button card00;
@@ -100,6 +106,9 @@ public class PlayingCardActivity extends Activity {
         mPlayerCount = getPlayerCount();
         if (mPlayerCount > 1) {
             createPlayers();
+            if (savedInstanceState == null) {
+                showMultiPlayerGameDialog();
+            }
         }
 
         mGame = new CardMatchingGame(mCardButtons.size(), new PlayingDeck());
@@ -111,7 +120,7 @@ public class PlayingCardActivity extends Activity {
 
         if (getIntent() != null) {
             Intent intent = getIntent();
-            intent.getIntExtra(KEY_PLAYER_COUNT, 1);
+            playerCount = intent.getIntExtra(KEY_PLAYER_COUNT, 1);
         }
 
         return playerCount;
@@ -121,23 +130,42 @@ public class PlayingCardActivity extends Activity {
         mPlayers = Player.createPlayers(this, mPlayerCount);
     }
 
-    /**
-     * when all the widget create finished adjust gap of cards.
-     */
-    @Override
-    public void onWindowFocusChanged(boolean hasFocus) {
-        if (hasFocus) {
-            if (mIsNeededAutoAdjustForScreen) {
-                if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                    autoAdjustForPortraitScreen();
-                } else if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-                    autoAdjustForLandscapeScreen();
-                }
-
-                mIsNeededAutoAdjustForScreen = false;
-            }
-
+    private void showMultiPlayerGameDialog() {
+        String message = getString(R.string.playing_card_multi_player_game_dialog_message_paragraph_1)
+                + "\n\n";
+        for (Player player : mPlayers) {
+            message += player.getName() + "\n\n";
         }
+        message += getString(R.string.playing_card_multi_player_game_dialog_message_paragraph_2);
+
+        final MaterialDesignDialog dialog = new MaterialDesignDialog(this);
+        dialog.setTitle(getString(R.string.playing_card_multi_player_game_dialog_title))
+                .setMessage(message)
+                .setPositiveButton(getString(R.string.ok), new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                        showPreGameDialog();
+                    }
+                });
+        dialog.show();
+    }
+
+    private void showPreGameDialog() {
+        String message = getString(R.string.playing_card_pre_game_dialog_message_paragraph_1)
+                + mPlayers[mCurrentPlayerIndex].getName() + "\n\n" + mPlayers[mCurrentPlayerIndex].getName()
+                + getString(R.string.playing_card_pre_game_dialog_message_paragraph_2);
+
+        final MaterialDesignDialog dialog = new MaterialDesignDialog(this);
+        dialog.setTitle(getString(R.string.playing_card_pre_game_dialog_title))
+                .setMessage(message)
+                .setPositiveButton(getString(R.string.playing_card_pre_game_dialog_message_btn_text), new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+        dialog.show();
     }
 
 
@@ -406,6 +434,24 @@ public class PlayingCardActivity extends Activity {
         mCardButtons.add(card14);
         mCardButtons.add(card15);
 
+        GridLayout gridLayoutCards = (GridLayout) findViewById(R.id.playingcard_gridlayout);
+        gridLayoutCards.post(new Runnable() {
+            /**
+             * when GridLayout create finished adjust gap of cards.
+             */
+            @Override
+            public void run() {
+                if (mIsNeededAutoAdjustForScreen) {
+                    if (PlayingCardActivity.this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                        autoAdjustForPortraitScreen();
+                    } else if (PlayingCardActivity.this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                        autoAdjustForLandscapeScreen();
+                    }
+
+                    mIsNeededAutoAdjustForScreen = false;
+                }
+            }
+        });
         mTopBar = (RelativeLayout) findViewById(R.id.playingcard_rl_topbar);
         mBtnCommit = (ButtonFloat) findViewById(R.id.playingcard_btn_commit);
         mBtnRestartGame = (ButtonFloat) findViewById(R.id.playingcard_btn_restart);
@@ -511,6 +557,51 @@ public class PlayingCardActivity extends Activity {
         hideBtnCommit();
 
         showButtons();
+
+        if (mPlayerCount > 1) {
+            mPlayers[mCurrentPlayerIndex].setScore(mGame.getScore());
+            mPlayers[mCurrentPlayerIndex].setPlayingDuration(mGame.getTimer().getDurationInSecond());
+
+            if (mCurrentPlayerIndex < mPlayerCount - 1) {
+                mCurrentPlayerIndex++;
+                showPreGameDialog();
+            } else {
+                showScoreboardDialog();
+            }
+
+            mGame.restart();
+            updateUi();
+        }
+    }
+
+    private void showScoreboardDialog() {
+        mPlayers = Player.sortPlayersByRankScore(mPlayers);
+
+        String message = "";
+        for (int i = 0; i < mPlayerCount; ++i) {
+            message += (i + 1) + ". " + mPlayers[i].getName() + " - " + mPlayers[i].getRankScore() + "\n";
+        }
+
+        final MaterialDesignDialog dialog = new MaterialDesignDialog(this, MaterialDesignDialog.Style.STACKED_FULL_WIDTH_BUTTONS);
+        dialog.setTitle("琅琊榜")
+                .setMessage(message)
+                .setNegativeButton("返回主菜单", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                        PlayingCardActivity.this.finish();
+                    }
+                })
+                .setPositiveButton("开始下一局", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                        mGame = new CardMatchingGame(mCardButtons.size(), new PlayingDeck());
+                        updateUi();
+                    }
+                })
+                .setCanceledOnTouchOutside(false);
+        dialog.show();
     }
 
     private void showBtnCommit() {
@@ -659,6 +750,8 @@ public class PlayingCardActivity extends Activity {
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         outState.putSerializable(SAVE_GAME, mGame);
+        outState.putSerializable(SAVE_PLAYERS, mPlayers);
+        outState.putInt(SAVE_PLAYER_INDEX, mCurrentPlayerIndex);
 
         super.onSaveInstanceState(outState);
     }
@@ -675,6 +768,11 @@ public class PlayingCardActivity extends Activity {
             } else {
                 Log.w(TAG, "Game state lost");
             }
+
+            mPlayers = (Player[]) savedInstanceState.getSerializable(SAVE_PLAYERS);
+
+            mCurrentPlayerIndex = savedInstanceState.getInt(SAVE_PLAYER_INDEX);
+
             super.onRestoreInstanceState(savedInstanceState);
         }
 

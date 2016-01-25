@@ -5,10 +5,16 @@ import android.util.Log;
 
 import com.celerysoft.ittakestwo.R;
 
+import java.io.Serializable;
+import java.util.Arrays;
+import java.util.Comparator;
+
 /**
  * Player is a user to play card matching game.
  */
-public class Player {
+public class Player implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     private static final String TAG = Player.class.getSimpleName();
 
     public static final int DEFAULT_PLAYER_1_NAME = R.string.player_default_name_01;
@@ -40,18 +46,27 @@ public class Player {
         return mPlayingDuration;
     }
 
-    private float mRankScore;
-    public float getRankScore() {
+    private int mRankScore;
+    public int getRankScore() {
+        mRankScore = calculateRankScore();
+
         return mRankScore;
+    }
+
+    private int calculateRankScore() {
+        final float FIX_FACTOR = 10f;
+
+        float score = (float) mScore;
+        float duration =  mPlayingDuration;
+
+        double rankScore = Math.pow(score, 2) / (duration / FIX_FACTOR);
+
+        return mScore > 0 ? (int) rankScore : (int) -rankScore;
     }
 
     public Player() {}
     public Player(String name) {
         mName = name;
-    }
-
-    private void calculateRankScore() {
-        // TODO make a algorithm for calculating rank score, it is about score and playing Duration.
     }
 
     public static Player[] createPlayers(Context context, int playerCount) {
@@ -79,6 +94,21 @@ public class Player {
             Player player = new Player(name);
             players[i] = player;
         }
+
+        return players;
+    }
+
+    public static Player[] sortPlayersByRankScore(Player[] players) {
+        Arrays.sort(players, new Comparator<Player>() {
+            @Override
+            public int compare(Player lhs, Player rhs) {
+                if (lhs.getRankScore() < rhs.getRankScore()) {
+                    return 0;
+                } else {
+                    return -1;
+                }
+            }
+        });
 
         return players;
     }

@@ -4,11 +4,15 @@
     <string name="app_version_info">Ver 1.0</string>
     <string name="app_copyright">Copyright © 2015 – 2016 Celery Soft. All rights reserved.</string>
 
+
     <!-- common and need to translate -->
     <string name="app_name">It Takes Two</string>
+    <string name="ok">OK</string>
+
 
     <!-- action -->
     <string name="action_settings">Settings</string>
+
 
     <!-- Launching Activity -->
     <string name="title_activity_launching">It takes Two</string>
@@ -26,11 +30,23 @@
     <string name="playing_card_restart_game_dialog_title">How to restart game?</string>
     <string name="playing_card_restart_game_dialog_item_use_old_deck">Use same deck as last game</string>
     <string name="playing_card_restart_game_dialog_item_create_new_deck">Use new deck different from last game</string>
+    <string name="playing_card_multi_player_game_dialog_title">Introduction</string>
+    <string name="playing_card_multi_player_game_dialog_message_paragraph_1">Everybody choose a player below: </string>
+    <string name="playing_card_multi_player_game_dialog_message_paragraph_2">Please make sure everyone has his own player, and play the game one by one as the order above.</string>
+    <string name="playing_card_pre_game_dialog_title">Pre game</string>
+    <string name="playing_card_pre_game_dialog_message_paragraph_1">Now, pass the ball to</string>
+    <string name="playing_card_pre_game_dialog_message_paragraph_2">, after u shut down this dialog and flip any card, the game will begin and the timer will start. Good luck and achieve high score.</string>
+    <string name="playing_card_pre_game_dialog_message_btn_text">Start game</string>
+    <string name="playing_card_score_board_dialog_title">Score Board</string>
+    <string name="playing_card_score_board_dialog_btn_return_text">Return to main menu</string>
+    <string name="playing_card_score_board_dialog_btn_restart_text">Start new fight</string>
+
 
     <!-- MultiPlayerChoosePlayerCount Activity -->
     <string name="choose_player_count_tv_title">Choose player count</string>
     <string name="choose_player_count_tv_desc">No more than 4 players, leave other guys watching :D</string>
     <string name="choose_player_count_btn_confirm">Start Game</string>
+
 
     <!-- Social Sharing -->
     <string name="social_sharing_dialog_title">Share to</string>
@@ -38,6 +54,7 @@
     <string name="social_sharing_send_to_wechat_timeline">Wechat timeline</string>
     <string name="social_sharing_send_to_qq_friend">QQ friend</string>
     <string name="social_sharing_send_to_qzone">Qzone</string>
+
 
     <!-- Player -->
     <string name="player_default_name_01">Charlie</string>

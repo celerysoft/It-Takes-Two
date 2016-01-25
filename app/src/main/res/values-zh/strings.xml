@@ -3,8 +3,11 @@
     <!-- common -->
     <string name="app_name">纸牌对对碰</string>
 
+
     <!-- action -->
     <string name="action_settings">设置</string>
+    <string name="ok">好的</string>
+
 
     <!-- Launching Activity -->
     <string name="title_activity_launching">纸牌对对碰</string>
@@ -22,11 +25,23 @@
     <string name="playing_card_restart_game_dialog_title">请选择洗牌方式</string>
     <string name="playing_card_restart_game_dialog_item_use_old_deck">使用和上局游戏相同的牌堆洗牌后开始游戏</string>
     <string name="playing_card_restart_game_dialog_item_create_new_deck">使用全新的牌堆来开始游戏</string>
+    <string name="playing_card_multi_player_game_dialog_title">多人游戏说明</string>
+    <string name="playing_card_multi_player_game_dialog_message_paragraph_1">请每位玩家从下面的角色中选定自己的，然后根据顺序开始游戏：</string>
+    <string name="playing_card_multi_player_game_dialog_message_paragraph_2">请确保每位玩家都拥有并牢记自己的角色名字，然后继续。</string>
+    <string name="playing_card_pre_game_dialog_title">游戏前准备</string>
+    <string name="playing_card_pre_game_dialog_message_paragraph_1">现在，请将手机递给</string>
+    <string name="playing_card_pre_game_dialog_message_paragraph_2">你好，关闭这个对话框后，点击任意一张牌就会开始游戏，计时器也将随之启动\n\n祝你好运，取得高分。</string>
+    <string name="playing_card_pre_game_dialog_message_btn_text">开始游戏</string>
+    <string name="playing_card_score_board_dialog_title">琅琊榜</string>
+    <string name="playing_card_score_board_dialog_btn_return_text">返回主菜单</string>
+    <string name="playing_card_score_board_dialog_btn_restart_text">开始下一局</string>
+
 
     <!-- MultiPlayerChoosePlayerCount Activity -->
     <string name="choose_player_count_tv_title">选择玩家数量</string>
     <string name="choose_player_count_tv_desc">最多4人，其他人乖乖看着吧</string>
     <string name="choose_player_count_btn_confirm">开始游戏</string>
+
 
     <!-- Social Sharing -->
     <string name="social_sharing_dialog_title">分享到</string>

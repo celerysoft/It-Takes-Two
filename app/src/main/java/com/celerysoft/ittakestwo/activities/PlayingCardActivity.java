@@ -31,8 +31,6 @@ import com.celerysoft.materialdesigndialog.MaterialDesignDialog;
 import com.gc.materialdesign.views.ButtonFloat;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
 
 /**
  * Playing Card Activity
@@ -583,16 +581,16 @@ public class PlayingCardActivity extends Activity {
         }
 
         final MaterialDesignDialog dialog = new MaterialDesignDialog(this, MaterialDesignDialog.Style.STACKED_FULL_WIDTH_BUTTONS);
-        dialog.setTitle("琅琊榜")
+        dialog.setTitle(getString(R.string.playing_card_score_board_dialog_title))
                 .setMessage(message)
-                .setNegativeButton("返回主菜单", new View.OnClickListener() {
+                .setNegativeButton(getString(R.string.playing_card_score_board_dialog_btn_return_text), new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         dialog.dismiss();
                         PlayingCardActivity.this.finish();
                     }
                 })
-                .setPositiveButton("开始下一局", new View.OnClickListener() {
+                .setPositiveButton(R.string.playing_card_score_board_dialog_btn_restart_text, new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         dialog.dismiss();
@@ -823,7 +821,7 @@ public class PlayingCardActivity extends Activity {
             mTvDuration.setText(mGame.getTimer().getDurationInTimeFormat());
             switch (msg.what) {
                 case Timer.TIMER_STATE_UNSTART:
-                    Log.d(TAG, "handle TIMER_STATE_UNSTART message");
+                    Log.d(TAG, "handle TIMER_STATE_NOT_START message");
                     break;
                 case Timer.TIMER_STATE_PROGRESS:
                     // do nothing

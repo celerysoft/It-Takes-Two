@@ -14,7 +14,7 @@ import com.gc.materialdesign.views.ButtonRectangle;
 public class LaunchingActivity extends Activity {
 
     // Widget declare
-    ButtonRectangle mBtnSinglePlayerGmae;
+    ButtonRectangle mBtnSinglePlayerGame;
     ButtonRectangle mBtnMultiPlayerGame;
     ButtonRectangle mBtnHowToPlay;
 
@@ -31,34 +31,31 @@ public class LaunchingActivity extends Activity {
     }
 
     private void defineView() {
-        mBtnSinglePlayerGmae = (ButtonRectangle) findViewById(R.id.launching_btn_single_player);
+        mBtnSinglePlayerGame = (ButtonRectangle) findViewById(R.id.launching_btn_single_player);
         mBtnMultiPlayerGame = (ButtonRectangle) findViewById(R.id.launching_btn_multi_player);
         mBtnHowToPlay = (ButtonRectangle) findViewById(R.id.launching_btn_how_to_play);
     }
 
     private void defineListener() {
-        mBtnSinglePlayerGmae.setOnClickListener(mOnClickListener);
-        mBtnMultiPlayerGame.setOnClickListener(mOnClickListener);
-        mBtnHowToPlay.setOnClickListener(mOnClickListener);
-    }
-
-    private View.OnClickListener mOnClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            int id = v.getId();
-            switch (id) {
-                case R.id.launching_btn_single_player:
-                    startSinglePlayerGame();
-                    break;
-                case R.id.launching_btn_multi_player:
-                    startMultiPlayerGame();
-                    break;
-                default:
-                    // do nothing
-                    break;
+        mBtnSinglePlayerGame.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startSinglePlayerGame();
             }
-        }
-    };
+        });
+        mBtnMultiPlayerGame.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startMultiPlayerGame();
+            }
+        });
+        mBtnHowToPlay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startTutorial();
+            }
+        });
+    }
 
     private void startSinglePlayerGame() {
         Intent intent = new Intent(this, PlayingCardActivity.class);
@@ -67,6 +64,11 @@ public class LaunchingActivity extends Activity {
 
     private void startMultiPlayerGame() {
         Intent intent = new Intent(this, MultiPlayerChoosePlayerCountActivity.class);
+        startActivity(intent);
+    }
+
+    private void startTutorial() {
+        Intent intent = new Intent(this, TutorialActivity.class);
         startActivity(intent);
     }
 }

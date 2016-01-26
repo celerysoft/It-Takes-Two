@@ -15,7 +15,6 @@
 
 
     <!-- Launching Activity -->
-    <string name="title_activity_launching">It takes Two</string>
     <string name="launching_btn_single_player_text">Single Player</string>
     <string name="launching_btn_multi_player_text">Multi Player</string>
     <string name="launching_btn_how_to_play_text">How To Play</string>
@@ -23,7 +22,6 @@
 
 
     <!-- PlayingCard Activity -->
-    <string name="title_activity_playing_card">Playing Card</string>
     <string name="playing_card_tv_score_text">Score: 0</string>
     <string name="playing_card_tv_duration_text">Tap a card</string>
     <string name="playing_card_score">Score: </string>
@@ -46,6 +44,11 @@
     <string name="choose_player_count_tv_title">Choose player count</string>
     <string name="choose_player_count_tv_desc">No more than 4 players, leave other guys watching :D</string>
     <string name="choose_player_count_btn_confirm">Start Game</string>
+
+    <!-- Tutorial Activity -->
+    <string name="tutorial_tv_tips_text">Tips: you can review the tutorial whenever you want.</string>
+    <string name="tutorial_btn_finish_tutorial_text">let me graduate from the tutorial</string>
+    <string name="tutorial_btn_finish_tutorial_text_default">What is next?</string>
 
 
     <!-- Social Sharing -->

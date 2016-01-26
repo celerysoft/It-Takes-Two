@@ -10,7 +10,6 @@
 
 
     <!-- Launching Activity -->
-    <string name="title_activity_launching">纸牌对对碰</string>
     <string name="launching_btn_single_player_text">单人游戏</string>
     <string name="launching_btn_multi_player_text">多人游戏</string>
     <string name="launching_btn_how_to_play_text">游戏教程</string>
@@ -18,7 +17,6 @@
 
 
     <!-- PlayingCard Activity -->
-    <string name="title_activity_playing_card">纸牌对对碰</string>
     <string name="playing_card_tv_score_text">得分：0</string>
     <string name="playing_card_tv_duration_text">请点击扑克牌</string>
     <string name="playing_card_score">得分：</string>
@@ -41,6 +39,11 @@
     <string name="choose_player_count_tv_title">选择玩家数量</string>
     <string name="choose_player_count_tv_desc">最多4人，其他人乖乖看着吧</string>
     <string name="choose_player_count_btn_confirm">开始游戏</string>
+
+    <!-- Tutorial Activity -->
+    <string name="tutorial_tv_tips_text">提示：任何时候你都可以重新观看教程。</string>
+    <string name="tutorial_btn_finish_tutorial_text">好了我知道了让我毕业吧</string>
+    <string name="tutorial_btn_finish_tutorial_text_default">然后呢？</string>
 
 
     <!-- Social Sharing -->

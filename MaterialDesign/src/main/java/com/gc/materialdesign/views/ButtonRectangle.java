@@ -15,8 +15,6 @@ import android.widget.TextView;
 
 public class ButtonRectangle extends Button {
 	
-	TextView textButton;
-	
 	int paddingTop,paddingBottom, paddingLeft, paddingRight;
 	
 	

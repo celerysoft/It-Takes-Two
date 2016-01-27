@@ -49,7 +49,7 @@
     <string name="tutorial_tv_score_text">Score: </string>
     <string name="tutorial_tv_tips_text">Tips: you can review the tutorial whenever you want.</string>
     <string name="tutorial_btn_finish_tutorial_text">let me graduate from the tutorial</string>
-    <string name="tutorial_btn_finish_tutorial_text_default">What is next?</string>
+    <string name="tutorial_btn_finish_tutorial_text_when_graduate">congratulations, click to graduate</string>
 
 
     <!-- Social Sharing -->
@@ -65,5 +65,9 @@
     <string name="player_default_name_02">Tom</string>
     <string name="player_default_name_03">Dick</string>
     <string name="player_default_name_04">Harry</string>
+
+    <!-- Tutorial -->
+    <string name="tutorial_last_process_text">Congratulations!</string>
+    <string name="tutorial_last_process_wrong_text">Congratulations! you have finished the tutorial, please help your self graduate from the tutorial by clicking the button in bottom</string>
 
 </resources>

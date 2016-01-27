@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/tutorial_root"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/card_table_background"
@@ -23,7 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/tutorial_tv_score"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
         android:columnCount="4"
         android:alignmentMode="alignBounds">
 
@@ -55,9 +56,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/tutorial_ll_cards"
-        android:layout_above="@+id/tutorial_btn_next"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:layout_marginBottom="@dimen/activity_vertical_margin">
+        android:layout_above="@+id/tutorial_btn_finish"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="32dp">
 
         <LinearLayout
             android:id="@+id/tutorial_ll_talk_to_player"
@@ -65,17 +66,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"/>
     </ScrollView>
-
-
-    <com.gc.materialdesign.views.ButtonRectangle
-        android:id="@+id/tutorial_btn_next"
-        android:layout_width="160dp"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_above="@+id/tutorial_btn_finish"
-        android:layout_marginBottom="@dimen/activity_vertical_margin"
-        app:animate="false"
-        android:text="@string/tutorial_btn_finish_tutorial_text_default"/>
 
     <com.gc.materialdesign.views.ButtonRectangle
         android:id="@+id/tutorial_btn_finish"

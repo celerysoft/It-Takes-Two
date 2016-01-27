@@ -63,11 +63,17 @@ public class CardMatchingGame implements Serializable {
         }
     }
 
-    public CardMatchingGame(ArrayList<PlayingCard> usingCards, int score, Timer timer) {
-        mCards = usingCards;
-        mScore = score;
-        mTimer = timer;
-        mGameState = State.GAME_STATE_START;
+    public CardMatchingGame(PlayingDeck usingDeck) {
+        if (mCards.size() > 0) {
+            mCards = new ArrayList<>();
+        }
+
+        int cardCount = usingDeck.getCardCount();
+
+        for (int i = 0; i < cardCount; ++i) {
+            Card card = usingDeck.drawCard();
+            mCards.add((PlayingCard) card);
+        }
     }
 
 

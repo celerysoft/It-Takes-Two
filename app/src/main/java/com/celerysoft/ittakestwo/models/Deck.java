@@ -7,17 +7,21 @@ import java.util.ArrayList;
  */
 public class Deck {
 
-    private ArrayList<Card> cards = new ArrayList<>();
+    private ArrayList<Card> mCards = new ArrayList<>();
 
     public Deck() {
 
     }
 
+    public int getCardCount() {
+        return mCards.size();
+    }
+
     public void addCard(Card card, boolean atTop) {
         if (atTop) {
-            this.cards.add(0, card);
+            mCards.add(0, card);
         } else {
-            this.cards.add(card);
+            mCards.add(card);
         }
     }
 
@@ -25,12 +29,22 @@ public class Deck {
         addCard(card, false);
     }
 
+    public Card drawCard() {
+        Card card = null;
+
+        if (this.mCards.size() > 0) {
+            card = mCards.remove(mCards.size() - 1);
+        }
+
+        return card;
+    }
+
     public Card drawRandomCard() {
         Card randomCard = null;
 
-        if (this.cards.size() > 0) {
-            int index = (int) (Math.random() * this.cards.size());
-            randomCard = this.cards.remove(index);
+        if (this.mCards.size() > 0) {
+            int index = (int) (Math.random() * this.mCards.size());
+            randomCard = mCards.remove(index);
         }
 
         return randomCard;

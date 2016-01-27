@@ -46,6 +46,7 @@
     <string name="choose_player_count_btn_confirm">Start Game</string>
 
     <!-- Tutorial Activity -->
+    <string name="tutorial_tv_score_text">Score: </string>
     <string name="tutorial_tv_tips_text">Tips: you can review the tutorial whenever you want.</string>
     <string name="tutorial_btn_finish_tutorial_text">let me graduate from the tutorial</string>
     <string name="tutorial_btn_finish_tutorial_text_default">What is next?</string>

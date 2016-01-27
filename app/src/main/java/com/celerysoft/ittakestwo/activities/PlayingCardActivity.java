@@ -50,7 +50,6 @@ public class PlayingCardActivity extends Activity {
     private final int CARD_COUNT = 16;
 
     // fields
-    private boolean mIsNeededAutoAdjustForScreen = true;
     private CardMatchingGame mGame;
 
     private MaterialDesignDialog mRestartGameDialog;
@@ -110,7 +109,6 @@ public class PlayingCardActivity extends Activity {
         }
 
         mGame = new CardMatchingGame(mCardButtons.size(), new PlayingDeck());
-        mIsNeededAutoAdjustForScreen = true;
     }
 
     private int getPlayerCount() {
@@ -326,6 +324,10 @@ public class PlayingCardActivity extends Activity {
         cardLayoutParams.height = mCardHeight;
     }
 
+    /**
+     * calculate the size of card
+     * @param isPortrait Screen Orientation
+     */
     private void calculateCardSize(boolean isPortrait) {
         final int CARD_COUNT_PER_ROW_IN_PORTRAIT = 4;
         final int CARD_COUNT_PER_COLUMN_IN_PORTRAIT = 4;
@@ -341,6 +343,16 @@ public class PlayingCardActivity extends Activity {
             cardPerRow = CARD_COUNT_PER_ROW_IN_LANDSCAPE;
             cardPerColumn = CARD_COUNT_PER_COLUMN_IN_LANDSCAPE;
         }
+
+        calculateCardSize(cardPerRow, cardPerColumn);
+    }
+
+    /**
+     * calculate the size of card
+     * @param cardPerRow card count per row
+     * @param cardPerColumn card count per column
+     */
+    private void calculateCardSize(int cardPerRow, int cardPerColumn) {
 
         // pre calculate card width
         int screenWidth = getResources().getDisplayMetrics().widthPixels;
@@ -439,14 +451,10 @@ public class PlayingCardActivity extends Activity {
              */
             @Override
             public void run() {
-                if (mIsNeededAutoAdjustForScreen) {
-                    if (PlayingCardActivity.this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                        autoAdjustForPortraitScreen();
-                    } else if (PlayingCardActivity.this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-                        autoAdjustForLandscapeScreen();
-                    }
-
-                    mIsNeededAutoAdjustForScreen = false;
+                if (PlayingCardActivity.this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                    autoAdjustForPortraitScreen();
+                } else if (PlayingCardActivity.this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                    autoAdjustForLandscapeScreen();
                 }
             }
         });

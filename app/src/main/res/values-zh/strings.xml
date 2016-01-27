@@ -41,6 +41,7 @@
     <string name="choose_player_count_btn_confirm">开始游戏</string>
 
     <!-- Tutorial Activity -->
+    <string name="tutorial_tv_score_text">得分：</string>
     <string name="tutorial_tv_tips_text">提示：任何时候你都可以重新观看教程。</string>
     <string name="tutorial_btn_finish_tutorial_text">好了我知道了让我毕业吧</string>
     <string name="tutorial_btn_finish_tutorial_text_default">然后呢？</string>

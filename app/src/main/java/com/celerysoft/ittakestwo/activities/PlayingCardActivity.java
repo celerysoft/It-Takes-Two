@@ -552,7 +552,7 @@ public class PlayingCardActivity extends Activity {
 
     private void onShareScoreBtnClick() {
         if (mSocialSharingDialog == null) {
-            mSocialSharingDialog = SocialSharingUtil.createSocialSharingDialog(this);
+            mSocialSharingDialog = SocialSharingUtil.getInstance().createSocialSharingDialog(this);
         }
         mSocialSharingDialog.show();
     }
@@ -755,6 +755,7 @@ public class PlayingCardActivity extends Activity {
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
+        Log.d(TAG, "onSaveInstanceState");
         outState.putSerializable(SAVE_GAME, mGame);
         outState.putSerializable(SAVE_PLAYERS, mPlayers);
         outState.putInt(SAVE_PLAYER_INDEX, mCurrentPlayerIndex);
@@ -769,8 +770,8 @@ public class PlayingCardActivity extends Activity {
             if (mGame != null) {
                 if (mGame.getGmaeState() == CardMatchingGame.State.GAME_STATE_START) {
                     onGameStart();
-                    updateUi();
                 }
+                updateUi();
             } else {
                 Log.w(TAG, "Game state lost");
             }

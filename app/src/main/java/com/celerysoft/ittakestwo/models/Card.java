@@ -1,9 +1,12 @@
 package com.celerysoft.ittakestwo.models;
 
+import java.io.Serializable;
+
 /**
  * Common card module.
  */
-public class Card {
+public class Card implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     private int width;
     public int getWidth() {

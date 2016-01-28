@@ -1,11 +1,13 @@
 package com.celerysoft.ittakestwo.models;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Common deck module.
  */
-public class Deck {
+public class Deck implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     private ArrayList<Card> mCards = new ArrayList<>();
 

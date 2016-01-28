@@ -1,9 +1,13 @@
 package com.celerysoft.ittakestwo.models;
 
+import java.io.Serializable;
+
 /**
  * Timer is use for record the playing duration.
  */
-public class Timer {
+public class Timer implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     private int mTimerState;
     public static final int TIMER_STATE_UNSTART = -1;
     public static final int TIMER_STATE_PROGRESS = 0;

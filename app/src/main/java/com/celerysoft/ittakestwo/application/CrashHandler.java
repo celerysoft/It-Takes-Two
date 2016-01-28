@@ -122,9 +122,9 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
         String result = writer.toString();
         sb.append(result);
 
-        long timetamp = System.currentTimeMillis();
+        long timestamp = System.currentTimeMillis();
         String time = mSimpleDateFormat.format(new Date());
-        String fileName = time + "-" + timetamp + ".log";
+        String fileName = time + "-" + timestamp + ".log";
         if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
             try {
                 File dir = new File(mContext.getExternalFilesDir(null) + File.separator + "crash");
@@ -145,9 +145,7 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
 
     private boolean isExternalStorageWritable() {
         String state = Environment.getExternalStorageState();
-        if (Environment.MEDIA_MOUNTED.equals(state)) {
-            return true;
-        }
-        return false;
+
+        return Environment.MEDIA_MOUNTED.equals(state);
     }
 }

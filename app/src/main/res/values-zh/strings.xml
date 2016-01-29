@@ -61,6 +61,30 @@
     <string name="player_default_name_03">王五</string>
     <string name="player_default_name_04">赵六</string>
 
+
+    <!-- Tutorial -->
+    <string name="tutorial_last_process_0_text">欢迎来的纸牌对对碰，游戏规则很简单，已经翻开一张牌的情况下，再翻开另一张牌就会进行匹配。每次匹配失败扣2分，匹配两个相同花色的牌得4分，翻出两个相同点数的牌得16分。注意，无论如何，每次翻牌都会扣1分。好了，让我们开始吧，请先翻第一张牌。</string>
+    <string name="tutorial_last_process_0_wrong_text">请先翻第一张牌～</string>
+    <string name="tutorial_last_process_1_text">\n这是一张红心2，由于每次翻牌扣一分，所以你现在的分数是-1。你肯定迫不及待要翻第二张牌了，但是在翻牌之前，请先将第一张牌翻返回，因为你不知道第二张牌是什么，如果和第一张牌无法成功匹配的话，会扣掉2分，所以，先将第一张牌翻回去。</string>
+    <string name="tutorial_last_process_1_wrong_text">请先将第一张牌翻回去～</string>
+    <string name="tutorial_last_process_2_text">\n棒极了，第一张牌是红心2，那么第二张牌是啥呢？快翻开看看吧！</string>
+    <string name="tutorial_last_process_2_wrong_text">请翻开第二张牌看看是什么～</string>
+    <string name="tutorial_last_process_3_text">\n好的，这是一张红心6，和第一张牌红心2的花色相同，匹配之后能得4分。我们注意到，这是你第二次翻牌，又扣了1分，所以你的分数是-2。那么，快翻开第一张牌，把扣掉的分数都赚回来吧。</string>
+    <string name="tutorial_last_process_3_wrong_text">请翻开第一张牌完成花色匹配～</string>
+    <string name="tutorial_last_process_4_text">\n非常好，我们发现，第一张牌和第二张牌匹配成功，无法再次翻动了。现在你的分数是1分，花色匹配成功得4分，翻了3次牌扣3分。嗯，你也许会认为我太啰嗦了，但我只想向你强调的是，必须锻炼自己记牌的能力，同一张牌，最好只翻一次。那么，我们看看第三张牌是什么吧。</string>
+    <string name="tutorial_last_process_4_wrong_text">现在来看看第三张牌是什么～</string>
+    <string name="tutorial_last_process_5_text">\n第三张是方片A，好的，接下来看看第四张。还是老样子，把第三张牌翻回去，再看第四张。</string>
+    <string name="tutorial_last_process_5_wrong_text">先把第三张牌翻回去～</string>
+    <string name="tutorial_last_process_6_text">\n好的，快看看第四张牌是什么，快翻开第四张吧。</string>
+    <string name="tutorial_last_process_6_wrong_text">快翻开第四张牌～</string>
+    <string name="tutorial_last_process_7_text">\n这竟是一张黑桃A，第三张是方片A，他们点数相同，匹配能获得16分！快翻开第三张牌进行匹配。</string>
+    <string name="tutorial_last_process_7_wrong_text">还等什么，快翻开第三张牌获取16分～</string>
+    <string name="tutorial_last_process_8_text">\n怎么样，获得16分的感觉如何？我们来统计一下，你总共翻了6次牌，扣6分，花色匹配成功一次得4分，点数匹配一次得16分，最后得分是14。点击任意牌继续。。。</string>
+    <string name="tutorial_last_process_8_wrong_text"> </string>
+    <string name="tutorial_last_process_text">\n恭喜，你已经完成了所有的教程。点击下面的按钮毕业吧。</string>
+    <string name="tutorial_last_process_wrong_text">恭喜，你已经完成了所有的教程，点击下面的按钮毕业吧。</string>
+
+
     <!-- Dialog Util -->
     <string name="dialog_util_not_install_wechat_title">尚未安装微信</string>
     <string name="dialog_util_not_install_wechat_message">您尚未安装微信，请先安装微信再通过微信分享游戏截图</string>

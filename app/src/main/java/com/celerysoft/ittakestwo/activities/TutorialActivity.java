@@ -194,7 +194,7 @@ public class TutorialActivity extends Activity {
         setCardButtonState(mCard2, mTutorialProcess.state.cardState2);
         setCardButtonState(mCard3, mTutorialProcess.state.cardState3);
 
-        mTextSize = mTextSize == 0 ? getResources().getDimension(R.dimen.text_size_body) : mTextSize;
+        mTextSize = mTextSize == 0 ? getResources().getDimension(R.dimen.text_size_subhead) : mTextSize;
         TextView textView = new TextView(TutorialActivity.this);
         textView.setText(mTutorialProcess.state.talkToPlayer);
         textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, mTextSize);

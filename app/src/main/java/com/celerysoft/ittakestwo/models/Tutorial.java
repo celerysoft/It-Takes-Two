@@ -31,8 +31,8 @@ public class Tutorial {
 
     private void initData() {
         Process process0 = new Process();
-        process0.talkToPlayer = mContext.getString(R.string.social_sharing_dialog_title);
-        process0.talkToPlayerWhenFlipWrongCard = mContext.getString(R.string.social_sharing_send_to_qq_friend);
+        process0.talkToPlayer = mContext.getString(R.string.tutorial_last_process_0_text);
+        process0.talkToPlayerWhenFlipWrongCard = mContext.getString(R.string.tutorial_last_process_0_wrong_text);
         process0.cardIndexToTriggerNextProcess = 0;
         process0.state.cardState0 = CardState.ENABLE;
         process0.state.cardState1 = CardState.ENABLE;
@@ -41,10 +41,9 @@ public class Tutorial {
         process0.state.talkToPlayer = process0.talkToPlayer;
         mProcesses.add(process0);
 
-
         Process process1 = new Process();
-        process1.talkToPlayer = mContext.getString(R.string.social_sharing_send_to_wechat_friend);
-        process1.talkToPlayerWhenFlipWrongCard = mContext.getString(R.string.social_sharing_send_to_qzone);
+        process1.talkToPlayer = mContext.getString(R.string.tutorial_last_process_1_text);
+        process1.talkToPlayerWhenFlipWrongCard = mContext.getString(R.string.tutorial_last_process_1_wrong_text);
         process1.cardIndexToTriggerNextProcess = 0;
         process1.state.cardState0 = CardState.ENABLE;
         process1.state.cardState1 = CardState.ENABLE;
@@ -53,7 +52,82 @@ public class Tutorial {
         process1.state.talkToPlayer = process1.talkToPlayer;
         mProcesses.add(process1);
 
+        Process process2 = new Process();
+        process2.talkToPlayer = mContext.getString(R.string.tutorial_last_process_2_text);
+        process2.talkToPlayerWhenFlipWrongCard = mContext.getString(R.string.tutorial_last_process_2_wrong_text);
+        process2.cardIndexToTriggerNextProcess = 1;
+        process2.state.cardState0 = CardState.ENABLE;
+        process2.state.cardState1 = CardState.ENABLE;
+        process2.state.cardState2 = CardState.ENABLE;
+        process2.state.cardState3 = CardState.ENABLE;
+        process2.state.talkToPlayer = process2.talkToPlayer;
+        mProcesses.add(process2);
 
+        Process process3 = new Process();
+        process3.talkToPlayer = mContext.getString(R.string.tutorial_last_process_3_text);
+        process3.talkToPlayerWhenFlipWrongCard = mContext.getString(R.string.tutorial_last_process_3_wrong_text);
+        process3.cardIndexToTriggerNextProcess = 0;
+        process3.state.cardState0 = CardState.ENABLE;
+        process3.state.cardState1 = CardState.ENABLE;
+        process3.state.cardState2 = CardState.ENABLE;
+        process3.state.cardState3 = CardState.ENABLE;
+        process3.state.talkToPlayer = process3.talkToPlayer;
+        mProcesses.add(process3);
+
+        Process process4 = new Process();
+        process4.talkToPlayer = mContext.getString(R.string.tutorial_last_process_4_text);
+        process4.talkToPlayerWhenFlipWrongCard = mContext.getString(R.string.tutorial_last_process_4_wrong_text);
+        process4.cardIndexToTriggerNextProcess = 2;
+        process4.state.cardState0 = CardState.DISABLE;
+        process4.state.cardState1 = CardState.DISABLE;
+        process4.state.cardState2 = CardState.ENABLE;
+        process4.state.cardState3 = CardState.ENABLE;
+        process4.state.talkToPlayer = process4.talkToPlayer;
+        mProcesses.add(process4);
+
+        Process process5 = new Process();
+        process5.talkToPlayer = mContext.getString(R.string.tutorial_last_process_5_text);
+        process5.talkToPlayerWhenFlipWrongCard = mContext.getString(R.string.tutorial_last_process_5_wrong_text);
+        process5.cardIndexToTriggerNextProcess = 2;
+        process5.state.cardState0 = CardState.DISABLE;
+        process5.state.cardState1 = CardState.DISABLE;
+        process5.state.cardState2 = CardState.ENABLE;
+        process5.state.cardState3 = CardState.ENABLE;
+        process5.state.talkToPlayer = process5.talkToPlayer;
+        mProcesses.add(process5);
+
+        Process process6 = new Process();
+        process6.talkToPlayer = mContext.getString(R.string.tutorial_last_process_6_text);
+        process6.talkToPlayerWhenFlipWrongCard = mContext.getString(R.string.tutorial_last_process_6_wrong_text);
+        process6.cardIndexToTriggerNextProcess = 3;
+        process6.state.cardState0 = CardState.DISABLE;
+        process6.state.cardState1 = CardState.DISABLE;
+        process6.state.cardState2 = CardState.ENABLE;
+        process6.state.cardState3 = CardState.ENABLE;
+        process6.state.talkToPlayer = process6.talkToPlayer;
+        mProcesses.add(process6);
+
+        Process process7 = new Process();
+        process7.talkToPlayer = mContext.getString(R.string.tutorial_last_process_7_text);
+        process7.talkToPlayerWhenFlipWrongCard = mContext.getString(R.string.tutorial_last_process_7_wrong_text);
+        process7.cardIndexToTriggerNextProcess = 2;
+        process7.state.cardState0 = CardState.DISABLE;
+        process7.state.cardState1 = CardState.DISABLE;
+        process7.state.cardState2 = CardState.ENABLE;
+        process7.state.cardState3 = CardState.ENABLE;
+        process7.state.talkToPlayer = process7.talkToPlayer;
+        mProcesses.add(process7);
+
+        Process process8 = new Process();
+        process8.talkToPlayer = mContext.getString(R.string.tutorial_last_process_8_text);
+        process8.talkToPlayerWhenFlipWrongCard = mContext.getString(R.string.tutorial_last_process_8_wrong_text);
+        process8.cardIndexToTriggerNextProcess = -1;
+        process8.state.cardState0 = CardState.ENABLE;
+        process8.state.cardState1 = CardState.ENABLE;
+        process8.state.cardState2 = CardState.ENABLE;
+        process8.state.cardState3 = CardState.ENABLE;
+        process8.state.talkToPlayer = process8.talkToPlayer;
+        mProcesses.add(process8);
     }
 
     public class Process {
@@ -68,7 +142,7 @@ public class Tutorial {
         }
 
         private Process flipCard(int cardIndex) {
-            if (cardIndex == cardIndexToTriggerNextProcess) {
+            if (cardIndex == cardIndexToTriggerNextProcess || cardIndexToTriggerNextProcess == -1) {
                 return turnToNextProcess();
             } else {
                 state.talkToPlayer = talkToPlayerWhenFlipWrongCard;

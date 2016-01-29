@@ -61,4 +61,10 @@
     <string name="player_default_name_03">王五</string>
     <string name="player_default_name_04">赵六</string>
 
+    <!-- Dialog Util -->
+    <string name="dialog_util_not_install_wechat_title">尚未安装微信</string>
+    <string name="dialog_util_not_install_wechat_message">您尚未安装微信，请先安装微信再通过微信分享游戏截图</string>
+    <string name="dialog_util_not_connect_to_internet_title">需要连接到互联网</string>
+    <string name="dialog_util_not_connect_to_internet_message">执行本操作需要连接到互联网，建议在WIFI环境下重试</string>
+
 </resources>

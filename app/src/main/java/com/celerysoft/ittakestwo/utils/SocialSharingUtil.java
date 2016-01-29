@@ -107,6 +107,11 @@ public class SocialSharingUtil {
     }
 
     private void shareToQqFriend() {
+        if (!Util.isConnectToInternet(mContext)) {
+            DialogUtil.showConnectToInternetDialog(mContext);
+            return;
+        }
+
         String imagePath = createScreenshot();
 
 //        // 分享图文消息
@@ -130,11 +135,17 @@ public class SocialSharingUtil {
     }
 
     private void shareToQzone() {
+        if (!Util.isConnectToInternet(mContext)) {
+            DialogUtil.showConnectToInternetDialog(mContext);
+            return;
+        }
+
         String imagePath = createScreenshot();
-        ArrayList<String> imagePaths = new ArrayList<>();
-        imagePaths.add(imagePath);
 
 //        // 分享图文信息
+//        ArrayList<String> imagePaths = new ArrayList<>();
+//        imagePaths.add(imagePath);
+//
 //        final Bundle params = new Bundle();
 //        params.putInt(QzoneShare.SHARE_TO_QZONE_KEY_TYPE, QzoneShare.SHARE_TO_QZONE_TYPE_IMAGE_TEXT);
 //        params.putString(QzoneShare.SHARE_TO_QQ_TITLE, "标题");//必填
@@ -153,20 +164,20 @@ public class SocialSharingUtil {
     }
 
     /**
-     * 分享图片到微信
-     * @param isToFriend true分享给朋友，false分享到朋友圈
+     * share photo to wechat
+     * @param isToFriend true if share to wechat friend, false to share to wechat timeline
      */
     private void shareToWechat(boolean isToFriend) {
 
-//        if (!Util.isConnectToInternet(mContext)) {
-//            showConnectToInternetDialog();
-//            return;
-//        }
+        if (!Util.isConnectToInternet(mContext)) {
+            DialogUtil.showConnectToInternetDialog(mContext);
+            return;
+        }
 
-//        if (!mWechat.isWXAppInstalled()) {
-//            DialogUtil.showInstallWechatDialog(mContext);
-//            return;
-//        }
+        if (!mWechat.isWXAppInstalled()) {
+            DialogUtil.showInstallWechatDialog(mContext);
+            return;
+        }
 
         String imagePath = createScreenshot();
 

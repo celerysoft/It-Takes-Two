@@ -70,4 +70,10 @@
     <string name="tutorial_last_process_text">Congratulations!</string>
     <string name="tutorial_last_process_wrong_text">Congratulations! you have finished the tutorial, please help your self graduate from the tutorial by clicking the button in bottom</string>
 
+    <!-- Dialog Util -->
+    <string name="dialog_util_not_install_wechat_title">Wechat Required</string>
+    <string name="dialog_util_not_install_wechat_message">You need to install Wechat before sharing screenshots to Wechat</string>
+    <string name="dialog_util_not_connect_to_internet_title">Internet Required</string>
+    <string name="dialog_util_not_connect_to_internet_message">Need to connect to the internet first, you could retry it under the Wi-Fi</string>
+
 </resources>

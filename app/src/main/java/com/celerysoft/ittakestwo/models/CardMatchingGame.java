@@ -9,9 +9,9 @@ import java.util.ArrayList;
  * Card matching game module.
  */
 public class CardMatchingGame implements Serializable {
-    private static final long serialVersionUID = -1234567890666666L;
+    private static final long serialVersionUID = 1L;
 
-    private final String LOG_TAG = this.getClass().getSimpleName();
+    private final String TAG = "CardMatchingGame";
 
     private State mGameState;
     public State getGmaeState() {
@@ -34,7 +34,23 @@ public class CardMatchingGame implements Serializable {
     }
 
     private Player mCurrentPlayer;
+    public Player getCurrentPlayer() {
+        return mCurrentPlayer;
+    }
+
     private ArrayList<Player> mPlayers = new ArrayList<>();
+    public ArrayList<Player> getPlayers() {
+        return mPlayers;
+    }
+
+    public void setPlayers(ArrayList<Player> players) {
+        mPlayers = players;
+        if (players.size() > 0) {
+            mCurrentPlayer = players.get(0);
+        } else {
+            Log.w(TAG, "the size of player collection is not more than 0.");
+        }
+    }
 
     private Timer mTimer = new Timer();
     public Timer getTimer() {
@@ -55,10 +71,10 @@ public class CardMatchingGame implements Serializable {
                 if (card instanceof PlayingCard) {
                     mCards.add((PlayingCard) card);
                 } else {
-                    Log.e(LOG_TAG, "Card draw from PlayingDeck is not an instance of PlayingCard? Fucking kidding me!");
+                    Log.e(TAG, "Card draw from PlayingDeck is not an instance of PlayingCard? Fucking kidding me!");
                 }
             } else {
-                Log.w(LOG_TAG, "Card count of game more than card count of using deck.");
+                Log.w(TAG, "Card count of game more than card count of using deck.");
             }
         }
     }
@@ -75,7 +91,6 @@ public class CardMatchingGame implements Serializable {
             mCards.add((PlayingCard) card);
         }
     }
-
 
     public void chooseCardAtIndex(int index) {
         if (mGameState == State.GAME_STATE_UNSTART) {
@@ -132,7 +147,7 @@ public class CardMatchingGame implements Serializable {
         if (mCards.isEmpty()) {
             mCards = cards;
         } else {
-            Log.e(LOG_TAG, "shuffle cards error.");
+            Log.e(TAG, "shuffle cards error.");
         }
     }
 
@@ -173,5 +188,22 @@ public class CardMatchingGame implements Serializable {
     public void finish() {
         mGameState = State.GAME_STATE_FINISH;
         mTimer.stop();
+    }
+
+    public boolean isLastPlayer() {
+        if (mCurrentPlayer != null) {
+            if (mPlayers != null && mPlayers.size() > 0) {
+                return (mPlayers.indexOf(mCurrentPlayer) == mPlayers.size() - 1);
+            }
+        }
+
+        return true;
+    }
+
+    public void turnToNextPlayer() {
+        if (!isLastPlayer()) {
+            int currentPlayerIndex = mPlayers.indexOf(mCurrentPlayer);
+            mCurrentPlayer = mPlayers.get(currentPlayerIndex + 1);
+        }
     }
 }

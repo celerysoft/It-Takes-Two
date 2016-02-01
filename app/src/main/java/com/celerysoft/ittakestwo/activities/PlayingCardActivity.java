@@ -41,8 +41,6 @@ public class PlayingCardActivity extends Activity {
 
     // const
     private static final String SAVE_GAME = "saveGame";
-    private static final String SAVE_PLAYERS = "savePlayers";
-    private static final String SAVE_PLAYER_INDEX = "savePlayerIndex";
 
     public static final String KEY_PLAYER_COUNT = "KEY_PLAYER_COUNT";
 
@@ -56,8 +54,6 @@ public class PlayingCardActivity extends Activity {
     private MaterialDesignDialog mSocialSharingDialog;
 
     private int mPlayerCount = 1;
-    private int mCurrentPlayerIndex = 0;
-    private Player[] mPlayers;
 
     // cards
     private Button card00;
@@ -100,15 +96,7 @@ public class PlayingCardActivity extends Activity {
         defineView();
         defineListener();
 
-        mPlayerCount = getPlayerCount();
-        if (mPlayerCount > 1) {
-            createPlayers();
-            if (savedInstanceState == null) {
-                showMultiPlayerGameDialog();
-            }
-        }
-
-        mGame = new CardMatchingGame(mCardButtons.size(), new PlayingDeck());
+        initData(savedInstanceState);
     }
 
     private int getPlayerCount() {
@@ -123,16 +111,16 @@ public class PlayingCardActivity extends Activity {
     }
 
     private void createPlayers() {
-        mPlayers = Player.createPlayers(this, mPlayerCount);
+        mGame.setPlayers(Player.createPlayers(this, mPlayerCount));
     }
 
     private void showMultiPlayerGameDialog() {
         String message = getString(R.string.playing_card_multi_player_game_dialog_message_paragraph_1)
                 + "\n\n";
-        for (Player player : mPlayers) {
-            message += player.getName() + "\n\n";
+        for (Player player : mGame.getPlayers()) {
+            message += player.getName() + "\n";
         }
-        message += getString(R.string.playing_card_multi_player_game_dialog_message_paragraph_2);
+        message += "\n" + getString(R.string.playing_card_multi_player_game_dialog_message_paragraph_2);
 
         final MaterialDesignDialog dialog = new MaterialDesignDialog(this);
         dialog.setTitle(getString(R.string.playing_card_multi_player_game_dialog_title))
@@ -149,7 +137,7 @@ public class PlayingCardActivity extends Activity {
 
     private void showPreGameDialog() {
         String message = getString(R.string.playing_card_pre_game_dialog_message_paragraph_1)
-                + mPlayers[mCurrentPlayerIndex].getName() + "\n\n" + mPlayers[mCurrentPlayerIndex].getName()
+                + mGame.getCurrentPlayer().getName() + "\n\n" + mGame.getCurrentPlayer().getName()
                 + getString(R.string.playing_card_pre_game_dialog_message_paragraph_2);
 
         final MaterialDesignDialog dialog = new MaterialDesignDialog(this);
@@ -409,6 +397,18 @@ public class PlayingCardActivity extends Activity {
         return card;
     }
 
+    private void initData(Bundle savedInstanceState) {
+        mGame = new CardMatchingGame(mCardButtons.size(), new PlayingDeck());
+
+        mPlayerCount = getPlayerCount();
+        if (mPlayerCount > 1) {
+            createPlayers();
+            if (savedInstanceState == null) {
+                showMultiPlayerGameDialog();
+            }
+        }
+    }
+
     private void defineView() {
 
         card00 = (Button) findViewById(R.id.card00);
@@ -565,11 +565,11 @@ public class PlayingCardActivity extends Activity {
         showButtons();
 
         if (mPlayerCount > 1) {
-            mPlayers[mCurrentPlayerIndex].setScore(mGame.getScore());
-            mPlayers[mCurrentPlayerIndex].setPlayingDuration(mGame.getTimer().getDurationInSecond());
+            mGame.getCurrentPlayer().setScore(mGame.getScore());
+            mGame.getCurrentPlayer().setPlayingDuration(mGame.getTimer().getDurationInSecond());
 
-            if (mCurrentPlayerIndex < mPlayerCount - 1) {
-                mCurrentPlayerIndex++;
+            if (!mGame.isLastPlayer()) {
+                mGame.turnToNextPlayer();
                 showPreGameDialog();
             } else {
                 showScoreboardDialog();
@@ -581,11 +581,11 @@ public class PlayingCardActivity extends Activity {
     }
 
     private void showScoreboardDialog() {
-        mPlayers = Player.sortPlayersByRankScore(mPlayers);
+        ArrayList<Player> players = Player.sortPlayersByRankScore(mGame.getPlayers());
 
         String message = "";
         for (int i = 0; i < mPlayerCount; ++i) {
-            message += (i + 1) + ". " + mPlayers[i].getName() + " - " + mPlayers[i].getRankScore() + "\n";
+            message += (i + 1) + ". " + players.get(i).getName() + " - " + players.get(i).getRankScore() + "\n";
         }
 
         final MaterialDesignDialog dialog = new MaterialDesignDialog(this, MaterialDesignDialog.Style.STACKED_FULL_WIDTH_BUTTONS);
@@ -757,8 +757,6 @@ public class PlayingCardActivity extends Activity {
     protected void onSaveInstanceState(Bundle outState) {
         Log.d(TAG, "onSaveInstanceState");
         outState.putSerializable(SAVE_GAME, mGame);
-        outState.putSerializable(SAVE_PLAYERS, mPlayers);
-        outState.putInt(SAVE_PLAYER_INDEX, mCurrentPlayerIndex);
 
         super.onSaveInstanceState(outState);
     }
@@ -775,10 +773,6 @@ public class PlayingCardActivity extends Activity {
             } else {
                 Log.w(TAG, "Game state lost");
             }
-
-            mPlayers = (Player[]) savedInstanceState.getSerializable(SAVE_PLAYERS);
-
-            mCurrentPlayerIndex = savedInstanceState.getInt(SAVE_PLAYER_INDEX);
 
             super.onRestoreInstanceState(savedInstanceState);
         }

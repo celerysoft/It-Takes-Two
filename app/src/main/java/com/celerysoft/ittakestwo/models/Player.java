@@ -6,7 +6,8 @@ import android.util.Log;
 import com.celerysoft.ittakestwo.R;
 
 import java.io.Serializable;
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 
 /**
@@ -69,8 +70,8 @@ public class Player implements Serializable {
         mName = name;
     }
 
-    public static Player[] createPlayers(Context context, int playerCount) {
-        Player[] players = new Player[playerCount];
+    public static ArrayList<Player> createPlayers(Context context, int playerCount) {
+        ArrayList<Player> players = new ArrayList<>();
 
         for (int i = 0; i < playerCount; ++i) {
             String name = "undefine";
@@ -92,14 +93,14 @@ public class Player implements Serializable {
                     break;
             }
             Player player = new Player(name);
-            players[i] = player;
+            players.add(player);
         }
 
         return players;
     }
 
-    public static Player[] sortPlayersByRankScore(Player[] players) {
-        Arrays.sort(players, new Comparator<Player>() {
+    public static ArrayList<Player> sortPlayersByRankScore(ArrayList<Player> players) {
+        Collections.sort(players, new Comparator<Player>() {
             @Override
             public int compare(Player lhs, Player rhs) {
                 if (lhs.getRankScore() < rhs.getRankScore()) {

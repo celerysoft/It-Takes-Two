@@ -565,9 +565,6 @@ public class PlayingCardActivity extends Activity {
         showButtons();
 
         if (mPlayerCount > 1) {
-            mGame.getCurrentPlayer().setScore(mGame.getScore());
-            mGame.getCurrentPlayer().setPlayingDuration(mGame.getTimer().getDurationInSecond());
-
             if (!mGame.isLastPlayer()) {
                 mGame.turnToNextPlayer();
                 showPreGameDialog();

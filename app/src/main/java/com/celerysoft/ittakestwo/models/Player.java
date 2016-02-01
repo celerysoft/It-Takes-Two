@@ -31,6 +31,14 @@ public class Player implements Serializable {
         return mName;
     }
 
+    private boolean mFlippedAllCards;
+    public boolean isFlippedAllCards() {
+        return mFlippedAllCards;
+    }
+    public void setFlippedAllCards(boolean isFlippedAllCards) {
+        mFlippedAllCards = isFlippedAllCards;
+    }
+
     private int mScore;
     public void setScore(int score) {
         mScore = score;
@@ -55,12 +63,18 @@ public class Player implements Serializable {
     }
 
     private int calculateRankScore() {
-        final float FIX_FACTOR = 10f;
+        float SCORE_FIX_FACTOR;
+        if (mFlippedAllCards) {
+            SCORE_FIX_FACTOR = 1f;
+        } else {
+            SCORE_FIX_FACTOR = 0.75f;
+        }
+        final float DURATION_FIX_FACTOR = 0.1f;
 
         float score = (float) mScore;
         float duration =  mPlayingDuration;
 
-        double rankScore = Math.pow(score, 2) / (duration / FIX_FACTOR);
+        double rankScore = Math.pow(score * SCORE_FIX_FACTOR, 2) / (duration * DURATION_FIX_FACTOR);
 
         return mScore > 0 ? (int) rankScore : (int) -rankScore;
     }

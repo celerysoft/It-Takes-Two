@@ -8,20 +8,20 @@ import java.io.Serializable;
 public class Card implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    private int width;
+    private int mWidth;
     public int getWidth() {
-        return width;
+        return mWidth;
     }
     public void setWidth(int width) {
-        this.width = width;
+        this.mWidth = width;
     }
 
-    private int height;
+    private int mHeight;
     public int getHeight() {
-        return height;
+        return mHeight;
     }
     public void setHeight(int height) {
-        this.height = height;
+        this.mHeight = height;
     }
 
     private String mContents;
@@ -38,6 +38,12 @@ public class Card implements Serializable {
     }
     public void setChosen(boolean mChosen) {
         this.mChosen = mChosen;
+        mChosenOnce = true;
+    }
+
+    private boolean mChosenOnce;
+    public boolean isChosenOnce() {
+        return mChosenOnce;
     }
 
     private boolean mMatched;

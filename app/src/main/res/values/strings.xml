@@ -69,22 +69,22 @@
     <!-- Tutorial -->
     <string name="tutorial_last_process_0_text">Welcome to It Takes Two, the rule of the game is quite simple, After flipping one card, flip another card will start matching. Every time you match failed has a 2 points penalty. Matching same suit score 4 points, Matching same rank gain 16 points. Be careful, every flipping cost 1 point. So, let us begin, please flip first card.</string>
     <string name="tutorial_last_process_0_wrong_text">Please flip first card~</string>
-    <string name="tutorial_last_process_1_text">\nIt is a ♥️2, every time you flip a card cost 1 point, so your score new is -1. 你肯定迫不及待要翻第二张牌了，但是在翻牌之前，请先将第一张牌翻返回，因为你不知道第二张牌是什么，如果和第一张牌无法成功匹配的话，会扣掉2分，所以，先将第一张牌返回去。</string>
+    <string name="tutorial_last_process_1_text">\nIt is a ♥️2, every time you flip a card cost 1 point, so your score now is -1. You certainly can not wait to turn the second card, but before your flipping, please flip over the first card. You have no idea what is the second card, if it could not match the first card, you will lost 2 points. So, please flip over the first card in the first place.</string>
     <string name="tutorial_last_process_1_wrong_text">Please flip over first card~</string>
-    <string name="tutorial_last_process_2_text">\nGreat, first card is ♥️2, what about the second card? check it now!</string>
+    <string name="tutorial_last_process_2_text">\nGood, first card is ♥️2, what about the second card? check it now!</string>
     <string name="tutorial_last_process_2_wrong_text">Let us check what second card is~</string>
-    <string name="tutorial_last_process_3_text">\n好的，这是一张红心6，和第一张牌红心2的花色相同，匹配之后能得4分。我们注意到，这是你第二次翻牌，又扣了1分，所以你的分数是-2。那么，快翻开第一张牌，把扣掉的分数都赚回来吧。</string>
+    <string name="tutorial_last_process_3_text">\nGreat,this is a ♥️6, with the same suit as first card, matching them will gain 4 points. We have noticed that it is the second time to flip a card, cost another point, so your score currently is -2. Now, turn the first card, get back all your lost.</string>
     <string name="tutorial_last_process_3_wrong_text">Flip first to match same suit~</string>
-    <string name="tutorial_last_process_4_text">\n非常好，我们发现，第一张牌和第二张牌匹配成功，无法再次翻动了。现在你的分数是1分，花色匹配成功得4分，翻了3次牌扣3分。嗯，你也许会认为我太啰嗦了，但我只想向你强调的是，必须锻炼自己记牌的能力，同一张牌，最好只翻一次。那么，我们看看第三张牌是什么吧。</string>
+    <string name="tutorial_last_process_4_text">\nGood job, the first card match the second card, could not flip any more. Your score is 1, suit matching received 4, flipping three times lost 3. You may think me as a noisy guy, but what I want to say is, you must exercise your own ability to remember cards, it will be best every card flipped only 1 time. Let us check the third card.</string>
     <string name="tutorial_last_process_4_wrong_text">It is time to flip third card~</string>
-    <string name="tutorial_last_process_5_text">\n第三张是方片A，好的，接下来看看第四张。还是老样子，把第三张牌翻回去，再看第四张。</string>
+    <string name="tutorial_last_process_5_text">\nThe third card is ♦️A, Now check the 4th card, see what will be happened. Flip over the third card, then turn the 4th card as before.</string>
     <string name="tutorial_last_process_5_wrong_text">Flip over third card before flipping 4th card~</string>
     <string name="tutorial_last_process_6_text">\nGood, let ue see what 4th card is, flip it now.</string>
     <string name="tutorial_last_process_6_wrong_text">Why not flip 4th card～</string>
-    <string name="tutorial_last_process_7_text">\n这竟是一张黑桃A，第三张是方片A，他们点数相同，匹配能获得16分！快翻开第三张牌进行匹配。</string>
+    <string name="tutorial_last_process_7_text">\nWhat the hell! It is a ♠️A, having the same rank as the third card ♦️A, after matching you could get 16 points. Flip the third card to match quickly.</string>
     <string name="tutorial_last_process_7_wrong_text">What are you waiting for? flip third card to gain 16 points～</string>
-    <string name="tutorial_last_process_8_text">\n怎么样，获得16分的感觉如何？我们来统计一下，你总共翻了6次牌，扣6分，花色匹配成功一次得4分，点数匹配一次得16分，最后得分是16。点击任意牌继续</string>
-    <string name="tutorial_last_process_8_wrong_text"> </string>
+    <string name="tutorial_last_process_8_text">\nHow do you feel of getting 16 points? In total, you flipped 6 times, cost 6 points, suit matching once, received 4 points and rank matching once got 16 points, so your final score is 14. Press any cards to continue…</string>
+    <string name="tutorial_last_process_8_wrong_text">null</string>
     <string name="tutorial_last_process_text">Congratulations! you have finished the tutorial, please help your self graduate from the tutorial by clicking the button in bottom</string>
     <string name="tutorial_last_process_wrong_text">Congratulations! you have finished the tutorial, please help your self graduate from the tutorial by clicking the button in bottom</string>
 

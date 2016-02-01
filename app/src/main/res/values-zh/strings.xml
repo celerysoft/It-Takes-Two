@@ -80,7 +80,7 @@
     <string name="tutorial_last_process_7_text">\n这竟是一张黑桃A，第三张是方片A，他们点数相同，匹配能获得16分！快翻开第三张牌进行匹配。</string>
     <string name="tutorial_last_process_7_wrong_text">还等什么，快翻开第三张牌获取16分～</string>
     <string name="tutorial_last_process_8_text">\n怎么样，获得16分的感觉如何？我们来统计一下，你总共翻了6次牌，扣6分，花色匹配成功一次得4分，点数匹配一次得16分，最后得分是14。点击任意牌继续。。。</string>
-    <string name="tutorial_last_process_8_wrong_text"> </string>
+    <string name="tutorial_last_process_8_wrong_text">null</string>
     <string name="tutorial_last_process_text">\n恭喜，你已经完成了所有的教程。点击下面的按钮毕业吧。</string>
     <string name="tutorial_last_process_wrong_text">恭喜，你已经完成了所有的教程，点击下面的按钮毕业吧。</string>
 

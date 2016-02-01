@@ -24,7 +24,7 @@ public class CardMatchingGame implements Serializable {
         GAME_STATE_FINISH
     }
 
-    private final int MATCH_BOUNS = 4;
+    private final int MATCH_BONUS = 4;
     private final int MISMATCH_PENALTY = 2;
     private final int COST_TO_CHOOSE = 1;
 
@@ -94,7 +94,7 @@ public class CardMatchingGame implements Serializable {
                         if (otherCard.isChosen() && !otherCard.isMatched()) {
                             int matchScore = card.match(new Card[]{otherCard});
                             if (matchScore > 0) {
-                                mScore += matchScore * MATCH_BOUNS;
+                                mScore += matchScore * MATCH_BONUS;
                                 otherCard.setMatched(true);
                                 card.setMatched(true);
                             } else {

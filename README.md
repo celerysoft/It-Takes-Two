@@ -8,7 +8,7 @@ It Takes Two is a casual game that pick the matched cards and get scores, finall
 
 ## Features
 
-* 1 minite game
+* 1 minute game
 
 * Multi-language: English and Chinese
 
@@ -24,7 +24,7 @@ It Takes Two is a casual game that pick the matched cards and get scores, finall
 
 ## Sample
 
-To be added.
+[Tencent](http://42.56.65.146/dd.myapp.com/16891/3E88498E94B54FDF29F56B2EBAD0C633.apk?mkey=56caf7524afeb42e&f=3580&fsname=com.celerysoft.ittakestwo_1.0_1.apk&p=.apk)
 
 ## Screenshots
 

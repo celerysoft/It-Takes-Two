@@ -189,17 +189,19 @@ public class CardMatchingGame implements Serializable {
         mGameState = State.GAME_STATE_FINISH;
         mTimer.stop();
 
-        mCurrentPlayer.setScore(mScore);
-        mCurrentPlayer.setPlayingDuration(mTimer.getDurationInSecond());
+        if (mCurrentPlayer != null) {
+            mCurrentPlayer.setScore(mScore);
+            mCurrentPlayer.setPlayingDuration(mTimer.getDurationInSecond());
 
-        boolean isFlippedAllCards = true;
-        for (Card card : mCards) {
-            if (!card.isChosenOnce()) {
-                isFlippedAllCards = false;
-                break;
+            boolean isFlippedAllCards = true;
+            for (Card card : mCards) {
+                if (!card.isChosenOnce()) {
+                    isFlippedAllCards = false;
+                    break;
+                }
             }
+            mCurrentPlayer.setFlippedAllCards(isFlippedAllCards);
         }
-        mCurrentPlayer.setFlippedAllCards(isFlippedAllCards);
     }
 
     public boolean isLastPlayer() {

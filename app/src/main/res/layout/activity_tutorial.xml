@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/tutorial_root"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/card_table_background"
+                android:background="@color/primary"
                 android:paddingTop="@dimen/activity_vertical_margin"
                 android:paddingLeft="@dimen/activity_horizontal_margin"
                 android:paddingRight="@dimen/activity_horizontal_margin"
@@ -17,7 +16,8 @@
         android:layout_centerHorizontal="true"
         android:gravity="center"
         android:text="@string/tutorial_tv_score_text"
-        android:textSize="@dimen/text_size_body"/>
+        android:textSize="@dimen/text_size_body"
+        android:textColor="@color/primary_text"/>
 
     <LinearLayout
         android:id="@+id/tutorial_ll_cards"
@@ -67,14 +67,15 @@
             android:orientation="vertical"/>
     </ScrollView>
 
-    <com.gc.materialdesign.views.ButtonRectangle
+    <android.support.v7.widget.AppCompatButton
         android:id="@+id/tutorial_btn_finish"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_above="@+id/tutorial_tv_tips"
         android:layout_marginBottom="@dimen/activity_vertical_margin"
-        android:text="@string/tutorial_btn_finish_tutorial_text"/>
+        android:text="@string/tutorial_btn_finish_tutorial_text"
+        style="@style/AppTheme.RaisedButton"/>
 
     <TextView
         android:id="@+id/tutorial_tv_tips"
@@ -83,6 +84,7 @@
         android:layout_alignParentBottom="true"
         android:gravity="center"
         android:text="@string/tutorial_tv_tips_text"
-        android:textSize="@dimen/text_size_caption"/>
+        android:textSize="@dimen/text_size_caption"
+        android:textColor="@color/primary_text"/>
 
 </RelativeLayout>

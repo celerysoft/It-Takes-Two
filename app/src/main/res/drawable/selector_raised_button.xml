@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 深色（或者在深色主题下的）Raised buttons的background -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_enabled="false" android:drawable="@drawable/raised_button_disable_light"/>
+    <item android:state_pressed="true" android:drawable="@drawable/raised_button_pressed_dark"/>
+    <item android:drawable="@drawable/raised_button_normal_dark"/>
+</selector>

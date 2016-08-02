@@ -1,13 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    // Common color
+    <color name="transparent">#00000000</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="light_gray">#FFDDDDDD</color>
     <color name="gray">#FFAAAAAA</color>
     <color name="dark_gray">#FF666666</color>
-    <color name="card_table_background">#FF50C05B</color>
 
-    <color name="colorPrimary">#1E88E5</color>
-    <color name="colorPrimaryDark">#3F51B5</color>
-    <color name="colorAccent">#FF4081</color>
+    // Material Design Theme
+    <color name="primary">#4CAF50</color>
+    <color name="primary_dark">#388E3C</color>
+    <color name="primary_light">#C8E6C9</color>
+    <color name="accent">#3F51B5</color>
+    <color name="accent_dark">#303F9F</color>
+    <color name="accent_light">#C5CAE9</color>
+
+    // Text
+    <color name="primary_text">#212121</color>
+    <color name="secondary_text">#727272</color>
+    <color name="hint_text">#61000000</color>
+    <color name="disable_text">#61000000</color>
+    <color name="divider">#B6B6B6</color>
+
+    // Material Design for Buttons
+    // https://material.google.com/components/buttons.html
+    <!-- Flat Light/Light theme -->
+    <color name="flat_button_pressed_in_light_theme">#66999999</color> // Pressed: 40% #999999
+    <color name="flat_button_disable_text_in_light_theme">#43000000</color> // Disabled text: 26% #000000
+    <!-- Flat Dark/Dark theme -->
+    <color name="flat_button_pressed_in_dark_theme">#40CCCCCC</color> // Pressed: 25% #CCCCCC
+    <color name="flat_button_disable_text_in_dark_theme">#4DFFFFFF</color> // Disabled text: 30% #FFFFFF
+    <!-- Raised Light/Light theme -->
+    <color name="raised_button_normal_in_light_theme">#E1E1E1</color> // Normal: E1E1E1
+    <color name="raised_button_pressed_in_light_theme">#D6D6D6</color> // Focused: D6D6D6
+    <color name="raised_button_disable_in_light_theme">#1F000000</color> // Disabled button: 12% #000000
+    <color name="raised_button_disable_text_in_light_theme">#43000000</color> // Disabled text: 26% #000000
+    <!-- Raised Dark/Dark theme -->
+    <color name="raised_button_disable_in_dark_theme">#1FFFFFFF</color> // Disabled button: 12% #FFFFFF
+    <color name="raised_button_disable_text_in_dark_theme">#4DFFFFFF</color> // Disabled text: 30% #FFFFFF
 </resources>

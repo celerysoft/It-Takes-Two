@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.celerysoft.ittakestwo.R;
-import com.gc.materialdesign.views.ButtonRectangle;
 
 /**
  * Launching activity
@@ -14,9 +13,9 @@ import com.gc.materialdesign.views.ButtonRectangle;
 public class LaunchingActivity extends Activity {
 
     // Widget declare
-    ButtonRectangle mBtnSinglePlayerGame;
-    ButtonRectangle mBtnMultiPlayerGame;
-    ButtonRectangle mBtnHowToPlay;
+    private View mBtnSinglePlayerGame;
+    private View mBtnMultiPlayerGame;
+    private View mBtnHowToPlay;
 
     // Private Field
 
@@ -31,9 +30,9 @@ public class LaunchingActivity extends Activity {
     }
 
     private void defineView() {
-        mBtnSinglePlayerGame = (ButtonRectangle) findViewById(R.id.launching_btn_single_player);
-        mBtnMultiPlayerGame = (ButtonRectangle) findViewById(R.id.launching_btn_multi_player);
-        mBtnHowToPlay = (ButtonRectangle) findViewById(R.id.launching_btn_how_to_play);
+        mBtnSinglePlayerGame = findViewById(R.id.launching_btn_single_player);
+        mBtnMultiPlayerGame = findViewById(R.id.launching_btn_multi_player);
+        mBtnHowToPlay = findViewById(R.id.launching_btn_how_to_play);
     }
 
     private void defineListener() {

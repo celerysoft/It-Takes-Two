@@ -18,7 +18,6 @@ import com.celerysoft.ittakestwo.models.CardMatchingGame;
 import com.celerysoft.ittakestwo.models.PlayingCard;
 import com.celerysoft.ittakestwo.models.PlayingDeck;
 import com.celerysoft.ittakestwo.models.Tutorial;
-import com.gc.materialdesign.views.ButtonRectangle;
 
 import java.util.ArrayList;
 
@@ -32,7 +31,7 @@ public class TutorialActivity extends Activity {
     // declare view
     private RelativeLayout mRoot;
     private TextView mTvScore;
-    private ButtonRectangle mBtnFinish;
+    private Button mBtnFinish;
     private ScrollView mSvTalkToPlayer;
     private LinearLayout mLlTalkToPlayer;
     private LinearLayout mLlCards;
@@ -74,7 +73,7 @@ public class TutorialActivity extends Activity {
     private void defineView() {
         mRoot = (RelativeLayout) findViewById(R.id.tutorial_root);
         mTvScore = (TextView) findViewById(R.id.tutorial_tv_score);
-        mBtnFinish = (ButtonRectangle) findViewById(R.id.tutorial_btn_finish);
+        mBtnFinish = (Button) findViewById(R.id.tutorial_btn_finish);
         mSvTalkToPlayer = (ScrollView) findViewById(R.id.tutorial_scroll_view_talk_to_player);
         mLlTalkToPlayer = (LinearLayout) findViewById(R.id.tutorial_ll_talk_to_player);
         mLlCards = (LinearLayout) findViewById(R.id.tutorial_ll_cards);
@@ -198,6 +197,7 @@ public class TutorialActivity extends Activity {
         TextView textView = new TextView(TutorialActivity.this);
         textView.setText(mTutorialProcess.state.talkToPlayer);
         textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, mTextSize);
+        textView.setTextColor(getResources().getColor(R.color.primary_text));
         mLlTalkToPlayer.addView(textView);
         mLlTalkToPlayer.post(new Runnable() {
             @Override

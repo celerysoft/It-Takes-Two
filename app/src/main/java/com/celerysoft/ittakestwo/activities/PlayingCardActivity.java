@@ -9,6 +9,7 @@ import android.graphics.Rect;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.design.widget.FloatingActionButton;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
@@ -28,7 +29,6 @@ import com.celerysoft.ittakestwo.models.PlayingDeck;
 import com.celerysoft.ittakestwo.models.Timer;
 import com.celerysoft.ittakestwo.utils.SocialSharingUtil;
 import com.celerysoft.materialdesigndialog.MaterialDesignDialog;
-import com.gc.materialdesign.views.ButtonFloat;
 
 import java.util.ArrayList;
 
@@ -80,9 +80,9 @@ public class PlayingCardActivity extends Activity {
 
     //declare widgets
     private RelativeLayout mTopBar;
-    private ButtonFloat mBtnCommit;
-    private ButtonFloat mBtnRestartGame;
-    private ButtonFloat mBtnShareScore;
+    private FloatingActionButton mBtnCommit;
+    private FloatingActionButton mBtnRestartGame;
+    private FloatingActionButton mBtnShareScore;
     private TextView mTvScore;
     private TextView mTvDuration;
 
@@ -459,9 +459,9 @@ public class PlayingCardActivity extends Activity {
             }
         });
         mTopBar = (RelativeLayout) findViewById(R.id.playingcard_rl_topbar);
-        mBtnCommit = (ButtonFloat) findViewById(R.id.playingcard_btn_commit);
-        mBtnRestartGame = (ButtonFloat) findViewById(R.id.playingcard_btn_restart);
-        mBtnShareScore = (ButtonFloat) findViewById(R.id.playingcard_btn_share);
+        mBtnCommit = (FloatingActionButton) findViewById(R.id.playingcard_btn_commit);
+        mBtnRestartGame = (FloatingActionButton) findViewById(R.id.playingcard_btn_restart);
+        mBtnShareScore = (FloatingActionButton) findViewById(R.id.playingcard_btn_share);
         mTvScore = (TextView) findViewById(R.id.playingcard_tv_score);
         mTvDuration = (TextView) findViewById(R.id.playingcard_tv_duration);
 
@@ -608,33 +608,11 @@ public class PlayingCardActivity extends Activity {
     }
 
     private void showBtnCommit() {
-        Animation animation = AnimationUtils.loadAnimation(this, R.anim.btn_fade_in);
-        mBtnCommit.setAnimation(animation);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                mBtnCommit.clearAnimation();
-
-                mBtnCommit.setVisibility(View.VISIBLE);
-            }
-        }, animation.getDuration());
-        animation.start();
+        mBtnCommit.show();
     }
 
     private void hideBtnCommit() {
-        Log.d(TAG, "hideBtnCommit");
-        Animation animation = AnimationUtils.loadAnimation(this, R.anim.btn_fade_out);
-        mBtnCommit.clearAnimation();
-        mBtnCommit.setAnimation(animation);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                mBtnCommit.clearAnimation();
-
-                mBtnCommit.setVisibility(View.GONE);
-            }
-        }, animation.getDuration());
-        animation.start();
+        mBtnCommit.hide();
     }
 
     /**
@@ -642,40 +620,16 @@ public class PlayingCardActivity extends Activity {
      * player slip up to tap this buttons to break off the game.
      */
     private void hideButtons() {
-        Animation animation = AnimationUtils.loadAnimation(this, R.anim.btn_fade_out);
-        mBtnRestartGame.setAnimation(animation);
-        mBtnShareScore.setAnimation(animation);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                mBtnRestartGame.clearAnimation();
-                mBtnShareScore.clearAnimation();
-
-                mBtnRestartGame.setVisibility(View.GONE);
-                mBtnShareScore.setVisibility(View.GONE);
-            }
-        }, animation.getDuration());
-        animation.start();
+        mBtnRestartGame.hide();
+        mBtnShareScore.hide();
     }
 
     /**
      * show "Restart" and "Share" button
      */
     private void showButtons() {
-        Animation animation = AnimationUtils.loadAnimation(this, R.anim.btn_fade_in);
-        mBtnRestartGame.setAnimation(animation);
-        mBtnShareScore.setAnimation(animation);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                mBtnRestartGame.clearAnimation();
-                mBtnShareScore.clearAnimation();
-
-                mBtnRestartGame.setVisibility(View.VISIBLE);
-                mBtnShareScore.setVisibility(View.VISIBLE);
-            }
-        }, animation.getDuration());
-        animation.start();
+        mBtnRestartGame.show();
+        mBtnShareScore.show();
     }
 
     /**

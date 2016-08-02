@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 深色主题下的Raised buttons的textColor -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_enabled="false" android:color="@color/raised_button_disable_text_in_light_theme"/>
+    <item android:state_pressed="true" android:color="@color/white"/>
+    <item android:color="@color/white"/>
+</selector>

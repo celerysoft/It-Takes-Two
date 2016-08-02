@@ -1,23 +1,24 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:materialdesign="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/playing_card_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.celerysoft.ittakestwo.activities.PlayingCardActivity"
-    android:background="@color/card_table_background"
-    android:orientation="vertical">
+    android:background="@color/primary"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true" >
 
     <RelativeLayout
         android:id="@+id/playingcard_rl_topbar"
         android:layout_width="match_parent"
-        android:layout_height="88dp">
+        android:layout_height="104dp">
 
         <RelativeLayout
             android:layout_width="fill_parent"
             android:layout_height="60dp"
-            android:background="#804000">
+            android:background="#795548">
 
             <TextView
                 android:layout_alignParentLeft="true"
@@ -51,43 +52,40 @@
             android:layout_width="fill_parent"
             android:layout_height="2dp"
             android:layout_marginTop="60dp"
-            android:background="#88CECECE" />
+            android:background="@drawable/shadow" />
 
-        <com.gc.materialdesign.views.ButtonFloat
+        <android.support.design.widget.FloatingActionButton
             android:id="@+id/playingcard_btn_restart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:layout_marginLeft="@dimen/activity_vertical_margin"
-            android:layout_marginStart="@dimen/activity_vertical_margin"
+            android:layout_marginTop="@dimen/playing_card_fab_margin_top_in_portrait"
+            android:layout_marginLeft="@dimen/playing_card_fab_margin_left_in_portrait"
+            android:layout_marginStart="@dimen/playing_card_fab_margin_left_in_portrait"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:background="#1E88E5"
-            materialdesign:animate="false"
-            materialdesign:iconDrawable="@drawable/ic_refresh_white_48dp" />
+            android:src="@drawable/ic_refresh_white_48dp"
+            app:backgroundTint="@color/accent" />
 
-        <com.gc.materialdesign.views.ButtonFloat
+        <android.support.design.widget.FloatingActionButton
             android:id="@+id/playingcard_btn_commit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="@dimen/playing_card_fab_margin_top_in_portrait"
             android:layout_centerHorizontal="true"
-            android:background="#1E88E5"
-            materialdesign:animate="false"
-            materialdesign:iconDrawable="@drawable/ic_check_white_48dp" />
+            android:src="@drawable/ic_check_white_48dp"
+            app:backgroundTint="@color/accent" />
 
-        <com.gc.materialdesign.views.ButtonFloat
+        <android.support.design.widget.FloatingActionButton
             android:id="@+id/playingcard_btn_share"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:layout_marginRight="@dimen/activity_vertical_margin"
-            android:layout_marginEnd="@dimen/activity_vertical_margin"
+            android:layout_marginTop="@dimen/playing_card_fab_margin_top_in_portrait"
+            android:layout_marginRight="@dimen/playing_card_fab_margin_right_in_portrait"
+            android:layout_marginEnd="@dimen/playing_card_fab_margin_right_in_portrait"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:background="#1E88E5"
-            materialdesign:animate="false"
-            materialdesign:iconDrawable="@drawable/ic_share_white_48dp" />
+            android:src="@drawable/ic_share_white_48dp"
+            app:backgroundTint="@color/accent" />
 
     </RelativeLayout>
 

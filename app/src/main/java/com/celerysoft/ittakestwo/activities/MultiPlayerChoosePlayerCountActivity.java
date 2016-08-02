@@ -7,8 +7,6 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.celerysoft.ittakestwo.R;
-import com.gc.materialdesign.views.ButtonFlat;
-import com.gc.materialdesign.views.ButtonIcon;
 
 /**
  * Choose how many players to play the game.
@@ -20,9 +18,9 @@ public class MultiPlayerChoosePlayerCountActivity extends Activity {
 
     // Declare view
     private TextView mTvPlayerCount;
-    private ButtonFlat mBtnConfirm;
-    private ButtonIcon mBtnIncreasePlayerCount;
-    private ButtonIcon mBtnDecreasePlayerCount;
+    private View mBtnConfirm;
+    private View mBtnIncreasePlayerCount;
+    private View mBtnDecreasePlayerCount;
 
     // Private field
     private Integer mPlayerCount = MIN_PLAYER_COUNT;
@@ -37,39 +35,39 @@ public class MultiPlayerChoosePlayerCountActivity extends Activity {
     }
 
     private void init() {
-        defineView();
-        defineListener();
+        bindView();
+        bindListener();
 
         updatePlayerCount();
     }
 
-    private void defineView() {
+    private void bindView() {
         mTvPlayerCount = (TextView) findViewById(R.id.choose_player_count_tv_player_count);
-        mBtnConfirm = (ButtonFlat) findViewById(R.id.choose_player_count_btn_confirm);
-        mBtnIncreasePlayerCount = (ButtonIcon) findViewById(R.id.choose_player_count_btn_increase);
-        mBtnDecreasePlayerCount = (ButtonIcon) findViewById(R.id.choose_player_count_btn_decrease);
+        mBtnConfirm = findViewById(R.id.choose_player_count_btn_confirm);
+        mBtnIncreasePlayerCount = findViewById(R.id.choose_player_count_btn_increase);
+        mBtnDecreasePlayerCount = findViewById(R.id.choose_player_count_btn_decrease);
     }
 
-    private void defineListener() {
-        mBtnConfirm.setOnClickListener(mOnClickListener);
-        mBtnIncreasePlayerCount.setOnClickListener(mOnClickListener);
-        mBtnDecreasePlayerCount.setOnClickListener(mOnClickListener);
-    }
-
-    private View.OnClickListener mOnClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            if (v.equals(mBtnConfirm)) {
+    private void bindListener() {
+        mBtnConfirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 startGame();
-            } else if (v.equals(mBtnIncreasePlayerCount)) {
-                increasePlayerCount();
-            } else if (v.equals(mBtnDecreasePlayerCount)) {
-                decreasePlayerCount();
-            } else {
-
             }
-        }
-    };
+        });
+        mBtnIncreasePlayerCount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                increasePlayerCount();
+            }
+        });
+        mBtnDecreasePlayerCount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                decreasePlayerCount();
+            }
+        });
+    }
 
     private void increasePlayerCount() {
         if (mPlayerCount < MAX_PLAYER_COUNT) {
@@ -86,7 +84,7 @@ public class MultiPlayerChoosePlayerCountActivity extends Activity {
     }
 
     private void updatePlayerCount() {
-        mTvPlayerCount.setText(mPlayerCount.toString());
+        mTvPlayerCount.setText(String.format("%s", mPlayerCount.toString()));
     }
 
     private void startGame() {

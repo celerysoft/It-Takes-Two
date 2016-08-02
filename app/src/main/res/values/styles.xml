@@ -1,20 +1,39 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="DefaultActivityTheme">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
+        <!--选中状态icon的颜色和字体颜色-->
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primary_dark</item>
+        <item name="colorAccent">@color/accent</item>
     </style>
 
+    <style name="AppTheme.RaisedButton">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">36dp</item>
+        <item name="android:minWidth">88dp</item>
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:paddingRight">16dp</item>
+        <item name="android:background">@drawable/selector_raised_button</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@drawable/selector_raised_button_text</item>
+        <item name="android:textSize">14sp</item>
+    </style>
 
-    <style name="DefaultActivityTheme" parent="Theme.AppCompat.Light.NoActionBar">
-
-        <!--选中状态icon的颜色和字体颜色-->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <!--正常状态下字体颜色和icon颜色-->
-        <item name="android:textColorPrimary">@color/black</item>
-
+    // 深色主题下的FlatButton
+    <style name="AppTheme.FlatButtonDark">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">36dp</item>
+        <item name="android:minWidth">88dp</item>
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:paddingRight">16dp</item>
+        <item name="android:background">@drawable/selector_flat_button_dark</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@drawable/selector_flat_button_text_dark</item>
+        <item name="android:textSize">14sp</item>
     </style>
 
 </resources>

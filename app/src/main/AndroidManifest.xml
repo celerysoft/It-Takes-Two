@@ -19,7 +19,7 @@
 
         <activity
             android:name=".activities.LaunchingActivity"
-            android:theme="@style/DefaultActivityTheme">
+            android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -27,13 +27,13 @@
         </activity>
 
         <activity android:name=".activities.PlayingCardActivity"
-                  android:theme="@style/DefaultActivityTheme"/>
+                  android:theme="@style/AppTheme"/>
 
         <activity android:name=".activities.MultiPlayerChoosePlayerCountActivity"
-                  android:theme="@style/DefaultActivityTheme"/>
+                  android:theme="@style/AppTheme"/>
 
         <activity android:name=".activities.TutorialActivity"
-                  android:theme="@style/DefaultActivityTheme"
+                  android:theme="@style/AppTheme"
                   android:screenOrientation="portrait"/>
 
         <!-- QQ SKD -->

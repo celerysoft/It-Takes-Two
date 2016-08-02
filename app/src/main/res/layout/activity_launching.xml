@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/card_table_background"
+    android:background="@color/primary"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -16,43 +16,49 @@
         android:id="@+id/launching_tv_app_name"
         android:text="@string/app_name"
         android:textSize="@dimen/text_size_display1"
+        android:textColor="@color/white"
         android:gravity="center"/>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="@dimen/activity_vertical_margin"
-        android:paddingBottom="@dimen/activity_vertical_margin"
         android:layout_below="@id/launching_tv_app_name"
         android:layout_above="@+id/launching_tv_tip">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <com.gc.materialdesign.views.ButtonRectangle
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:paddingTop="@dimen/activity_vertical_margin"
+            android:paddingBottom="@dimen/activity_vertical_margin">
+            
+            <android.support.v7.widget.AppCompatButton
                 android:id="@+id/launching_btn_single_player"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:text="@string/launching_btn_single_player_text"
-                android:background="@color/colorPrimary" />
+                style="@style/AppTheme.RaisedButton" />
 
-            <com.gc.materialdesign.views.ButtonRectangle
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/activity_vertical_margin"
+            <android.support.v7.widget.AppCompatButton
                 android:id="@+id/launching_btn_multi_player"
-                android:text="@string/launching_btn_multi_player_text"
-                android:background="@color/colorPrimary" />
-
-            <com.gc.materialdesign.views.ButtonRectangle
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:text="@string/launching_btn_multi_player_text"
+                style="@style/AppTheme.RaisedButton" />
+
+            <android.support.v7.widget.AppCompatButton
                 android:id="@+id/launching_btn_how_to_play"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
                 android:text="@string/launching_btn_how_to_play_text"
-                android:background="@color/colorPrimary" />
+                style="@style/AppTheme.RaisedButton" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"/>
 
         </LinearLayout>
 
@@ -67,6 +73,7 @@
         android:layout_marginBottom="@dimen/activity_vertical_margin"
         android:gravity="center"
         android:text="@string/launching_tv_tip"
+        android:textColor="@color/primary_text"
         android:textSize="@dimen/text_size_body"/>
 
     <TextView
@@ -76,6 +83,7 @@
         android:layout_above="@+id/launching_tv_copyright"
         android:gravity="center"
         android:text="@string/app_version_info"
+        android:textColor="@color/primary_text"
         android:textSize="@dimen/text_size_caption"/>
 
     <TextView
@@ -85,6 +93,7 @@
         android:layout_alignParentBottom="true"
         android:gravity="center"
         android:text="@string/app_copyright"
+        android:textColor="@color/primary_text"
         android:textSize="@dimen/text_size_caption"/>
 
 </RelativeLayout>

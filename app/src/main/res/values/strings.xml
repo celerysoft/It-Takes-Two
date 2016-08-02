@@ -1,7 +1,7 @@
 <resources>
     <!-- common -->
-    <string name="hello_world">Hello world!</string>
-    <string name="app_version_info">Ver 1.0.0</string>
+    <string name="hello_world" translatable="false">Hello world!</string>
+    <string name="app_version_info" translatable="false">Ver 1.0.0</string>
     <string name="app_copyright">Copyright © 2015 – 2016 Celery Soft. All rights reserved.</string>
 
 

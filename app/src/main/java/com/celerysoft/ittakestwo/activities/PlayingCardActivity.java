@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.Rect;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -79,6 +80,7 @@ public class PlayingCardActivity extends Activity {
     private int mCardLayoutVerticalMargin;
 
     //declare widgets
+    private View mViewPlaceHolder;
     private RelativeLayout mTopBar;
     private FloatingActionButton mBtnCommit;
     private FloatingActionButton mBtnRestartGame;
@@ -360,9 +362,15 @@ public class PlayingCardActivity extends Activity {
         getWindow().getDecorView().getWindowVisibleDisplayFrame(frame);
         int statusBarHeight = frame.top;
 
+        if (Build.VERSION.SDK_INT >= 19) {
+            mViewPlaceHolder.getLayoutParams().height = statusBarHeight;
+        }
+
+        int placeHolderViewHeight = mViewPlaceHolder.getHeight();
+
         int topBarHeight = mTopBar.getHeight();
 
-        int contentHeight = screenHeight - statusBarHeight - topBarHeight - (int) (2 * verticalMargin);
+        int contentHeight = screenHeight - statusBarHeight - placeHolderViewHeight - topBarHeight - (int) (2 * verticalMargin);
 
         int cardLayoutHeight = (int) (contentHeight * 0.9 / cardPerColumn);
 
@@ -458,6 +466,8 @@ public class PlayingCardActivity extends Activity {
                 }
             }
         });
+
+        mViewPlaceHolder = findViewById(R.id.playingcard_place_holder);
         mTopBar = (RelativeLayout) findViewById(R.id.playingcard_rl_topbar);
         mBtnCommit = (FloatingActionButton) findViewById(R.id.playingcard_btn_commit);
         mBtnRestartGame = (FloatingActionButton) findViewById(R.id.playingcard_btn_restart);

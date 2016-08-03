@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
+import com.celerysoft.ittakestwo.BuildConfig;
 import com.celerysoft.ittakestwo.R;
 
 /**
@@ -16,6 +18,7 @@ public class LaunchingActivity extends Activity {
     private View mBtnSinglePlayerGame;
     private View mBtnMultiPlayerGame;
     private View mBtnHowToPlay;
+    private TextView mTvVersion;
 
     // Private Field
 
@@ -27,12 +30,14 @@ public class LaunchingActivity extends Activity {
 
         defineView();
         defineListener();
+        initView();
     }
 
     private void defineView() {
         mBtnSinglePlayerGame = findViewById(R.id.launching_btn_single_player);
         mBtnMultiPlayerGame = findViewById(R.id.launching_btn_multi_player);
         mBtnHowToPlay = findViewById(R.id.launching_btn_how_to_play);
+        mTvVersion = (TextView) findViewById(R.id.launching_tv_version);
     }
 
     private void defineListener() {
@@ -54,6 +59,10 @@ public class LaunchingActivity extends Activity {
                 startTutorial();
             }
         });
+    }
+
+    private void initView() {
+        mTvVersion.setText(String.format("Ver %s", BuildConfig.VERSION_NAME));
     }
 
     private void startSinglePlayerGame() {

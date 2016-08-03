@@ -77,9 +77,9 @@
         android:textSize="@dimen/text_size_body"/>
 
     <TextView
+        android:id="@+id/launching_tv_version"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/launching_tv_version"
         android:layout_above="@+id/launching_tv_copyright"
         android:gravity="center"
         android:text="@string/app_version_info"

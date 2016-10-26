@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="activity_topper_place_holder">16dp</dimen>
     <dimen name="playing_card_fab_margin_top_in_portrait">32dp</dimen>
     <dimen name="playing_card_fab_margin_left_in_portrait">16dp</dimen>
     <dimen name="playing_card_fab_margin_right_in_portrait">16dp</dimen>

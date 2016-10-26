@@ -1,7 +1,6 @@
 package com.celerysoft.ittakestwo.activities;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Color;
@@ -13,8 +12,6 @@ import android.os.Message;
 import android.support.design.widget.FloatingActionButton;
 import android.util.Log;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridLayout;
@@ -36,7 +33,7 @@ import java.util.ArrayList;
 /**
  * Playing Card Activity
  */
-public class PlayingCardActivity extends Activity {
+public class PlayingCardActivity extends BaseActivity {
     /** Log tag **/
     private final String TAG = this.getClass().getSimpleName();
 
@@ -80,6 +77,7 @@ public class PlayingCardActivity extends Activity {
     private int mCardLayoutVerticalMargin;
 
     //declare widgets
+    private View mRootView;
     private View mViewPlaceHolder;
     private RelativeLayout mTopBar;
     private FloatingActionButton mBtnCommit;
@@ -362,7 +360,7 @@ public class PlayingCardActivity extends Activity {
         getWindow().getDecorView().getWindowVisibleDisplayFrame(frame);
         int statusBarHeight = frame.top;
 
-        if (Build.VERSION.SDK_INT >= 19) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             mViewPlaceHolder.getLayoutParams().height = statusBarHeight;
         }
 
@@ -464,9 +462,12 @@ public class PlayingCardActivity extends Activity {
                 } else if (PlayingCardActivity.this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
                     autoAdjustForLandscapeScreen();
                 }
+                mRootView.requestLayout();
+                mRootView.invalidate();
             }
         });
 
+        mRootView = findViewById(R.id.playing_card_root);
         mViewPlaceHolder = findViewById(R.id.playingcard_place_holder);
         mTopBar = (RelativeLayout) findViewById(R.id.playingcard_rl_topbar);
         mBtnCommit = (FloatingActionButton) findViewById(R.id.playingcard_btn_commit);

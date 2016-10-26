@@ -4,8 +4,8 @@
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
                      android:maxSdkVersion="18"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
     <uses-permission android:name="android.permission.INTERNET"/>
 
@@ -36,6 +36,54 @@
                   android:theme="@style/AppTheme"
                   android:screenOrientation="portrait"/>
 
+        <!--&lt;!&ndash; 友盟，开始 &ndash;&gt;-->
+        <!--<activity-->
+            <!--android:name="com.umeng.socialize.editorpage.ShareActivity"-->
+            <!--android:theme="@style/Theme.UMDefault"-->
+            <!--android:excludeFromRecents="true"/>-->
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="${UMENG_APPKEY}" />
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="${UMENG_CHANNEL_NAME}" />
+        <!--&lt;!&ndash; 社交分享，开始 &ndash;&gt;-->
+        <!--<meta-data-->
+            <!--android:name="WECHAT_APP_ID"-->
+            <!--android:value="${WECHAT_APP_ID}" />-->
+        <!--<meta-data-->
+            <!--android:name="WECHAT_APP_SECRET"-->
+            <!--android:value="${WECHAT_APP_SECRET}" />-->
+        <!--<meta-data-->
+            <!--android:name="QQ_APP_ID"-->
+            <!--android:value="${QQ_APP_ID}" />-->
+        <!--<meta-data-->
+            <!--android:name="QQ_APP_KEY"-->
+            <!--android:value="${QQ_APP_KEY}" />-->
+        <!--<activity-->
+            <!--android:name=".wxapi.WXEntryActivity"-->
+            <!--android:configChanges="keyboardHidden|orientation|screenSize"-->
+            <!--android:exported="true"-->
+            <!--android:screenOrientation="portrait"-->
+            <!--android:theme="@android:style/Theme.Translucent.NoTitleBar" />-->
+        <!--<activity-->
+            <!--android:name="com.tencent.tauth.AuthActivity"-->
+            <!--android:launchMode="singleTask"-->
+            <!--android:noHistory="true" >-->
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.VIEW" />-->
+                <!--<category android:name="android.intent.category.DEFAULT" />-->
+                <!--<category android:name="android.intent.category.BROWSABLE" />-->
+                <!--<data android:scheme="${TENCENT_AUTH_SCHEME}" />-->
+            <!--</intent-filter>-->
+        <!--</activity>-->
+        <!--<activity-->
+            <!--android:name="com.tencent.connect.common.AssistActivity"-->
+            <!--android:screenOrientation="portrait"-->
+            <!--android:theme="@android:style/Theme.Translucent.NoTitleBar" />-->
+        <!--&lt;!&ndash; 社交分享，结束 &ndash;&gt;-->
+        <!--&lt;!&ndash; 友盟，结束 &ndash;&gt;-->
+
         <!-- QQ SKD -->
         <activity
             android:name="com.tencent.tauth.AuthActivity"
@@ -45,7 +93,7 @@
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="tencent1104989728" />
+                <data android:scheme="tencent1105101856" />
             </intent-filter>
         </activity>
         <activity android:name="com.tencent.connect.common.AssistActivity"

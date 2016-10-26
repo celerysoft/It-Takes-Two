@@ -1,6 +1,5 @@
 package com.celerysoft.ittakestwo.activities;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -11,7 +10,7 @@ import com.celerysoft.ittakestwo.R;
 /**
  * Choose how many players to play the game.
  */
-public class MultiPlayerChoosePlayerCountActivity extends Activity {
+public class MultiPlayerChoosePlayerCountActivity extends BaseActivity {
     // Const
     private static final int MIN_PLAYER_COUNT = 2;
     private static final int MAX_PLAYER_COUNT = 4;

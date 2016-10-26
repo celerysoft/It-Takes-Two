@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ripple
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:radius="20dp"
     android:color="@color/flat_button_pressed_in_dark_theme"
     >
     <!-- 波纹颜色 -->

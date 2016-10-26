@@ -1,6 +1,5 @@
 package com.celerysoft.ittakestwo.activities;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -8,11 +7,12 @@ import android.widget.TextView;
 
 import com.celerysoft.ittakestwo.BuildConfig;
 import com.celerysoft.ittakestwo.R;
+import com.umeng.analytics.MobclickAgent;
 
 /**
  * Launching activity
  */
-public class LaunchingActivity extends Activity {
+public class LaunchingActivity extends BaseActivity {
 
     // Widget declare
     private View mBtnSinglePlayerGame;
@@ -31,6 +31,7 @@ public class LaunchingActivity extends Activity {
         defineView();
         defineListener();
         initView();
+        initUmeng();
     }
 
     private void defineView() {
@@ -63,6 +64,11 @@ public class LaunchingActivity extends Activity {
 
     private void initView() {
         mTvVersion.setText(String.format("Ver %s", BuildConfig.VERSION_NAME));
+    }
+
+    private void initUmeng() {
+        MobclickAgent.setCheckDevice(false);
+        MobclickAgent.setCatchUncaughtExceptions(false);
     }
 
     private void startSinglePlayerGame() {

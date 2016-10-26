@@ -7,6 +7,8 @@ import android.os.Build;
 import android.os.Environment;
 import android.util.Log;
 
+import com.umeng.analytics.MobclickAgent;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -53,6 +55,7 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
 //            System.exit(1);
 //            android.os.Process.killProcess(android.os.Process.myPid());
 //        }
+        MobclickAgent.reportError(mContext, ex);
         handleException(ex);
         if (mHandler != null) {
             mHandler.uncaughtException(thread, ex);

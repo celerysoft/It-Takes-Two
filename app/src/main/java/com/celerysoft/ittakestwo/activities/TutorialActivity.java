@@ -1,6 +1,5 @@
 package com.celerysoft.ittakestwo.activities;
 
-import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -25,7 +24,7 @@ import java.util.ArrayList;
  * Created by Celery on 16/1/26.
  * TutorialActivity, touch player how to play.
  */
-public class TutorialActivity extends Activity {
+public class TutorialActivity extends BaseActivity {
     private static final String TAG = "TutorialActivity";
 
     // declare view
@@ -81,6 +80,7 @@ public class TutorialActivity extends Activity {
             @Override
             public void run() {
                 adjustDisplayOfCards();
+                mLlCards.requestLayout();
             }
         });
 
